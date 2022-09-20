@@ -1,10 +1,9 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import searchIcon from '../assets/searchIcon.svg'
-import mailIcon from '../assets/mail.svg'
 import messageIcon from '../assets/message.svg'
+import logoutIcon from '../assets/logout.svg'
 import bellIcon from '../assets/bell.svg'
-import hearthIcon from '../assets/heart.svg'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.header`
@@ -39,10 +38,23 @@ const HeaderContainer = styled.header`
     display:flex;
     place-items:center;
     gap:2.375rem;
-    & img {
-      width: 26px;
-      height: 24px;
+    & button {
+      cursor: pointer;
+      border: 2px solid white;
+      background-color:inherit;
+      padding: .25rem;
+      & img {
+        display: block;
+        margin: auto;
+        width: 26px;
+        height: 24px;
+      }
+      &:hover{
+        border: 2px solid #135846;
+        border-radius:10px;
+      }
     }
+    
   }
   & .header__user {
     width:60px;
@@ -50,14 +62,7 @@ const HeaderContainer = styled.header`
     border-radius:12px;
     background-color: #C5c5c5;
   }
-  & select {
-    font: normal normal 600 18px/27px Poppins;
-letter-spacing: 0px;
-color: #E23428;
-    color: red;
-    height:100%;
-    border:none;
-  }
+  
 `
 
 const Header = () => {
@@ -70,16 +75,16 @@ const Header = () => {
         <img src={searchIcon} alt="" />
       </div>
       <div className='header__icons'>
-        <img src={hearthIcon} alt="" />
-        <img src={mailIcon} alt="" />
-        <img src={bellIcon} alt="" />
-        <img src={messageIcon} alt="" />
+        <button>
+          <img src={bellIcon} alt="" />
+        </button>
+        <button>
+          <img src={messageIcon} alt="" />
+        </button>
+        <button>
+          <img src={logoutIcon} alt="" />
+        </button>
       </div>
-      <div className='header__user'></div>
-      <select name="language" id="language">
-        <option value="EN">EN</option>
-        <option value="ES">ES</option>
-      </select>
     </HeaderContainer>
   )
 }
