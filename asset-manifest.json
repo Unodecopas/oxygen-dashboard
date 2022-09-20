@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/oxygen-dashboard/static/css/main.cc1bcab5.css",
-    "main.js": "/oxygen-dashboard/static/js/main.c425b15f.js",
+    "main.js": "/oxygen-dashboard/static/js/main.6a6df981.js",
     "static/media/logo.png": "/oxygen-dashboard/static/media/logo.b66a1f8abe0838373163.png",
     "static/media/mail.svg": "/oxygen-dashboard/static/media/mail.92b6e9f657f0056da6e68a85637c7c9d.svg",
     "index.html": "/oxygen-dashboard/index.html",
@@ -10,10 +10,10 @@
     "static/media/heart.svg": "/oxygen-dashboard/static/media/heart.d94ec59bb02b86c39b9b0e641f4feb0a.svg",
     "static/media/searchIcon.svg": "/oxygen-dashboard/static/media/searchIcon.fcffe00c10d2694e3205b2a2da16b41b.svg",
     "main.cc1bcab5.css.map": "/oxygen-dashboard/static/css/main.cc1bcab5.css.map",
-    "main.c425b15f.js.map": "/oxygen-dashboard/static/js/main.c425b15f.js.map"
+    "main.6a6df981.js.map": "/oxygen-dashboard/static/js/main.6a6df981.js.map"
   },
   "entrypoints": [
     "static/css/main.cc1bcab5.css",
-    "static/js/main.c425b15f.js"
+    "static/js/main.6a6df981.js"
   ]
 }
