@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/oxygen-dashboard/static/css/main.073c9b0a.css",
-    "main.js": "/oxygen-dashboard/static/js/main.d80c58e8.js",
-    "static/js/787.944031f5.chunk.js": "/oxygen-dashboard/static/js/787.944031f5.chunk.js",
-    "static/media/logo.svg": "/oxygen-dashboard/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/oxygen-dashboard/static/css/main.cc1bcab5.css",
+    "main.js": "/oxygen-dashboard/static/js/main.c425b15f.js",
+    "static/media/logo.png": "/oxygen-dashboard/static/media/logo.b66a1f8abe0838373163.png",
+    "static/media/mail.svg": "/oxygen-dashboard/static/media/mail.92b6e9f657f0056da6e68a85637c7c9d.svg",
     "index.html": "/oxygen-dashboard/index.html",
-    "main.073c9b0a.css.map": "/oxygen-dashboard/static/css/main.073c9b0a.css.map",
-    "main.d80c58e8.js.map": "/oxygen-dashboard/static/js/main.d80c58e8.js.map",
-    "787.944031f5.chunk.js.map": "/oxygen-dashboard/static/js/787.944031f5.chunk.js.map"
+    "static/media/bell.svg": "/oxygen-dashboard/static/media/bell.39018d3d775bdb14de527b4317ea5421.svg",
+    "static/media/message.svg": "/oxygen-dashboard/static/media/message.ddc08c104ad15301bd51e6f564386dad.svg",
+    "static/media/heart.svg": "/oxygen-dashboard/static/media/heart.d94ec59bb02b86c39b9b0e641f4feb0a.svg",
+    "static/media/searchIcon.svg": "/oxygen-dashboard/static/media/searchIcon.fcffe00c10d2694e3205b2a2da16b41b.svg",
+    "main.cc1bcab5.css.map": "/oxygen-dashboard/static/css/main.cc1bcab5.css.map",
+    "main.c425b15f.js.map": "/oxygen-dashboard/static/js/main.c425b15f.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.d80c58e8.js"
+    "static/css/main.cc1bcab5.css",
+    "static/js/main.c425b15f.js"
   ]
 }
