@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import BookingsPage from './BookingsPage'
-import ConciergePage from './ConciergePage'
+import ContactPage from './ContactPage'
 import DashboardPage from './DashboardPage'
-import GuestPage from './GuestPage'
+import UserPage from './UserPage'
 import RoomsPage from './RoomsPage'
 const HomePageContainer = styled.div`
   display: grid;
@@ -26,10 +26,10 @@ const HomePage = () => {
         <main>
           <Routes>
             <Route path='/dashboard' element={<DashboardPage />} />
-            <Route path='/guest' element={<GuestPage />} />
+            <Route path='/user' element={<UserPage />} />
             <Route path='/rooms' element={<RoomsPage />} />
             <Route path='/bookings' element={<BookingsPage />} />
-            <Route path='/concierge' element={<ConciergePage />} />
+            <Route path='/contact' element={<ContactPage />} />
           </Routes>
         </main>
       </MainContainer>
