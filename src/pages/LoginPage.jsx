@@ -78,9 +78,9 @@ const LoginPage = ({ setUser }) => {
   return (
     <Login>
       <form className='login__form' onSubmit={handleSubmit}>
-      <img src={logo} alt="" />
-      <h2>Login</h2>
-      {error && <p className='login__error'>{error}</p>}
+        <img src={logo} alt="" />
+        <h2>Login</h2>
+        {error && <p className='login__error'>{error}</p>}
         <label htmlFor="username">Username</label>
         <input type="text" value={username} placeholder={USER.email} onChange={e => setUsername(e.target.value)} />
         <label htmlFor="password">Password</label>
