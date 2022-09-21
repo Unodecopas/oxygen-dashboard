@@ -26,8 +26,8 @@ const Navbar = () => {
         <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
         <li><NavLink to={'/rooms'}>Room</NavLink></li>
         <li><NavLink to={'/bookings'}>Bookings</NavLink></li>
-        <li><NavLink to={'/guest'}>Guest List</NavLink></li>
-        <li><NavLink to={'/concierge'}>Concierge</NavLink></li>
+        <li><NavLink to={'/user'}>User</NavLink></li>
+        <li><NavLink to={'/contact'}>Contact</NavLink></li>
       </ul>
     </Nav>
   )
