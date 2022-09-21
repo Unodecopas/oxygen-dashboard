@@ -69,7 +69,6 @@ const LoginPage = ({ setUser }) => {
     e.preventDefault()
     if (username === USER.email && password === USER.password) {
       setUser(true)
-      localStorage.setItem('userMiranda', JSON.parse(true))
       navigate('/dashboard')
     } else {
       setError('Has introducido datos incorrectos')

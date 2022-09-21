@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
-const ProtectedRoute = ({ user, children }) => {
+const ProtectedRoute = ({ logged, children }) => {
   const navigate = useNavigate()
   useEffect(() => {
-    if (!user) {
+    if (!logged) {
       navigate('/login')
     }
-  }, [user])
+  }, [logged])
 
   return <Outlet />
 }
