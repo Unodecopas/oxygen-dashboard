@@ -86,7 +86,7 @@ const Navbar = () => {
         <div className='user__info__img'></div>
         <h3>William Johanson</h3>
         <p>williamjohn@hotelmiranda.com</p>
-        <button>Contact Us</button>
+        <button>Edit</button>
       </div>
       <footer>
         <h3>Travl Hotel Admin Dashboard</h3>
