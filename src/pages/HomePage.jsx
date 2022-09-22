@@ -8,6 +8,7 @@ import ContactPage from './ContactPage'
 import DashboardPage from './DashboardPage'
 import UserPage from './UserPage'
 import RoomsPage from './RoomsPage'
+
 const HomePageContainer = styled.div`
   display: grid;
   grid-template-columns: 345px 1fr;

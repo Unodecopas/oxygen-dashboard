@@ -68,7 +68,7 @@ const LoginPage = ({ setUser }) => {
   const handleSubmit = e => {
     e.preventDefault()
     if (username === USER.username && password === USER.password) {
-      setUser({ username, email: 'jesusgallardo@correo.com' })
+      setUser({ username, email: 'jesusgallardo@correo.com', logged: true })
       navigate('/dashboard')
     } else {
       setError('Has introducido datos incorrectos')

@@ -12,11 +12,9 @@ const Dashboard = styled.div`
 `
 
 function App () {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem(LOCAL_USER)) || '')
-  const [logged, setLogged] = useState(false)
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem(LOCAL_USER)) || { username: '', password: '', logged: false })
 
   useEffect(() => {
-    setLogged(true)
     localStorage.setItem(LOCAL_USER, JSON.stringify(user))
   }, [user])
 
@@ -24,7 +22,7 @@ function App () {
     <Dashboard>
       <Routes>
         <Route path='login' element={<LoginPage setUser={setUser} />} />
-        <Route element={<ProtectedRoute logged={logged}/>}>
+        <Route element={<ProtectedRoute user={user}/>}>
           <Route path='/*' element={<HomePage />} />
         </Route>
       </Routes>

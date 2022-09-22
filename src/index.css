@@ -15,6 +15,7 @@ html {
   height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
+  overflow-x: hidden;
 }
 main {
   background-color: #f8f8f8;
