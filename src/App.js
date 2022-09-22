@@ -12,12 +12,12 @@ const Dashboard = styled.div`
 `
 
 function App () {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem(LOCAL_USER)) || [])
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem(LOCAL_USER)) || '')
   const [logged, setLogged] = useState(false)
 
   useEffect(() => {
     setLogged(true)
-    localStorage.setItem(LOCAL_USER, JSON.parse(true))
+    localStorage.setItem(LOCAL_USER, JSON.stringify(user))
   }, [user])
 
   return (

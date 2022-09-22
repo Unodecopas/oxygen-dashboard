@@ -10,7 +10,7 @@ import UserPage from './UserPage'
 import RoomsPage from './RoomsPage'
 const HomePageContainer = styled.div`
   display: grid;
-  grid-template-columns: 354px 1fr;
+  grid-template-columns: 345px 1fr;
   height:100%;
 `
 const MainContainer = styled.div`

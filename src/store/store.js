@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import conciergeListReducer from '../slices/conciergeListSlice'
+import usersListReducer from '../slices/usersListSlice'
 
 export const store = configureStore({
   reducer: {
-    conciergeList: conciergeListReducer
+    conciergeList: usersListReducer
   }
 })

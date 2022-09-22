@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/logo-sm.png'
 const USER = {
-  email: 'admin@hotelmiranda.com',
+  username: 'JesusGallardo',
   password: 'admin'
 }
 const Login = styled.div`
@@ -61,14 +61,14 @@ const Login = styled.div`
 `
 
 const LoginPage = ({ setUser }) => {
-  const [username, setUsername] = useState('admin@hotelmiranda.com')
+  const [username, setUsername] = useState('JesusGallardo')
   const [password, setPassword] = useState('admin')
   const [error, setError] = useState('')
   const navigate = useNavigate()
   const handleSubmit = e => {
     e.preventDefault()
-    if (username === USER.email && password === USER.password) {
-      setUser(true)
+    if (username === USER.username && password === USER.password) {
+      setUser({ username, email: 'jesusgallardo@correo.com' })
       navigate('/dashboard')
     } else {
       setError('Has introducido datos incorrectos')
