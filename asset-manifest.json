@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/oxygen-dashboard/static/css/main.cc1bcab5.css",
-    "main.js": "/oxygen-dashboard/static/js/main.045892d3.js",
+    "main.css": "/oxygen-dashboard/static/css/main.2af1c41b.css",
+    "main.js": "/oxygen-dashboard/static/js/main.3f1bd6f9.js",
     "static/media/logo.png": "/oxygen-dashboard/static/media/logo.b66a1f8abe0838373163.png",
     "index.html": "/oxygen-dashboard/index.html",
     "static/media/bell.svg": "/oxygen-dashboard/static/media/bell.39018d3d775bdb14de527b4317ea5421.svg",
     "static/media/message.svg": "/oxygen-dashboard/static/media/message.ddc08c104ad15301bd51e6f564386dad.svg",
     "static/media/searchIcon.svg": "/oxygen-dashboard/static/media/searchIcon.fcffe00c10d2694e3205b2a2da16b41b.svg",
     "static/media/logout.svg": "/oxygen-dashboard/static/media/logout.a1f6245e43542164a2f3074b8cb95676.svg",
-    "main.cc1bcab5.css.map": "/oxygen-dashboard/static/css/main.cc1bcab5.css.map",
-    "main.045892d3.js.map": "/oxygen-dashboard/static/js/main.045892d3.js.map"
+    "main.2af1c41b.css.map": "/oxygen-dashboard/static/css/main.2af1c41b.css.map",
+    "main.3f1bd6f9.js.map": "/oxygen-dashboard/static/js/main.3f1bd6f9.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc1bcab5.css",
-    "static/js/main.045892d3.js"
+    "static/css/main.2af1c41b.css",
+    "static/js/main.3f1bd6f9.js"
   ]
 }
