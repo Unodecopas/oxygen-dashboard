@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import Pagination from '../components/Pagination'
@@ -37,6 +38,7 @@ const ITEMS_PERPAGE = 10
 const UserPage = () => {
   const [, setFilter] = useState('')
   const [page, setPage] = useState(0)
+  const navigate = useNavigate()
   const users = useSelector(selectUsersList)
 
   const usersPagination = []
@@ -48,6 +50,13 @@ const UserPage = () => {
   const handleFilter = (filter) => {
     setFilter(filter)
   }
+
+  const handleButton = () => {
+    navigate('/user/newuser')
+  }
+  const handleUser = (userid) => {
+    navigate(`/user/${userid}`)
+  }
   return (
     <UsersContainer>
       <div className='switcher'>
@@ -55,7 +64,7 @@ const UserPage = () => {
         items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'ACTIVE' }, { label: 'Inactive Employee', value: 'INACTIVE' }]}
         handleSwitcher={handleFilter}
         />
-        <Button label={'+ New Employee'}/>
+        <Button label={'+ New Employee'} onClick={handleButton}/>
         <Selector options={['Date', 'Name']}/>
       </div>
       <Table>
@@ -71,7 +80,7 @@ const UserPage = () => {
           {
             usersPagination && usersPagination[page].map(user => {
               return (
-                <tr key={user.id}>
+                <tr key={user.id} onClick={() => handleUser(user.id)}>
                   <td>
                     <div style={{ display: 'flex', placeItems: 'center' }}>
                       <img src={user.photo} alt="" />
