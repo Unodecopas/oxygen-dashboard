@@ -1,0 +1,17 @@
+* Anonymous *
+
+/login
+
+* Protected Routes * 
+
+/dashboard
+/user
+/user/newuser
+/user/:userid
+/rooms
+/rooms/newroom
+/rooms/:roomid
+/bookings 
+/bookings/newbooking 
+/bookings/:bookingid 
+/contact 

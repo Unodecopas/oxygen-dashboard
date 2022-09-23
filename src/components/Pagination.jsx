@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 const PaginationContainer = styled.div`
+margin: 1rem 0;
   display: flex;
   place-items: center;
   width: 100%;
