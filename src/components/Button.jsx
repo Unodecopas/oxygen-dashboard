@@ -7,6 +7,7 @@ const Btn = styled.button`
  color: white;
  border: none;
  padding: 0.8125rem 2.1875rem;
+ cursor: pointer;
 `
 
 const Button = ({ label, onClick }) => {

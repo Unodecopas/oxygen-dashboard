@@ -15,12 +15,18 @@ overflow-x: none;
       font-size: 1.125rem;
     }
   }
+  & tbody {
+    & tr {
+      cursor: pointer;
+    }
+  }
   & tr {
     border-bottom: 1px solid #f7f7f7;
   }
   & th, td {
       padding: 20px 30px;
   }
+
   & td {
     color: #393939;
     font-size: 1rem;
