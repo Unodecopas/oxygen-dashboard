@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'plugin:jest/recommended'
   ],
   overrides: [
   ],
@@ -14,7 +15,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'jest'
   ],
   rules: {
     'react/prop-types': 'off'

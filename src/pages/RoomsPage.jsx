@@ -33,7 +33,7 @@ const RoomsPage = () => {
         items={[{ label: 'All Rooms', value: '' }, { label: 'Avalaible Rooms', value: 'avalaible' }, { label: 'Booked Rooms', value: 'booked' }]}
         handleSwitcher={handleFilter}
         />
-        <Button label={'+ New Room'}/>
+        <Button label={'+ New Room'} primary/>
         <Selector options={['Number', 'Status', 'Price']}/>
       </div>
     </RoomsContainer>

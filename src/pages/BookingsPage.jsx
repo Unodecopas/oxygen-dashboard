@@ -48,7 +48,7 @@ const BookingsPage = () => {
           items={[{ label: 'All Bookings', value: '' }, { label: 'Checking In', value: 'checkin' }, { label: 'Checking Out', value: 'checkout' }, { label: 'In Progress', value: 'inprogress' }]}
           handleSwitcher={handleFilter}
         />
-        <Button label={`${new Date().toLocaleString()}`}/>
+        <Button label={`${new Date().toLocaleString()}`} primary/>
         <Selector options={['Date', 'Name']}/>
       </div>
       <Table>

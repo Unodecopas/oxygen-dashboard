@@ -64,7 +64,7 @@ const UserPage = () => {
         items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'ACTIVE' }, { label: 'Inactive Employee', value: 'INACTIVE' }]}
         handleSwitcher={handleFilter}
         />
-        <Button label={'+ New Employee'} onClick={handleButton}/>
+        <Button label={'+ New Employee'} onClick={handleButton} primary/>
         <Selector options={['Date', 'Name']}/>
       </div>
       <Table>
