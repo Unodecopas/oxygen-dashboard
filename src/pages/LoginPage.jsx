@@ -61,8 +61,8 @@ const Login = styled.div`
 `
 
 const LoginPage = ({ setUser }) => {
-  const [username, setUsername] = useState('JesusGallardo')
-  const [password, setPassword] = useState('admin')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
   const handleSubmit = e => {
@@ -82,10 +82,10 @@ const LoginPage = ({ setUser }) => {
         <h2>Login</h2>
         {error && <p className='login__error'>{error}</p>}
         <label htmlFor="username">Username</label>
-        <input type="text" value={username} placeholder={USER.email} onChange={e => setUsername(e.target.value)} />
+        <input type="text" name='Username' value={username} placeholder={USER.username} onChange={e => setUsername(e.target.value)} />
         <label htmlFor="password">Password</label>
-        <input type="password" value={password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
-        <button>Login</button>
+        <input type="password" name='Password' value={password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
+        <button id='form-login-button'>Login</button>
       </form>
     </Login>
   )
