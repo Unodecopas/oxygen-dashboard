@@ -13,12 +13,12 @@ const MainContainer = styled.div`
   display:flex;
   flex-direction: column;
 `
-const HomePage = () => {
+const HomePage = ({ setUser }) => {
   return (
     <HomePageContainer>
       <Navbar />
       <MainContainer>
-        <Header />
+        <Header setUser={setUser}/>
         <main>
           <Outlet />
         </main>

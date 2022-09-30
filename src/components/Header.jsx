@@ -65,8 +65,11 @@ const HeaderContainer = styled.header`
   
 `
 
-const Header = () => {
+const Header = ({ setUser }) => {
   const location = useLocation()
+  const logout = () => {
+    setUser({ username: '', logged: false, email: '' })
+  }
   return (
     <HeaderContainer>
       <h1>{location.pathname.split('/')}</h1>
@@ -81,7 +84,7 @@ const Header = () => {
         <button>
           <img src={messageIcon} alt="" />
         </button>
-        <button>
+        <button onClick={logout}>
           <img src={logoutIcon} alt="" />
         </button>
       </div>

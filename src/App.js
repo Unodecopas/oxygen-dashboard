@@ -34,7 +34,7 @@ function App () {
       <Routes>
         <Route path='login' element={<LoginPage setUser={setUser} />} />
         <Route element={<ProtectedRoute user={user}/>}>
-          <Route path='/*' element={<HomePage />}>
+          <Route path='/*' element={<HomePage setUser={setUser}/>}>
             <Route path='dashboard' element={<DashboardPage />} />
             <Route path='user' element={<UserPage />} />
             <Route path='user/newuser' element={<NewUserPage />} />
