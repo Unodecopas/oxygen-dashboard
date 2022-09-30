@@ -21,3 +21,23 @@ describe('Authentication', () => {
     cy.contains('Dashboard')
   })
 })
+
+describe('Routes', () => {
+  it('Rooms Page', () => {
+    cy.get('a[href*="rooms"]').click()
+    cy.contains('All Rooms')
+  })
+
+  it('Bookings Page', () => {
+    cy.get('a[href*="bookings"]').click()
+    cy.contains('All Bookings')
+  })
+  it('Users Page', () => {
+    cy.get('a[href*="user"]').click()
+    cy.contains('All Employee')
+  })
+  it('Contact Page', () => {
+    cy.get('a[href*="contact"]').click()
+    cy.contains('ContactPage')
+  })
+})
