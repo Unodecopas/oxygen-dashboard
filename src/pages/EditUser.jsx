@@ -20,6 +20,7 @@ const EditUserContainer = styled.div`
     }
   }
   & .login-error {
+    cursor: pointer;
     text-align: center;
     display: block;
     margin: auto;
@@ -31,6 +32,7 @@ const EditUserContainer = styled.div`
     border-radius: 12px;
   }
   & .login-success {
+    cursor: pointer;
     text-align: center;
     display: block;
     margin: auto;
