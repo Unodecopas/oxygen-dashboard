@@ -53,9 +53,8 @@ const HeaderContainer = styled.header`
       &:hover{
         border: 2px solid #135846;
         border-radius:10px;
-      }
+      } 
     }
-    
   }
   & .header__user {
     width:60px;
@@ -63,7 +62,10 @@ const HeaderContainer = styled.header`
     border-radius:12px;
     background-color: #C5c5c5;
   }
-  
+  #btn-logout:hover {
+    border: 2px solid #d04434;
+    border-radius:10px;
+  }
 `
 
 const Header = () => {
@@ -85,7 +87,7 @@ const Header = () => {
           <img src={messageIcon} alt="" />
         </button>
         <button onClick={() => dispatch({ type: 'logout' })} id='btn-logout'>
-          <img src={logoutIcon} alt="" />
+          <img src={logoutIcon} alt=""/>
         </button>
       </div>
     </HeaderContainer>
