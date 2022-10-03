@@ -5,6 +5,7 @@ import messageIcon from '../assets/message.svg'
 import logoutIcon from '../assets/logout.svg'
 import bellIcon from '../assets/bell.svg'
 import styled from 'styled-components'
+import { useUser } from '../context/userContext'
 
 const HeaderContainer = styled.header`
   padding: 1.875rem 0 1.875rem 1.625rem;
@@ -65,11 +66,10 @@ const HeaderContainer = styled.header`
   
 `
 
-const Header = ({ setUser }) => {
+const Header = () => {
   const location = useLocation()
-  const logout = () => {
-    setUser({ username: '', logged: false, email: '' })
-  }
+  const [, dispatch] = useUser()
+
   return (
     <HeaderContainer>
       <h1>{location.pathname.split('/')}</h1>
@@ -84,7 +84,7 @@ const Header = ({ setUser }) => {
         <button>
           <img src={messageIcon} alt="" />
         </button>
-        <button onClick={logout}>
+        <button onClick={() => dispatch({ type: 'logout' })}>
           <img src={logoutIcon} alt="" />
         </button>
       </div>
