@@ -23,6 +23,21 @@ describe('Authentication', () => {
     })
     cy.contains('Dashboard')
   })
+  it('logout button delete the user', () => {
+    cy.get('#btn-logout').click().should(() => {
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: '', email: '', logged: false })
+    })
+  })
+  it('user can login again', () => {
+    cy.get('[name="Username"]').clear()
+    cy.get('[name="Password"]').clear()
+    cy.get('[name="Username"]').type('JesusGallardo')
+    cy.get('[name="Password"]').type('admin')
+    cy.get('#form-login-button').click().should(() => {
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true })
+    })
+    cy.contains('Dashboard')
+  })
 })
 
 describe('Routes', () => {

@@ -84,7 +84,7 @@ const Header = () => {
         <button>
           <img src={messageIcon} alt="" />
         </button>
-        <button onClick={() => dispatch({ type: 'logout' })}>
+        <button onClick={() => dispatch({ type: 'logout' })} id='btn-logout'>
           <img src={logoutIcon} alt="" />
         </button>
       </div>
