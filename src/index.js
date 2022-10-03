@@ -5,13 +5,16 @@ import { BrowserRouter } from 'react-router-dom'
 import { store } from './store/store'
 import App from './App'
 import './index.css'
+import { UserProvider } from './context/userContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-    <BrowserRouter basename='/oxygen-dashboard'>
-      <App />
-    </BrowserRouter>
-    </Provider>
+    <UserProvider>
+      <Provider store={store}>
+        <BrowserRouter basename='/oxygen-dashboard'>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </UserProvider>
   </React.StrictMode>
 )

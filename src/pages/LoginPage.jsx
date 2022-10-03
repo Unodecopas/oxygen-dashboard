@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/logo-sm.png'
+import { useUser } from '../context/userContext'
 const USER = {
   username: 'JesusGallardo',
   password: 'admin'
@@ -60,15 +61,16 @@ const Login = styled.div`
     }
 `
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [, dispatch] = useUser()
   const navigate = useNavigate()
   const handleSubmit = e => {
     e.preventDefault()
     if (username === USER.username && password === USER.password) {
-      setUser({ username, email: 'jesusgallardo@correo.com', logged: true })
+      dispatch({ type: 'login', value: { username, email: 'correo@correo.com' } })
       navigate('/dashboard')
     } else {
       setError('Has introducido datos incorrectos')

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
@@ -15,26 +15,22 @@ import BookingsPage from './pages/BookingsPage'
 import BookingDetails from './pages/BookingDetails'
 import NewBookingPage from './pages/NewBookingPage'
 import ContactPage from './pages/ContactPage'
+import { useUser } from './context/userContext'
 
-const LOCAL_USER = 'userMiranda'
 const Dashboard = styled.div`
   width:100%;
   height:100%;
 `
 
 function App () {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem(LOCAL_USER)) || { username: '', password: '', logged: false })
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_USER, JSON.stringify(user))
-  }, [user])
-
+  const [user] = useUser()
+  console.log(user)
   return (
     <Dashboard>
       <Routes>
-        <Route path='login' element={<LoginPage setUser={setUser} />} />
+        <Route path='login' element={<LoginPage />} />
         <Route element={<ProtectedRoute user={user}/>}>
-          <Route path='/*' element={<HomePage setUser={setUser}/>}>
+          <Route path='/*' element={<HomePage />}>
             <Route path='dashboard' element={<DashboardPage />} />
             <Route path='user' element={<UserPage />} />
             <Route path='user/newuser' element={<NewUserPage />} />
