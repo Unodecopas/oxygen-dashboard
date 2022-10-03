@@ -1,5 +1,6 @@
 /* eslint-disable jest/expect-expect */
 /* eslint-disable jest/valid-expect */
+/* eslint-disable jest/no-focused-tests */
 /* global cy */
 
 describe('Authentication', () => {
@@ -51,18 +52,11 @@ describe('Routes', () => {
     cy.contains('All Bookings')
   })
   it('Users Page', () => {
-    cy.get('a[href="/oxygen-dashboard/user"]').click()
+    cy.get('a[href="/oxygen-dashboard/users"]').click()
     cy.contains('All Employee')
   })
   it('Contact Page', () => {
     cy.get('a[href*="contact"]').click()
     cy.contains('ContactPage')
-  })
-})
-
-describe('User', () => {
-  it('Can be visit edit profile page', () => {
-    cy.get('#btn-edit-profile').click()
-    cy.contains('UserDetails')
   })
 })

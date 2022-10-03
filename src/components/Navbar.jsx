@@ -81,14 +81,14 @@ const Navbar = () => {
         <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
         <li><NavLink to={'/rooms'}>Room</NavLink></li>
         <li><NavLink to={'/bookings'}>Bookings</NavLink></li>
-        <li><NavLink to={'/user'}>User</NavLink></li>
+        <li><NavLink to={'/users'}>Users</NavLink></li>
         <li><NavLink to={'/contact'}>Contact</NavLink></li>
       </ul>
       <div className='user__info'>
         <div className='user__info__img'></div>
         <h3>{user.username}</h3>
         <p>{user.email}</p>
-        <Link to={`user/${user.id}`}>
+        <Link to={'users/edit'}>
           <button id='btn-edit-profile'>Edit</button>
         </Link>
       </div>

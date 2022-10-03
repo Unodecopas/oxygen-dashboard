@@ -69,12 +69,13 @@ const HeaderContainer = styled.header`
 `
 
 const Header = () => {
-  const location = useLocation()
+  const { pathname } = useLocation()
+  const location = pathname.split('/')[1]
   const [, dispatch] = useUser()
 
   return (
     <HeaderContainer>
-      <h1>{location.pathname.split('/')[1]}</h1>
+      <h1>{location}</h1>
       <div className='search'>
         <input type="text" className='search__input' />
         <img src={searchIcon} alt="" />

@@ -16,6 +16,7 @@ import BookingDetails from './pages/BookingDetails'
 import NewBookingPage from './pages/NewBookingPage'
 import ContactPage from './pages/ContactPage'
 import { useUser } from './context/userContext'
+import EditUser from './pages/EditUser'
 
 const Dashboard = styled.div`
   width:100%;
@@ -24,7 +25,6 @@ const Dashboard = styled.div`
 
 function App () {
   const [user] = useUser()
-  console.log(user)
   return (
     <Dashboard>
       <Routes>
@@ -32,9 +32,10 @@ function App () {
         <Route element={<ProtectedRoute user={user}/>}>
           <Route path='/*' element={<HomePage />}>
             <Route path='dashboard' element={<DashboardPage />} />
-            <Route path='user' element={<UserPage />} />
-            <Route path='user/newuser' element={<NewUserPage />} />
-            <Route path='user/:userid' element={<UserDetails />} />
+            <Route path='users' element={<UserPage />} />
+            <Route path='users/newuser' element={<NewUserPage />} />
+            <Route path='users/:userid' element={<UserDetails />} />
+            <Route path='users/edit' element={<EditUser />} />
             <Route path='rooms' element={<RoomsPage />} />
             <Route path='rooms/newroom' element={<NewRoomPage />} />
             <Route path='rooms/:roomid' element={<RoomDetails />} />

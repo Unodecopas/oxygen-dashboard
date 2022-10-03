@@ -52,7 +52,7 @@ const UserPage = () => {
   }
 
   const handleButton = () => {
-    navigate('/user/newuser')
+    navigate('/users/newuser')
   }
   const handleUser = (userid) => {
     navigate(`/user/${userid}`)
