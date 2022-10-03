@@ -55,11 +55,11 @@ const EditUser = () => {
     e.preventDefault()
     setSuccess('')
     if (username === user.username) {
-      setError('El username introducido es el mismo que el anterior')
+      showMessage('error', 'El username introducido es el mismo que el anterior')
       return
     }
     if (email === user.email) {
-      setError('El email introducido es el mismo que el anterior')
+      showMessage('error', 'El email introducido es el mismo que el anterior')
       return
     }
     if (username && username !== user.username) dispatch({ type: 'changeUsername', value: username })
@@ -67,13 +67,21 @@ const EditUser = () => {
     setEmail('')
     setError('')
     setUsername('')
-    setSuccess('Datos cambiados con éxito')
+    showMessage('success', 'Datos cambiados con éxito')
   }
   const clearForm = (e) => {
     e.preventDefault()
     setEmail('')
     setError('')
     setUsername('')
+  }
+  const showMessage = (type, message) => {
+    type === 'error' && setError(message)
+    type === 'success' && setSuccess(message)
+    setTimeout(() => {
+      type === 'error' && setError('')
+      type === 'success' && setSuccess('')
+    }, 3000)
   }
   return (
     <EditUserContainer>
