@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = (props) => {
-  const Btn = styled.button`
+const Btn = styled.button`
  border-radius: 12px;
- background-color: ${props.primary ? '#135846' : 'grey'};
+ background-color: ${props => props.primary ? '#135846' : 'grey'};
  color: white;
  border: none;
  padding: 0.8125rem 2.1875rem;
  cursor: pointer;
 `
+const Button = (props) => {
   return (
-    <Btn onClick= {props.onClick}>
+    <Btn primary={props.primary} onClick= {props.onClick}>
       {props.label}
     </Btn>
   )
