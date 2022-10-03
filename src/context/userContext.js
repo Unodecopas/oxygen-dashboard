@@ -19,13 +19,13 @@ const reducer = (state, action) => {
 }
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [user, dispatch] = useReducer(reducer, initialState)
   useEffect(() => {
-    localStorage.setItem(LOCALSTORAGE_ITEM, JSON.stringify(state))
-  }, [state])
+    localStorage.setItem(LOCALSTORAGE_ITEM, JSON.stringify(user))
+  }, [user])
 
   return (
-    <UserContext.Provider value={[state, dispatch]}>
+    <UserContext.Provider value={[user, dispatch]}>
       {children}
     </UserContext.Provider>
   )

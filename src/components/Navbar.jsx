@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
+import { useUser } from '../context/userContext'
 
 const Nav = styled.nav`
   padding: 2rem 4.3125rem 0 1.625rem;
@@ -72,6 +73,7 @@ const Nav = styled.nav`
   }
 `
 const Navbar = () => {
+  const [user] = useUser()
   return (
     <Nav>
       <img src={logo} alt="" width={220} height={57}/>
@@ -84,8 +86,8 @@ const Navbar = () => {
       </ul>
       <div className='user__info'>
         <div className='user__info__img'></div>
-        <h3>William Johanson</h3>
-        <p>williamjohn@hotelmiranda.com</p>
+        <h3>{user.username}</h3>
+        <p>{user.email}</p>
         <button>Edit</button>
       </div>
       <footer>
