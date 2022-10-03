@@ -19,13 +19,13 @@ describe('Authentication', () => {
     cy.get('[name="Username"]').type('JesusGallardo')
     cy.get('[name="Password"]').type('admin')
     cy.get('#form-login-button').click().should(() => {
-      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true })
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true, id: 1 })
     })
     cy.contains('Dashboard')
   })
   it('logout button delete the user', () => {
     cy.get('#btn-logout').click().should(() => {
-      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: '', email: '', logged: false })
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: '', email: '', logged: false, id: 0 })
     })
   })
   it('user can login again', () => {
@@ -34,7 +34,7 @@ describe('Authentication', () => {
     cy.get('[name="Username"]').type('JesusGallardo')
     cy.get('[name="Password"]').type('admin')
     cy.get('#form-login-button').click().should(() => {
-      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true })
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true, id: 1 })
     })
     cy.contains('Dashboard')
   })
@@ -51,11 +51,18 @@ describe('Routes', () => {
     cy.contains('All Bookings')
   })
   it('Users Page', () => {
-    cy.get('a[href*="user"]').click()
+    cy.get('a[href="/oxygen-dashboard/user"]').click()
     cy.contains('All Employee')
   })
   it('Contact Page', () => {
     cy.get('a[href*="contact"]').click()
     cy.contains('ContactPage')
+  })
+})
+
+describe('User', () => {
+  it('Can be visit edit profile page', () => {
+    cy.get('#btn-edit-profile').click()
+    cy.contains('UserDetails')
   })
 })
