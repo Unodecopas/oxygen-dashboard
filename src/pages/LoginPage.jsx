@@ -70,7 +70,7 @@ const LoginPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
     if (username === USER.username && password === USER.password) {
-      dispatch({ type: 'login', value: { username, email: 'correo@correo.com' } })
+      dispatch({ type: 'login', value: { username, email: 'correo@correo.com', id: 1 } })
       navigate('/dashboard')
     } else {
       setError('Has introducido datos incorrectos')

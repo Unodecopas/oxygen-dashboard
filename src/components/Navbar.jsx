@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import { useUser } from '../context/userContext'
@@ -88,7 +88,9 @@ const Navbar = () => {
         <div className='user__info__img'></div>
         <h3>{user.username}</h3>
         <p>{user.email}</p>
-        <button>Edit</button>
+        <Link to={`user/${user.id}`}>
+          <button id='btn-edit-profile'>Edit</button>
+        </Link>
       </div>
       <footer>
         <h3>Travl Hotel Admin Dashboard</h3>

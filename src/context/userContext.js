@@ -7,14 +7,18 @@ export const UserContext = createContext(null)
 export const useUser = () => {
   return useContext(UserContext)
 }
-const initialState = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEM)) || { logged: false, email: '', username: '' }
+const initialState = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEM)) || { logged: false, email: '', username: '', id: 0 }
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'logout':
-      return { ...state, logged: false, email: '', username: '' }
+      return { ...state, logged: false, email: '', username: '', id: 0 }
     case 'login':
-      return { ...state, logged: true, email: action.value.email, username: action.value.username }
+      return { ...state, logged: true, email: action.value.email, username: action.value.username, id: action.value.id }
+    case 'changeUsername':
+      return { ...state, username: action.value }
+    case 'changeEmail':
+      return { ...state, email: action.value }
   }
 }
 
