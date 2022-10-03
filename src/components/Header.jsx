@@ -74,7 +74,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <h1>{location.pathname.split('/')}</h1>
+      <h1>{location.pathname.split('/')[1]}</h1>
       <div className='search'>
         <input type="text" className='search__input' />
         <img src={searchIcon} alt="" />
