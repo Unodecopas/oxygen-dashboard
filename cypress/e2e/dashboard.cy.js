@@ -1,4 +1,5 @@
 /* eslint-disable jest/expect-expect */
+/* eslint-disable jest/valid-expect */
 /* global cy */
 
 describe('Authentication', () => {
@@ -17,7 +18,9 @@ describe('Authentication', () => {
     cy.get('[name="Password"]').clear()
     cy.get('[name="Username"]').type('JesusGallardo')
     cy.get('[name="Password"]').type('admin')
-    cy.get('#form-login-button').click()
+    cy.get('#form-login-button').click().should(() => {
+      expect(JSON.parse(localStorage.getItem('userMiranda'))).to.deep.equal({ username: 'JesusGallardo', email: 'correo@correo.com', logged: true })
+    })
     cy.contains('Dashboard')
   })
 })
