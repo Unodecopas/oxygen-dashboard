@@ -13,7 +13,15 @@ const BookingDetails = () => {
   }, [dispatch, booking])
 
   return (
-    <div>BookingDetails {bookingid}</div>
+    <div>
+      {
+      Object.entries(booking).map((key, i) => {
+        return (
+          <p key={i}>{key[0]} : {key[1]}</p>
+        )
+      })
+      }
+    </div>
   )
 }
 
