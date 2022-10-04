@@ -31,7 +31,8 @@ const UsersContainer = styled.div`
       height: fit-content;
     }
   }
-  & .active {
+  & table {
+    & .active {
     color: #135846;
     background-color: #a2f3def6;
     padding: 0.5rem;
@@ -44,6 +45,8 @@ const UsersContainer = styled.div`
     color: #721c24;
     background-color: #f8d7da;
   }
+  }
+  
 `
 
 const UserPage = () => {

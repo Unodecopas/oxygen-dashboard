@@ -25,6 +25,18 @@ const BookingsContainer = styled.div`
       margin-right: 1.25rem;
     }
   }
+  & table {
+    & button {
+      background-color: white;
+      color: grey;
+      border: 1px solid grey;
+      &:hover  {
+        color: white;
+        background-color: grey;
+        border: 1px solid grey;
+      }
+    }
+  }
   & .checkin {
     color: #135846;
     background-color: #a2f3def6;
