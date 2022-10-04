@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TableContainer = styled.table`
-overflow-x: none;
+  overflow-x: none;
   border-collapse: collapse;
   background-color: white;
   border-radius: 20px;
@@ -13,11 +13,14 @@ overflow-x: none;
     & th {
       color: #393939;
       font-size: 1.125rem;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
   & tbody {
     & tr {
       cursor: pointer;
+      text-align: center;
     }
   }
   & tr {
@@ -25,6 +28,7 @@ overflow-x: none;
   }
   & th, td {
       padding: 20px 30px;
+      text-align: center;
   }
 
   & td {
@@ -35,12 +39,6 @@ overflow-x: none;
       height: 88px;
       margin-right: 23px;
     }
-  }
-  & .active {
-    color: #5AD07A;
-  }
-  & .inactive {
-    color: #E23428;
   }
   
 `

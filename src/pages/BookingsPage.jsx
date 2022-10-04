@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import Selector from '../components/Selector'
 import Switcher from '../components/Switcher'
 import Table from '../components/Table'
-import { selectBookingsList } from '../slices/bookingsListSlice'
+import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -15,6 +16,8 @@ const BookingsContainer = styled.div`
   & .switcher {
     display: flex;
     width: 100%;
+    padding: 10px 0;
+
     & div {
       flex-grow: 1;
     }
@@ -22,24 +25,62 @@ const BookingsContainer = styled.div`
       margin-right: 1.25rem;
     }
   }
+  & .checkin {
+    color: #135846;
+    background-color: #a2f3def6;
+    padding: 0.5rem;
+    border-radius: 12px;
+
+  }
+  & .checkout {
+    padding: 0.5rem;
+    border-radius: 12px;
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+  & .inprogress {
+    padding: 0.5rem;
+    color: #ecc32d;
+    border-radius: 12px;
+    background-color: #fff3cd;
+  }
 `
 
-const ITEMS_PERPAGE = 10
-
 const BookingsPage = () => {
-  const [, setFilter] = useState('')
-  const [page] = useState(0)
+  const [filter, setFilter] = useState('')
+  const navigate = useNavigate()
   const bookings = useSelector(selectBookingsList)
+  const dispatch = useDispatch()
+  const [bookingsState, setBookingsState] = useState([])
+  const [searchTerm] = useState('')
+  const [orderBy, setOrderBy] = useState('id')
 
-  const bookingsPagination = []
+  useEffect(() => {
+    dispatch(fetchBookings())
+  }, [dispatch, fetchBookings])
 
-  for (let i = 0; i < bookings.length; i += ITEMS_PERPAGE) {
-    const piece = bookings.slice(i, i + ITEMS_PERPAGE)
-    bookingsPagination.push(piece)
-  }
+  useEffect(() => {
+    const filteredBookings = filter !== '' ? bookings.filter(booking => booking.status === filter) : bookings
+    const orderedFilteredBookings = filteredBookings.filter(booking => booking.guestName.includes(searchTerm))
+    orderedFilteredBookings.sort((a, b) => {
+      if (a[orderBy] > b[orderBy]) {
+        return 1
+      } else if (a[orderBy] < b[orderBy]) {
+        return -1
+      }
+      return 0
+    })
+    setBookingsState(orderedFilteredBookings)
+  }, [bookings, orderBy, searchTerm, filter])
 
   const handleFilter = (filter) => {
     setFilter(filter)
+  }
+  const handleBooking = (bookingid) => {
+    navigate(`/bookings/${bookingid}`)
+  }
+  const handleOrder = (value) => {
+    setOrderBy(value)
   }
   return (
     <BookingsContainer>
@@ -49,12 +90,13 @@ const BookingsPage = () => {
           handleSwitcher={handleFilter}
         />
         <Button label={`${new Date().toLocaleString()}`} primary/>
-        <Selector options={['Date', 'Name']}/>
+        <Selector options={['orderDate', 'guestName']} onChange={handleOrder}/>
       </div>
       <Table>
         <thead>
           <tr>
             <th>Guess Name</th>
+            <th>Order Date</th>
             <th>Check In</th>
             <th>Check Out</th>
             <th>Special Request</th>
@@ -64,23 +106,24 @@ const BookingsPage = () => {
         </thead>
         <tbody>
           {
-            bookingsPagination && bookingsPagination[page].map(booking => {
+            bookingsState && bookingsState.map(booking => {
               return (
-                <tr key={booking.id}>
+                <tr key={booking.id} >
                   <td>
                     <div style={{ display: 'flex', placeItems: 'center' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                        <p>{booking.guestname}</p>
+                        <p>{booking.guestName}</p>
                         <p>{`#${booking.id}`}</p>
                         <p>{booking.orderDate}</p>
                       </div>
                     </div>
                   </td>
+                  <td>{booking.orderDate}</td>
                   <td>{booking.checkin}</td>
                   <td>{booking.checkout}</td>
-                  <td>{booking.request}</td>
+                  <td><Button label={'View Notes'} onClick={() => handleBooking(booking.id)}/></td>
                   <td>{booking.roomType}</td>
-                  <td className={booking.status}>{booking.status.toUpperCase()}</td>
+                  <td><p className={booking.status}>{booking.status.toUpperCase()}</p></td>
                 </tr>
               )
             })

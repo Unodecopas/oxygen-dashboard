@@ -31,7 +31,19 @@ const UsersContainer = styled.div`
       height: fit-content;
     }
   }
-  
+  & .active {
+    color: #135846;
+    background-color: #a2f3def6;
+    padding: 0.5rem;
+    border-radius: 12px;
+
+  }
+  & .inactive {
+    padding: 0.5rem;
+    border-radius: 12px;
+    color: #721c24;
+    background-color: #f8d7da;
+  }
 `
 
 const UserPage = () => {
@@ -110,7 +122,7 @@ const UserPage = () => {
                   </td>
                   <td>{user.job}</td>
                   <td>{user.contact}</td>
-                  <td className={user.status}>{user.status.toUpperCase()}</td>
+                  <td><p className={user.status}>{user.status.toUpperCase()}</p></td>
                 </tr>
               )
             })
