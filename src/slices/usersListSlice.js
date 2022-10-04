@@ -6,7 +6,14 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const delayedUsers = await delay(usersData)
   return delayedUsers
 })
-
+export const fetchUser = createAsyncThunk(
+  'users/fetchUser',
+  async (id) => {
+    const findUser = usersData.find((element) => element.id === Number(id))
+    const user = await delay(findUser)
+    return user
+  }
+)
 export const usersListSlice = createSlice({
   name: 'usersList',
   initialState: {
@@ -26,9 +33,20 @@ export const usersListSlice = createSlice({
       .addCase(fetchUsers.rejected, (state) => {
         state.status = 'error'
       })
+      .addCase(fetchUser.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+        state.user = action.payload
+      })
+      .addCase(fetchUser.rejected, (state) => {
+        state.status = 'error'
+      })
   }
 })
 
 export const selectUsersList = (state) => state.usersList.users
+export const selectUser = (state) => state.usersList.user
 
 export default usersListSlice.reducer
