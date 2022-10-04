@@ -19,7 +19,6 @@ const TableContainer = styled.table`
   }
   & tbody {
     & tr {
-      cursor: pointer;
       text-align: center;
     }
   }

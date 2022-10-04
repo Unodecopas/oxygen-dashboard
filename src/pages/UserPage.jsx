@@ -32,6 +32,11 @@ const UsersContainer = styled.div`
     }
   }
   & table {
+    & tbody {
+      & td {
+        cursor: pointer;
+      }
+    }
     & .active {
     color: #135846;
     background-color: #a2f3def6;
