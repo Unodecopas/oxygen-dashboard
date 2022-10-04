@@ -35,30 +35,31 @@ const UsersContainer = styled.div`
 `
 
 const UserPage = () => {
-  const [, setFilter] = useState('')
+  const [filter, setFilter] = useState('')
   const navigate = useNavigate()
   const users = useSelector(selectUsersList)
   const dispatch = useDispatch()
   const [usersState, setUsersState] = useState([])
   const [searchTerm] = useState('')
-  const [orderBy] = useState('id')
+  const [orderBy, setOrderBy] = useState('id')
 
   useEffect(() => {
     dispatch(fetchUsers())
   }, [dispatch, fetchUsers])
 
   useEffect(() => {
-    const orderedFilteredUsers = users.filter(user => user.username.includes(searchTerm))
+    const filteredUsers = filter !== '' ? users.filter(user => user.status === filter) : users
+    const orderedFilteredUsers = filteredUsers.filter(user => user.username.includes(searchTerm))
     orderedFilteredUsers.sort((a, b) => {
       if (a[orderBy] > b[orderBy]) {
         return 1
-      } else if (a[orderBy] > b[orderBy]) {
+      } else if (a[orderBy] < b[orderBy]) {
         return -1
       }
       return 0
     })
     setUsersState(orderedFilteredUsers)
-  }, [users, orderBy, searchTerm])
+  }, [users, orderBy, searchTerm, filter])
 
   const handleFilter = (filter) => {
     setFilter(filter)
@@ -70,15 +71,18 @@ const UserPage = () => {
   const handleUser = (userid) => {
     navigate(`/users/${userid}`)
   }
+  const handleOrder = (value) => {
+    setOrderBy(value)
+  }
   return (
     <UsersContainer>
       <div className='switcher'>
         <Switcher
-        items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'ACTIVE' }, { label: 'Inactive Employee', value: 'INACTIVE' }]}
+        items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'active' }, { label: 'Inactive Employee', value: 'inactive' }]}
         handleSwitcher={handleFilter}
         />
         <Button label={'+ New Employee'} onClick={handleButton} primary/>
-        <Selector options={['Date', 'Name']}/>
+        <Selector options={['id', 'username']} onChange={handleOrder}/>
       </div>
       <Table>
         <thead>

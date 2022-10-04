@@ -10,12 +10,12 @@ const Select = styled.select`
     color: gray;
   }
 `
-const Selector = ({ options }) => {
+const Selector = ({ options, onChange }) => {
   return (
-    <Select name='order'>
+    <Select name='order' onChange={e => onChange(e.target.value)}>
       { options && options.map((opt, i) => {
         return (
-          <option key={i} value={opt}>{opt}</option>
+          <option key={i} value={opt}>{opt.toUpperCase()}</option>
         )
       })}
     </Select>
