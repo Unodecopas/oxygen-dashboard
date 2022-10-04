@@ -125,8 +125,6 @@ const BookingsPage = () => {
                     <div style={{ display: 'flex', placeItems: 'center' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
                         <p>{booking.guestName}</p>
-                        <p>{`#${booking.id}`}</p>
-                        <p>{booking.orderDate}</p>
                       </div>
                     </div>
                   </td>
