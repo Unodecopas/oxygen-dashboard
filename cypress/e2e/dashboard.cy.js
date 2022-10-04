@@ -57,6 +57,6 @@ describe('Routes', () => {
   })
   it('Contact Page', () => {
     cy.get('a[href*="contact"]').click()
-    cy.contains('ContactPage')
+    cy.contains('All Reviews')
   })
 })
