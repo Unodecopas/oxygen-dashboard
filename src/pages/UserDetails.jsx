@@ -48,6 +48,15 @@ const UserDetailsContainer = styled.div`
         &__phone {
           border: 1px solid #E8F2EF;
           background-color: transparent;
+          & a{
+            text-decoration: none;
+            display: flex;
+            place-items: center;
+            gap: 1rem;
+          }
+          &:active{
+            transform: translateY(5px);
+          }
         }
         &__mail {
           display: flex;
@@ -55,10 +64,18 @@ const UserDetailsContainer = styled.div`
           background-color: #135846;
           color: white;
           border: none;
-          gap: 1rem;
+          & a{
+            text-decoration: none;
+            display: flex;
+            place-items: center;
+            gap: 1rem;
+          }
           & img {
             fill: white;
             color: white;
+          }
+          &:active{
+            transform: translateY(5px);
           }
         }
       }
@@ -128,11 +145,16 @@ const UserDetails = () => {
           <p className='user__id'> <span>ID</span> {user.id}</p>
           <div className='user__icons'>
             <button className='user__icons__phone'>
+              <a href={`tel:${user.contac}`}>
               <img src={phone} alt="" />
+              {user.contact}
+              </a>
             </button>
             <button className='user__icons__mail'>
+              <a href={`mailto:${user.email}`}>
               <img src={message} alt="" />
               Send Message
+              </a>
             </button>
           </div>
         </div>
@@ -140,7 +162,7 @@ const UserDetails = () => {
       <div className='user__job'>
         <div className='user__job__status'>
           <h3>Status</h3>
-          <p className={user.status === 'inactive' ? 'inactive' : 'active'}>{user.status.toUpperCase()}</p>
+          <p className={user.status === 'inactive' ? 'inactive' : 'active'}>{user.status}</p>
         </div>
         <div className="user__job__date">
           <h3>Start Date</h3>
