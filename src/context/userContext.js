@@ -12,9 +12,9 @@ const initialState = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEM)) || { lo
 const reducer = (state, action) => {
   switch (action.type) {
     case 'logout':
-      return { ...state, logged: false, email: '', username: '', id: 0 }
+      return { logged: false, email: '', username: '', id: 0 }
     case 'login':
-      return { ...state, logged: true, email: action.value.email, username: action.value.username, id: action.value.id }
+      return { logged: true, email: action.value.email, username: action.value.username, id: action.value.id }
     case 'changeUsername':
       return { ...state, username: action.value }
     case 'changeEmail':
