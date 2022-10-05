@@ -14,6 +14,30 @@ export const fetchUser = createAsyncThunk(
     return user
   }
 )
+export const updateUser = createAsyncThunk(
+  'users/updateUser',
+  async (id) => {
+    const findUser = usersData.find((element) => element.id === Number(id))
+    const user = await delay(findUser)
+    return user
+  }
+)
+export const deleteUser = createAsyncThunk(
+  'users/deleteUser',
+  async (id) => {
+    const findUser = usersData.find((element) => element.id === Number(id))
+    const user = await delay(findUser)
+    return user
+  }
+)
+export const newUser = createAsyncThunk(
+  'users/newUser',
+  async (id) => {
+    const findUser = usersData.find((element) => element.id === Number(id))
+    const user = await delay(findUser)
+    return user
+  }
+)
 export const usersListSlice = createSlice({
   name: 'usersList',
   initialState: {
@@ -28,7 +52,7 @@ export const usersListSlice = createSlice({
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.users = action.payload
+        state.reviews = action.payload
       })
       .addCase(fetchUsers.rejected, (state) => {
         state.status = 'error'
@@ -38,9 +62,40 @@ export const usersListSlice = createSlice({
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.user = action.payload
+        state.reviews = action.payload
       })
       .addCase(fetchUser.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+        state.users = state.user.filter((user) => user.id !== action.payload.id)
+        state.users.push(action.payload)
+      })
+      .addCase(updateUser.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(deleteUser.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+        state.users = state.user.filter((user) => user.id !== action.payload.id)
+      })
+      .addCase(deleteUser.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(newUser.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(newUser.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+        state.users.push(action.payload)
+      })
+      .addCase(newUser.rejected, (state) => {
         state.status = 'error'
       })
   }
