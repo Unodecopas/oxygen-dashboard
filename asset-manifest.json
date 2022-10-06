@@ -1,20 +1,23 @@
 {
   "files": {
-    "main.css": "/oxygen-dashboard/static/css/main.2af1c41b.css",
-    "main.js": "/oxygen-dashboard/static/js/main.4244fbdc.js",
+    "main.css": "/oxygen-dashboard/static/css/main.9a817498.css",
+    "main.js": "/oxygen-dashboard/static/js/main.073064a1.js",
     "static/media/logo.png": "/oxygen-dashboard/static/media/logo.b66a1f8abe0838373163.png",
+    "static/media/bed.svg": "/oxygen-dashboard/static/media/bed.2f97da371c9de65eb724974784336ab0.svg",
     "static/media/chat.svg": "/oxygen-dashboard/static/media/chat.3a114197cde6682552578d45da6027be.svg",
     "index.html": "/oxygen-dashboard/index.html",
     "static/media/bell.svg": "/oxygen-dashboard/static/media/bell.39018d3d775bdb14de527b4317ea5421.svg",
     "static/media/message.svg": "/oxygen-dashboard/static/media/message.ddc08c104ad15301bd51e6f564386dad.svg",
     "static/media/searchIcon.svg": "/oxygen-dashboard/static/media/searchIcon.fcffe00c10d2694e3205b2a2da16b41b.svg",
     "static/media/phone.svg": "/oxygen-dashboard/static/media/phone.be73c2294882b07334bb68b898bc0db1.svg",
+    "static/media/exit.svg": "/oxygen-dashboard/static/media/exit.9c23588dcdc7ec41e4904e1efcbd6106.svg",
+    "static/media/door.svg": "/oxygen-dashboard/static/media/door.786be795a6a092a7594aa290e0c409f0.svg",
     "static/media/logout.svg": "/oxygen-dashboard/static/media/logout.9ac07f1198c99193413393891e5645f0.svg",
-    "main.2af1c41b.css.map": "/oxygen-dashboard/static/css/main.2af1c41b.css.map",
-    "main.4244fbdc.js.map": "/oxygen-dashboard/static/js/main.4244fbdc.js.map"
+    "main.9a817498.css.map": "/oxygen-dashboard/static/css/main.9a817498.css.map",
+    "main.073064a1.js.map": "/oxygen-dashboard/static/js/main.073064a1.js.map"
   },
   "entrypoints": [
-    "static/css/main.2af1c41b.css",
-    "static/js/main.4244fbdc.js"
+    "static/css/main.9a817498.css",
+    "static/js/main.073064a1.js"
   ]
 }
