@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import Button from '../components/Button'
-import Selector from '../components/Selector'
-import Switcher from '../components/Switcher'
-import Table from '../components/Table'
-import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
+import Button from '../../components/Button'
+import Selector from '../../components/Selector'
+import Switcher from '../../components/Switcher'
+import Table from '../../components/Table'
+import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -94,6 +94,9 @@ const BookingsPage = () => {
   const handleOrder = (value) => {
     setOrderBy(value)
   }
+  const handleButton = () => {
+    navigate('/bookings/newbooking')
+  }
   return (
     <BookingsContainer>
       <div className='switcher'>
@@ -101,7 +104,7 @@ const BookingsPage = () => {
           items={[{ label: 'All Bookings', value: '' }, { label: 'Checking In', value: 'checkin' }, { label: 'Checking Out', value: 'checkout' }, { label: 'In Progress', value: 'inprogress' }]}
           handleSwitcher={handleFilter}
         />
-        <Button label={'+ New Booking'} primary/>
+        <Button label={'+ New Booking'} onClick={handleButton} primary/>
         <Selector options={['orderDate', 'guestName']} onChange={handleOrder}/>
       </div>
       <Table>

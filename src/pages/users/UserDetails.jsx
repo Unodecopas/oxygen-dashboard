@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { fetchUser, selectUser } from '../slices/usersListSlice'
-import phone from '../assets/phone.svg'
-import message from '../assets/chat.svg'
+import { fetchUser, selectUser } from '../../slices/usersListSlice'
+import phone from '../../assets/phone.svg'
+import message from '../../assets/chat.svg'
 
 const UserDetailsContainer = styled.div`
   width: 95%;

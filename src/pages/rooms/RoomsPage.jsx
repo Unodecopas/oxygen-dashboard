@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import Button from '../components/Button'
-import Selector from '../components/Selector'
-import Switcher from '../components/Switcher'
-import Table from '../components/Table'
-import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
+import Button from '../../components/Button'
+import Selector from '../../components/Selector'
+import Switcher from '../../components/Switcher'
+import Table from '../../components/Table'
+import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
 
 const RoomsContainer = styled.div`
   display:flex;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import styled from 'styled-components'
-import Button from '../components/Button'
-import { useUser } from '../context/userContext'
+import Button from '../../components/Button'
+import { useUser } from '../../context/userContext'
 
 const EditUserContainer = styled.div`
   display: flex;
