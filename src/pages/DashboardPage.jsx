@@ -26,13 +26,17 @@ const DashboardContainer = styled.div`
     margin-top: 1rem;
     display: flex;
     margin-bottom: 1rem;
-    & .slideInner___2mfX9{
-      display: flex;
-    }
     &__slider{
       width: 100%;
       flex-grow: 1;
       margin-top: 1rem;
+      
+    }
+    & .notice {
+      display: flex;
+      padding: 1rem;
+      margin-right: 1rem;
+      height: 100%;
     }
     &__buttons {
       display: flex;
@@ -94,12 +98,12 @@ const DashboardPage = () => {
           <div className='carousel__buttons'>
             <ButtonBack>{'<'}</ButtonBack>
           </div>
-          <Slider>
+          <Slider style={{ gap: '1rem' }}>
             {
               reviews.map((review, i) => {
                 return (
-                <Slide index={i} key={review.id}>
-                  <div key={review.id} className='notice' onClick={() => navigate(`/reviews/${review.id}`)}>
+                <Slide style={{ marginRigth: '1rem' }} index={i} key={review.id} className='slide'>
+                  <div className='notice' onClick={() => navigate(`/reviews/${review.id}`)}>
                     <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
                     <p>{review.customer}</p>
                     <p>{review.date}</p>

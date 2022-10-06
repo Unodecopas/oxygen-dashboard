@@ -64,7 +64,7 @@ export const reviewsListSlice = createSlice({
       })
       .addCase(fetchReview.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.reviews = action.payload
+        state.review = action.payload
       })
       .addCase(fetchReview.rejected, (state) => {
         state.status = 'error'

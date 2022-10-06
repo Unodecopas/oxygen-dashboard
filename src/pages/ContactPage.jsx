@@ -6,6 +6,7 @@ import Table from '../components/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
+import { useNavigate } from 'react-router-dom'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -44,6 +45,7 @@ const ContactPage = () => {
   const [firtsReviews, setFirstsReviews] = useState([])
   const [orderBy, setOrderBy] = useState('date')
   const [searchTerm] = useState('')
+  const navigate = useNavigate()
   const [reviewsState, setReviewsState] = useState([])
 
   useEffect(() => {
@@ -87,14 +89,16 @@ const ContactPage = () => {
   const handleOrder = (value) => {
     setOrderBy(value)
   }
-
+  const handleReview = (reviewid) => {
+    navigate(`/contact/${reviewid}`)
+  }
   return (
     <ReviewsPageContainer>
       <div className='notices'>
       {
         firtsReviews.map(review => {
           return (
-            <div key={review.id} className='notice'>
+            <div key={review.id} className='notice' onClick={() => handleReview(review.id)}>
               <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
               <p>{review.customer}</p>
               <p>{review.date}</p>

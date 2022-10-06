@@ -17,6 +17,7 @@ import BookingDetails from './pages/bookings/BookingDetails'
 import NewBookingPage from './pages/bookings/NewBookingPage'
 import ContactPage from './pages/ContactPage'
 import { useUser } from './context/userContext'
+import ReviewDetails from './pages/contact/ReviewDetails'
 
 const Dashboard = styled.div`
   width:100%;
@@ -43,6 +44,7 @@ function App () {
             <Route path='bookings/newbooking' element={<NewBookingPage />} />
             <Route path='bookings/:bookingid' element={<BookingDetails />} />
             <Route path='contact' element={<ContactPage />} />
+            <Route path='contact/:reviewid' element={<ReviewDetails />} />
           </Route>
         </Route>
       </Routes>
