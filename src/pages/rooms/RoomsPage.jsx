@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../../components/Button'
 import Selector from '../../components/Selector'
+import Switch from '../../components/Switch'
 import Switcher from '../../components/Switcher'
 import Table from '../../components/Table'
 import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
@@ -12,18 +13,7 @@ const RoomsContainer = styled.div`
   display:flex;
   flex-direction: column;
   width: 100%;
-  & .switcher {
-    display: flex;
-    width: 100%;
-    & div {
-      flex-grow: 1;
-    }
-    & button {
-      margin-right: 1.25rem;
-    }
-  }
   & table {
-    margin-top: 1rem;
     & tbody {
       & td {
         cursor: pointer;
@@ -96,14 +86,14 @@ const RoomsPage = () => {
   }
   return (
     <RoomsContainer>
-      <div className='switcher'>
-        <Switcher
+      <Switcher>
+        <Switch
         items={[{ label: 'All Rooms', value: '' }, { label: 'Avalaible Rooms', value: 'avalaible' }, { label: 'Booked Rooms', value: 'booked' }]}
         handleSwitcher={handleFilter}
         />
         <Button label={'+ New Room'} onClick={handleButton} primary/>
         <Selector options={['roomNumber', 'roomType']} onChange={handleOrder}/>
-      </div>
+      </Switcher>
       <Table>
         <thead>
           <tr>

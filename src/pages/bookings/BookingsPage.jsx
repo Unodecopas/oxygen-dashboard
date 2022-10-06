@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Button from '../../components/Button'
 import Selector from '../../components/Selector'
 import Switcher from '../../components/Switcher'
+import Switch from '../../components/Switch'
 import Table from '../../components/Table'
 import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 
@@ -12,18 +13,6 @@ const BookingsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  & .switcher {
-    display: flex;
-    width: 100%;
-    padding: 10px 0;
-
-    & div {
-      flex-grow: 1;
-    }
-    & button {
-      margin-right: 1.25rem;
-    }
-  }
   & table {
     & button {
       background-color: white;
@@ -98,14 +87,14 @@ const BookingsPage = () => {
   }
   return (
     <BookingsContainer>
-      <div className='switcher'>
-        <Switcher
+      <Switcher>
+        <Switch
           items={[{ label: 'All Bookings', value: '' }, { label: 'Checking In', value: 'checkin' }, { label: 'Checking Out', value: 'checkout' }, { label: 'In Progress', value: 'inprogress' }]}
           handleSwitcher={handleFilter}
         />
         <Button label={'+ New Booking'} onClick={handleButton} primary/>
         <Selector options={['orderDate', 'guestName']} onChange={handleOrder}/>
-      </div>
+      </Switcher>
       <Table>
         <thead>
           <tr>

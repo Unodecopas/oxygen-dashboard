@@ -1,42 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-const Switch = styled.div`
-  & ul {
-    display:flex;
-    & li {
-      padding: 13px 26px;
-      font-size: 1rem;
-      color: #6E6E6E;
-      cursor:pointer;
-      border-bottom: 1px solid grey;
-    }
+const SwitcherContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  & div {
+    flex-grow: 1;
   }
-  & .active {
-    font-weight: bold;
-    color: #135846;
-    border-bottom: 2px solid #135846;
+  & button {
+    margin-right: 1.25rem;
   }
 `
-
-const Switcher = (props) => {
-  const [active, setActive] = useState(props.items[0].label)
-
-  const handleClick = (item) => {
-    setActive(item.label)
-    props.handleSwitcher(item.value)
-  }
-
+const Switcher = ({ children }) => {
   return (
-    <Switch>
-      <ul>
-        {props.items.map(item => {
-          return (
-            <li key={item.label} onClick={() => handleClick(item)} className={`${active === item.label && 'active'}`}>{item.label}</li>
-          )
-        })}
-      </ul>
-    </Switch>
+    <SwitcherContainer>{children}</SwitcherContainer>
   )
 }
 

@@ -10,6 +10,7 @@ import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
 import styled from 'styled-components'
 import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
+import { useNavigate } from 'react-router-dom'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -24,12 +25,14 @@ const DashboardContainer = styled.div`
   & .carousel {
     margin-top: 1rem;
     display: flex;
+    margin-bottom: 1rem;
     & .slideInner___2mfX9{
       display: flex;
     }
     &__slider{
       width: 100%;
       flex-grow: 1;
+      margin-top: 1rem;
     }
     &__buttons {
       display: flex;
@@ -47,26 +50,10 @@ const DashboardContainer = styled.div`
       
     }
   }
-  & .notice {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 12px;
-      margin-right: 1rem;
-      height: 100%;
-      padding: 20px;
-      width: 100%;
-      border: 1px solid grey;
-      background-color: white;
-      &__subject {
-        flex-grow: 1;
-        font-size: 12px;
-        font-style: italic;
-      }
-    }
 `
 const DashboardPage = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const bookings = useSelector(selectBookingsList)
   const rooms = useSelector(selectRoomsList)
   const reviews = useSelector(selectReviewsList)
@@ -101,8 +88,8 @@ const DashboardPage = () => {
           naturalSlideWidth={100}
           naturalSlideHeight={80}
           totalSlides={reviews.length}
-          visibleSlides={3}
-          step={3}
+          visibleSlides={4}
+          step={4}
         >
           <div className='carousel__buttons'>
             <ButtonBack>{'<'}</ButtonBack>
@@ -112,7 +99,7 @@ const DashboardPage = () => {
               reviews.map((review, i) => {
                 return (
                 <Slide index={i} key={review.id}>
-                  <div key={review.id} className='notice'>
+                  <div key={review.id} className='notice' onClick={() => navigate(`/reviews/${review.id}`)}>
                     <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
                     <p>{review.customer}</p>
                     <p>{review.date}</p>

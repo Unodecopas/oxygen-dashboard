@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Button from '../../components/Button'
 import Selector from '../../components/Selector'
 import Switcher from '../../components/Switcher'
+import Switch from '../../components/Switch'
 import Table from '../../components/Table'
 import { fetchUsers, selectUsersList } from '../../slices/usersListSlice'
 
@@ -14,22 +15,6 @@ const UsersContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  & .switcher {
-    display: flex;
-    width: 100%;
-    padding: 10px 0;
-    place-items: center;
-    & div {
-      flex-grow: 1;
-    }
-    & button {
-      margin-right: 1.25rem;
-      height: fit-content;
-    }
-    & select {
-      height: fit-content;
-    }
-  }
   & table {
     & tbody {
       & td {
@@ -95,14 +80,14 @@ const UserPage = () => {
   }
   return (
     <UsersContainer>
-      <div className='switcher'>
-        <Switcher
+      <Switcher>
+        <Switch
         items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'active' }, { label: 'Inactive Employee', value: 'inactive' }]}
         handleSwitcher={handleFilter}
         />
         <Button label={'+ New Employee'} onClick={handleButton} primary/>
         <Selector options={['id', 'username']} onChange={handleOrder}/>
-      </div>
+      </Switcher>
       <Table>
         <thead>
           <tr>

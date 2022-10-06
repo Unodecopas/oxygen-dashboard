@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Switch from '../components/Switch'
 import Switcher from '../components/Switcher'
 import Selector from '../components/Selector'
 import Table from '../components/Table'
@@ -7,41 +8,6 @@ import styled from 'styled-components'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
 
 const ReviewsPageContainer = styled.div`
-  
-  & .notices {
-    display: flex;
-    gap: 1rem;
-    & .notice {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 12px;
-      padding: 20px;
-      width: 100%;
-      background-color: white;
-      &__subject {
-        flex-grow: 1;
-        font-size: 12px;
-        font-style: italic;
-      }
-    }
-  }
-  & .switcher {
-    display: flex;
-    width: 100%;
-    padding: 10px 0;
-    place-items: center;
-    & div {
-      flex-grow: 1;
-    }
-    & button {
-      margin-right: 1.25rem;
-      height: fit-content;
-    }
-    & select {
-      height: fit-content;
-    }
-  }
   & .table__small {
     font-size: .8rem;
   }
@@ -137,14 +103,14 @@ const ContactPage = () => {
         })
       }
       </div>
-      <div className='switcher'>
-        <Switcher
+      <Switcher>
+        <Switch
         items={[{ label: 'All Reviews', value: '' }, { label: 'Published Reviews', value: 'published' }, { label: 'Archived Reviews', value: 'archived' }]}
         handleSwitcher={handleFilter}
         />
         <Selector options={['date', 'id', 'customer']} onChange={handleOrder}/>
 
-      </div>
+      </Switcher>
       <Table>
         <thead>
           <tr>
