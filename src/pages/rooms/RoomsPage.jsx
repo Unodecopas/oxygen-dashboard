@@ -134,10 +134,10 @@ const RoomsPage = () => {
                   })
                   }</td>
                   <td>
-                    <p className={room.offer && 'withOffer'}>{room.price / 100 + '$'}</p>
+                    <p className={room.offer ? 'withOffer' : ''}>{room.price / 100 + '$'}</p>
                   </td>
                   <td>
-                    <p className={room.offer && 'offer'}>{room.offer ? (room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' : room.price / 100 + '$'}</p>
+                    <p className={room.offer ? 'offer' : ''}>{room.offer ? (room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' : room.price / 100 + '$'}</p>
                   </td>
                 </tr>
               )
