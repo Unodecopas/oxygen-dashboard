@@ -6,7 +6,7 @@ const KPIsContainer = styled.div`
   gap: 1rem;
   & .kpi {
     padding: 1rem;
-    padding-right: 105px;
+    width: 100%;
     border-radius: 12px;
     background-color: white;
     display: flex;
