@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
 
 const ReviewsPageContainer = styled.div`
-  padding-right: 3.125rem;
   
   & .notices {
     display: flex;
@@ -20,6 +19,11 @@ const ReviewsPageContainer = styled.div`
       padding: 20px;
       width: 100%;
       background-color: white;
+      &__subject {
+        flex-grow: 1;
+        font-size: 12px;
+        font-style: italic;
+      }
     }
   }
   & .switcher {
@@ -125,7 +129,7 @@ const ContactPage = () => {
         firtsReviews.map(review => {
           return (
             <div key={review.id} className='notice'>
-              <p>{review.subject}</p>
+              <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
               <p>{review.customer}</p>
               <p>{review.date}</p>
             </div>

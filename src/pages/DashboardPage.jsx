@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import { selectRoomsList } from '../slices/roomsListSlice'
 
 const DashboardContainer = styled.div`
-  padding-right: 50px;
+
 `
 const DashboardPage = () => {
   const dispatch = useDispatch()

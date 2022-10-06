@@ -8,7 +8,7 @@ import phone from '../../assets/phone.svg'
 import message from '../../assets/chat.svg'
 
 const UserDetailsContainer = styled.div`
-  width: 95%;
+  width: 100%;
   background-color: #ffff;
   height: 100%;
   padding: 40px;

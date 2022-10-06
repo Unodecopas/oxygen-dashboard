@@ -12,7 +12,6 @@ const RoomsContainer = styled.div`
   display:flex;
   flex-direction: column;
   width: 100%;
-  padding-right: 3.125rem;
   & .switcher {
     display: flex;
     width: 100%;

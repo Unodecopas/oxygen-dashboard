@@ -14,7 +14,6 @@ const UsersContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding-right: 3.125rem;
   & .switcher {
     display: flex;
     width: 100%;
