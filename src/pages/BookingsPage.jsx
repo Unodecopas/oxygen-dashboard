@@ -101,7 +101,7 @@ const BookingsPage = () => {
           items={[{ label: 'All Bookings', value: '' }, { label: 'Checking In', value: 'checkin' }, { label: 'Checking Out', value: 'checkout' }, { label: 'In Progress', value: 'inprogress' }]}
           handleSwitcher={handleFilter}
         />
-        <Button label={`${new Date().toLocaleString()}`} primary/>
+        <Button label={'+ New Booking'} primary/>
         <Selector options={['orderDate', 'guestName']} onChange={handleOrder}/>
       </div>
       <Table>
