@@ -77,7 +77,7 @@ const Header = () => {
     <HeaderContainer>
       <h1>{location}</h1>
       <div className='search'>
-        <input type="text" className='search__input' />
+        <input type="text" className='search__input' placeholder='Search ...' />
         <img src={searchIcon} alt="" />
       </div>
       <div className='header__icons'>
