@@ -52,7 +52,7 @@ export const usersListSlice = createSlice({
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.reviews = action.payload
+        state.users = action.payload
       })
       .addCase(fetchUsers.rejected, (state) => {
         state.status = 'error'
@@ -62,7 +62,7 @@ export const usersListSlice = createSlice({
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.reviews = action.payload
+        state.user = action.payload
       })
       .addCase(fetchUser.rejected, (state) => {
         state.status = 'error'
