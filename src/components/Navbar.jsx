@@ -5,21 +5,26 @@ import { useUser } from '../context/userContext'
 import { Link, NavLink } from 'react-router-dom'
 
 const Nav = styled.nav`
-  padding: 2rem 4.3125rem 0 1.625rem;
+  padding: 2rem 2rem 0 1.625rem;
   box-shadow: 13px 3px 40px #00000005;
   background-color: white;
   height:100%;
+  display: flex;
+  flex-direction: column;
   & img {
-    margin-left:2rem;
+    margin-left:1rem;
   }
   & ul {
-    margin-top: 5.3125rem;
+    margin-top: 4rem;
     display:flex;
     flex-direction:column;
     gap:2rem;
+    & li {
+      margin-left: 1rem;
+    }
   }
   & .user__info {
-    margin-top:60px;
+    margin-top:1.5rem;
     display: flex;
     flex-direction:column;
     place-items:center;
@@ -57,10 +62,13 @@ const Nav = styled.nav`
     }
   }
   & footer {
-    margin-top: 62px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    flex-grow: 1;
+    justify-content: end;
     text-align: center;
     & h3 {
       color: #212121;

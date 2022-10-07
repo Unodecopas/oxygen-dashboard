@@ -16,8 +16,8 @@ const Selector = ({ options, onChange }) => {
       { options && options.map((opt, i) => {
         return (
           <>
-            <option key={i} value={opt.value}>{'⬆  ' + opt.label.toUpperCase()}</option>
-            <option key={i} value={opt.value + 'DESC'}>{'⬇  ' + opt.label.toUpperCase()}</option>
+            <option key={opt.value} value={opt.value}>{'⬆  ' + opt.label.toUpperCase()}</option>
+            <option key={opt.value + 'DESC'} value={opt.value + 'DESC'}>{'⬇  ' + opt.label.toUpperCase()}</option>
           </>
         )
       })}

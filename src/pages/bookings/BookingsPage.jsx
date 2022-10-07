@@ -98,7 +98,6 @@ const BookingsPage = () => {
             <th>Guess Name</th>
             <th>Order Date</th>
             <th>Check In</th>
-            <th>Check Out</th>
             <th>Special Request</th>
             <th>Bed Type</th>
             <th>Status</th>
@@ -116,8 +115,12 @@ const BookingsPage = () => {
                   </div>
                 </td>
                 <td>{booking.orderDate}</td>
-                <td>{booking.checkin}</td>
-                <td>{booking.checkout}</td>
+                <td>
+                  <div className=''>
+                  <p>{booking.checkin}</p>
+                  {booking.checkout}
+                  </div>
+                </td>
                 <td><Button label={'View Notes'} onClick={() => handleBooking(booking.id)}/></td>
                 <td>{booking.roomType}</td>
                 <td><p className={booking.status}>{booking.status.toUpperCase()}</p></td>

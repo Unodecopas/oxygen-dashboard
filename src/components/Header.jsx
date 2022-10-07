@@ -8,14 +8,14 @@ import { useUser } from '../context/userContext'
 import { useLocation } from 'react-router-dom'
 
 const HeaderContainer = styled.header`
-  padding: 1.875rem 0 1.875rem 1.625rem;
+  padding: 1.875rem 0 1rem 1.625rem;
   display:flex;
   background-color: white;
   justify-content:space-around;
   place-items:center;
   & h1 {
     text-align: left;
-    font: normal normal 600 28px/42px Poppins;
+    font-size: 28px;
     letter-spacing: 0px;
     color: #262626;
     opacity: 1;

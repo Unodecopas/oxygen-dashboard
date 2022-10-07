@@ -5,8 +5,8 @@ import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
 const HomePageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 345px 1fr;
+  display: flex;
+  flex-direction: row;
   height:100%;
   width: 100%;
 `
