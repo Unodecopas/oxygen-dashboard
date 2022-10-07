@@ -18,26 +18,23 @@ export const fetchRoom = createAsyncThunk(
 )
 export const updateRoom = createAsyncThunk(
   'rooms/updateRoom',
-  async (id) => {
-    const findRoom = roomsData.find((element) => element.id === Number(id))
-    const room = await delay(findRoom)
-    return room
+  async (updatedRoom) => {
+    const delayedRoom = await delay(updatedRoom)
+    return delayedRoom
   }
 )
 export const deleteRoom = createAsyncThunk(
   'rooms/deleteRoom',
-  async (id) => {
-    const findRoom = roomsData.find((element) => element.id === Number(id))
-    const room = await delay(findRoom)
-    return room
+  async (deletedRoom) => {
+    const delayedRoom = await delay(deletedRoom)
+    return delayedRoom
   }
 )
 export const newRoom = createAsyncThunk(
   'rooms/newRoom',
-  async (id) => {
-    const findRoom = roomsData.find((element) => element.id === Number(id))
-    const room = await delay(findRoom)
-    return room
+  async (newRoom) => {
+    const delayedRoom = await delay(newRoom)
+    return delayedRoom
   }
 )
 

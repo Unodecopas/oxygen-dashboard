@@ -17,26 +17,23 @@ export const fetchReview = createAsyncThunk(
 )
 export const updateReview = createAsyncThunk(
   'reviews/updateReview',
-  async (id) => {
-    const findReviews = reviewsData.find((element) => element.id === Number(id))
-    const review = await delay(findReviews)
-    return review
+  async (updatedReview) => {
+    const delayedReview = await delay(updatedReview)
+    return delayedReview
   }
 )
 export const deleteReview = createAsyncThunk(
   'reviews/deleteReview',
-  async (id) => {
-    const findReviews = reviewsData.find((element) => element.id === Number(id))
-    const review = await delay(findReviews)
-    return review
+  async (deletedReview) => {
+    const delayedReview = await delay(deletedReview)
+    return delayedReview
   }
 )
 export const newReview = createAsyncThunk(
   'reviews/newReview',
-  async (id) => {
-    const findReviews = reviewsData.find((element) => element.id === Number(id))
-    const review = await delay(findReviews)
-    return review
+  async (newReview) => {
+    const delayedReview = await delay(newReview)
+    return delayedReview
   }
 )
 

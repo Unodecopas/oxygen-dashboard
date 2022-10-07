@@ -16,25 +16,23 @@ export const fetchUser = createAsyncThunk(
 )
 export const updateUser = createAsyncThunk(
   'users/updateUser',
-  async (id) => {
-    const findUser = usersData.find((element) => element.id === Number(id))
-    const user = await delay(findUser)
-    return user
+  async (updatedUser) => {
+    const delayedUser = await delay(updatedUser)
+    return delayedUser
   }
 )
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
-  async (id) => {
-    const findUser = usersData.find((element) => element.id === Number(id))
-    const user = await delay(findUser)
-    return user
+  async (deletedUser) => {
+    const delayedUser = await delay(deletedUser)
+    return delayedUser
   }
 )
 export const newUser = createAsyncThunk(
   'users/newUser',
-  async (newuser) => {
-    const delayedUsers = await delay(usersData)
-    return delayedUsers
+  async (newUser) => {
+    const delayedUser = await delay(newUser)
+    return delayedUser
   }
 )
 export const usersListSlice = createSlice({
@@ -71,7 +69,7 @@ export const usersListSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.users = state.user.filter((user) => user.id !== action.payload.id)
+        state.users = state.users.filter((user) => user.id !== action.payload.id)
         state.users.push(action.payload)
       })
       .addCase(updateUser.rejected, (state) => {

@@ -7,6 +7,7 @@ const TableContainer = styled.table`
   background-color: white;
   border-radius: 20px;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   & thead{
     padding-top: 20px;

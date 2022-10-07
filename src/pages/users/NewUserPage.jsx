@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Button from '../../components/Button'
-import { fetchUsers, newUser, selectUsersList } from '../../slices/usersListSlice'
+import { newUser, selectUsersList } from '../../slices/usersListSlice'
 
 const UserContainer = styled.div`
   background-color: white;
@@ -59,9 +59,6 @@ const NewUserPage = () => {
   const photo = 'http://dummyimage.com/233x100.png/dddddd/000000'
   const [status, setStatus] = useState('')
 
-  useEffect(() => {
-    dispatch(fetchUsers())
-  }, [dispatch, users])
   useEffect(() => {
     const lastUser = users.length + 1
     setId(lastUser)
