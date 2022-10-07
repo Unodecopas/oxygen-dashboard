@@ -62,7 +62,7 @@ const ContactPage = () => {
 
   useEffect(() => {
     const filteredReviews = filter !== '' ? reviews.filter(review => review.status === filter) : reviews
-    const searchFilteredReviews = filteredReviews.filter(review => review.customer.includes(searchTerm))
+    const searchFilteredReviews = filteredReviews.filter(review => review.customer.toLowerCase().includes(searchTerm.toLowerCase()))
     const orderedFilteredReviews = orderState(searchFilteredReviews, orderBy)
     setReviewsState(orderedFilteredReviews)
   }, [reviews, orderBy, searchTerm, filter])

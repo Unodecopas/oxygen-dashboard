@@ -63,7 +63,7 @@ const RoomsPage = () => {
 
   useEffect(() => {
     const filteredRooms = filter !== '' ? rooms.filter(room => room.status === filter) : rooms
-    const searchFilteredRooms = filteredRooms.filter(room => room.roomType.includes(searchTerm))
+    const searchFilteredRooms = filteredRooms.filter(room => room.roomType.toLowerCase().includes(searchTerm.toLowerCase()))
     const orderedFilteredRooms = orderState(searchFilteredRooms, orderBy)
     setRoomsState(orderedFilteredRooms)
   }, [rooms, orderBy, searchTerm, filter])
