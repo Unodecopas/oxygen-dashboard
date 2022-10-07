@@ -9,6 +9,7 @@ import Switcher from '../../components/Switcher'
 import Switch from '../../components/Switch'
 import Table from '../../components/Table'
 import { fetchUsers, selectUsersList } from '../../slices/usersListSlice'
+import Pagination from '../../components/Pagination'
 
 const UsersContainer = styled.div`
   display:flex;
@@ -46,6 +47,7 @@ const UserPage = () => {
   const [usersState, setUsersState] = useState([])
   const [searchTerm] = useState('')
   const [orderBy, setOrderBy] = useState('id')
+  const [usersToShow, setUsersToShow] = useState([])
 
   useEffect(() => {
     dispatch(fetchUsers())
@@ -99,7 +101,7 @@ const UserPage = () => {
         </thead>
         <tbody>
           {
-            usersState && usersState.map(user => {
+            usersToShow && usersToShow.map(user => {
               return (
                 <tr key={user.id} onClick={() => handleUser(user.id)}>
                   <td>
@@ -121,6 +123,7 @@ const UserPage = () => {
           }
         </tbody>
       </Table>
+      <Pagination items={usersState} itemsPerPage={4} setItems={setUsersToShow}/>
     </UsersContainer>
   )
 }
