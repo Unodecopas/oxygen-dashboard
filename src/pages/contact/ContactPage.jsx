@@ -8,6 +8,7 @@ import Pagination from '../../components/Pagination'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
+import orderState from '../../utils/orderState'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -61,27 +62,8 @@ const ContactPage = () => {
 
   useEffect(() => {
     const filteredReviews = filter !== '' ? reviews.filter(review => review.status === filter) : reviews
-    const orderedFilteredReviews = filteredReviews.filter(review => review.customer.includes(searchTerm))
-
-    if (orderBy === 'date') {
-      orderedFilteredReviews.sort((a, b) => {
-        if (a[orderBy] < b[orderBy]) {
-          return 1
-        } else if (a[orderBy] > b[orderBy]) {
-          return -1
-        }
-        return 0
-      })
-    } else {
-      orderedFilteredReviews.sort((a, b) => {
-        if (a[orderBy] > b[orderBy]) {
-          return 1
-        } else if (a[orderBy] < b[orderBy]) {
-          return -1
-        }
-        return 0
-      })
-    }
+    const searchFilteredReviews = filteredReviews.filter(review => review.customer.includes(searchTerm))
+    const orderedFilteredReviews = orderState(searchFilteredReviews, orderBy)
     setReviewsState(orderedFilteredReviews)
   }, [reviews, orderBy, searchTerm, filter])
 
@@ -115,7 +97,10 @@ const ContactPage = () => {
         items={[{ label: 'All Reviews', value: '' }, { label: 'Published Reviews', value: 'published' }, { label: 'Archived Reviews', value: 'archived' }]}
         handleSwitcher={handleFilter}
         />
-        <Selector options={['date', 'id', 'customer']} onChange={handleOrder}/>
+        <Selector options={[
+          { label: 'DATE', value: 'date' },
+          { label: 'id', value: 'id' },
+          { label: 'Customer', value: 'customer' }]} onChange={handleOrder}/>
       </Switcher>
       <Table>
         <thead>

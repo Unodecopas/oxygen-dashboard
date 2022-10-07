@@ -9,6 +9,7 @@ import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
+import orderState from '../../utils/orderState'
 
 const RoomsContainer = styled.div`
   display:flex;
@@ -63,15 +64,8 @@ const RoomsPage = () => {
 
   useEffect(() => {
     const filteredRooms = filter !== '' ? rooms.filter(room => room.status === filter) : rooms
-    const orderedFilteredRooms = filteredRooms.filter(room => room.roomType.includes(searchTerm))
-    orderedFilteredRooms.sort((a, b) => {
-      if (a[orderBy] > b[orderBy]) {
-        return 1
-      } else if (a[orderBy] < b[orderBy]) {
-        return -1
-      }
-      return 0
-    })
+    const searchFilteredRooms = filteredRooms.filter(room => room.roomType.includes(searchTerm))
+    const orderedFilteredRooms = orderState(searchFilteredRooms, orderBy)
     setRoomsState(orderedFilteredRooms)
   }, [rooms, orderBy, searchTerm, filter])
 
@@ -96,7 +90,10 @@ const RoomsPage = () => {
         handleSwitcher={handleFilter}
         />
         <Button label={'+ New Room'} onClick={handleButton} primary/>
-        <Selector options={['roomNumber', 'roomType']} onChange={handleOrder}/>
+        <Selector options={[
+          { label: 'Price', value: 'price' },
+          { label: 'id', value: 'id' }
+        ]} onChange={handleOrder}/>
       </Switcher>
       <Table>
         <thead>

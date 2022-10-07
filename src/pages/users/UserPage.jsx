@@ -10,6 +10,7 @@ import Switch from '../../components/Switch'
 import Table from '../../components/Table'
 import { fetchUsers, selectUsersList } from '../../slices/usersListSlice'
 import Pagination from '../../components/Pagination'
+import orderState from '../../utils/orderState'
 
 const UsersContainer = styled.div`
   display:flex;
@@ -55,15 +56,8 @@ const UserPage = () => {
 
   useEffect(() => {
     const filteredUsers = filter !== '' ? users.filter(user => user.status === filter) : users
-    const orderedFilteredUsers = filteredUsers.filter(user => user.username.includes(searchTerm))
-    orderedFilteredUsers.sort((a, b) => {
-      if (a[orderBy] > b[orderBy]) {
-        return 1
-      } else if (a[orderBy] < b[orderBy]) {
-        return -1
-      }
-      return 0
-    })
+    const searchFilteredUsers = filteredUsers.filter(user => user.username.includes(searchTerm))
+    const orderedFilteredUsers = orderState(searchFilteredUsers, orderBy)
     setUsersState(orderedFilteredUsers)
   }, [users, orderBy, searchTerm, filter])
 
@@ -88,7 +82,10 @@ const UserPage = () => {
         handleSwitcher={handleFilter}
         />
         <Button label={'+ New Employee'} onClick={handleButton} primary/>
-        <Selector options={['id', 'username']} onChange={handleOrder}/>
+        <Selector options={[
+          { label: 'ID', value: 'id' },
+          { label: 'User', value: 'username' }
+        ]} onChange={handleOrder}/>
       </Switcher>
       <Table>
         <thead>

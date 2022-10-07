@@ -9,6 +9,7 @@ import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
+import orderState from '../../utils/orderState'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -62,15 +63,8 @@ const BookingsPage = () => {
 
   useEffect(() => {
     const filteredBookings = filter !== '' ? bookings.filter(booking => booking.status === filter) : bookings
-    const orderedFilteredBookings = filteredBookings.filter(booking => booking.guestName.includes(searchTerm))
-    orderedFilteredBookings.sort((a, b) => {
-      if (a[orderBy] > b[orderBy]) {
-        return 1
-      } else if (a[orderBy] < b[orderBy]) {
-        return -1
-      }
-      return 0
-    })
+    const searchFilteredBookings = filteredBookings.filter(booking => booking.guestName.includes(searchTerm))
+    const orderedFilteredBookings = orderState(searchFilteredBookings, orderBy)
     setBookingsState(orderedFilteredBookings)
   }, [bookings, orderBy, searchTerm, filter])
 
@@ -94,7 +88,9 @@ const BookingsPage = () => {
           handleSwitcher={handleFilter}
         />
         <Button label={'+ New Booking'} onClick={handleButton} primary/>
-        <Selector options={['orderDate', 'guestName']} onChange={handleOrder}/>
+        <Selector options={[
+          { label: 'Date', value: 'orderDate' },
+          { label: 'Guest', value: 'guestName' }]} onChange={handleOrder}/>
       </Switcher>
       <Table>
         <thead>
