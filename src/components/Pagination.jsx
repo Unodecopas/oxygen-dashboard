@@ -67,7 +67,11 @@ const Pagination = ({ itemsPerPage, items, setItems }) => {
   return (
     <PaginationContainer>
       <div className='pagination__results'>
-        <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>
+        {
+          items.length === 0
+            ? <p>Nothing to show</p>
+            : <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>
+        }
       </div>
       <div className='pagination__buttons'>
         {actualPage > 0 && <button className='pagination__buttons__fixed' onClick={() => setActualPage(0)}>{'<<'}</button>}
