@@ -55,9 +55,9 @@ const ContactPage = () => {
   }, [dispatch, fetchReviews])
 
   useEffect(() => {
-    const firsts = reviews.slice(-5)
+    const firsts = reviewsState.slice(0, 5)
     setFirstsReviews(firsts)
-  }, [reviews])
+  }, [reviewsState])
 
   useEffect(() => {
     const filteredReviews = filter !== '' ? reviews.filter(review => review.status === filter) : reviews
