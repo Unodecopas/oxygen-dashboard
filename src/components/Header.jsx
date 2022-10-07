@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 import searchIcon from '../assets/searchIcon.svg'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import messageIcon from '../assets/message.svg'
 import logoutIcon from '../assets/logout.svg'
 import bellIcon from '../assets/bell.svg'
 import { useUser } from '../context/userContext'
 import { useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import useDebounce from '../utils/useDebounce'
+import { changeSearchTerm } from '../slices/searchTermSlice'
 
 const HeaderContainer = styled.header`
   padding: 1.875rem 0 1rem 1.625rem;
@@ -33,6 +36,16 @@ const HeaderContainer = styled.header`
       background-color: inherit;
       flex-grow:1;
       outline:none;
+    }
+    & button {
+      cursor: pointer;
+      border-radius: 100%;
+      border: none;
+      padding: 0 5px;
+      margin-right: 1rem;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid red
     }
   }
   & .header__icons {
@@ -72,12 +85,23 @@ const Header = () => {
   const { pathname } = useLocation()
   const location = pathname.split('/')[1]
   const [, dispatch] = useUser()
+  const dispatcher = useDispatch()
+  const [searchInput, setSearchInput] = useState('')
+  const debounceTerm = useDebounce(searchInput, 500)
 
+  useEffect(() => {
+    dispatcher(changeSearchTerm(debounceTerm))
+  }, [dispatcher, debounceTerm])
   return (
     <HeaderContainer>
       <h1>{location}</h1>
       <div className='search'>
-        <input type="text" className='search__input' placeholder='Search ...' />
+        <input type="text"
+        className='search__input'
+        value={searchInput}
+        onChange={e => setSearchInput(e.target.value)}
+        placeholder='Search ...' />
+        {searchInput && <button onClick={() => setSearchInput('')}>x</button>}
         <img src={searchIcon} alt="" />
       </div>
       <div className='header__icons'>

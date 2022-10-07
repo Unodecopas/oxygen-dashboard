@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 import orderState from '../../utils/orderState'
+import { selectSearchTerm } from '../../slices/searchTermSlice'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ const BookingsPage = () => {
   const bookings = useSelector(selectBookingsList)
   const dispatch = useDispatch()
   const [bookingsState, setBookingsState] = useState([])
-  const [searchTerm] = useState('')
+  const searchTerm = useSelector(selectSearchTerm)
   const [orderBy, setOrderBy] = useState('id')
   const [showBookings, setShowBookings] = useState([])
 
@@ -63,7 +64,7 @@ const BookingsPage = () => {
 
   useEffect(() => {
     const filteredBookings = filter !== '' ? bookings.filter(booking => booking.status === filter) : bookings
-    const searchFilteredBookings = filteredBookings.filter(booking => booking.guestName.includes(searchTerm))
+    const searchFilteredBookings = filteredBookings.filter(booking => booking.guestName.toLowerCase().includes(searchTerm.toLowerCase()))
     const orderedFilteredBookings = orderState(searchFilteredBookings, orderBy)
     setBookingsState(orderedFilteredBookings)
   }, [bookings, orderBy, searchTerm, filter])
