@@ -46,7 +46,6 @@ const Pagination = ({ itemsPerPage, items, setItems }) => {
     const piece = items.slice(i, i + itemsPerPage)
     arraysSplitted.push(piece)
   }
-  console.log(arraysSplitted)
   useEffect(() => {
     setItems(arraysSplitted[actualPage])
   }, [])
