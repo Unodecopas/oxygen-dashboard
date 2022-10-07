@@ -8,10 +8,13 @@ const HomePageContainer = styled.div`
   display: grid;
   grid-template-columns: 345px 1fr;
   height:100%;
+  width: 100%;
 `
 const MainContainer = styled.div`
   display:flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 `
 const HomePage = () => {
   return (
