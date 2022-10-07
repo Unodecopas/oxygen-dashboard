@@ -8,6 +8,7 @@ import Switcher from '../../components/Switcher'
 import Switch from '../../components/Switch'
 import Table from '../../components/Table'
 import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
+import Pagination from '../../components/Pagination'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -54,6 +55,7 @@ const BookingsPage = () => {
   const [bookingsState, setBookingsState] = useState([])
   const [searchTerm] = useState('')
   const [orderBy, setOrderBy] = useState('id')
+  const [showBookings, setShowBookings] = useState([])
 
   useEffect(() => {
     dispatch(fetchBookings())
@@ -109,7 +111,7 @@ const BookingsPage = () => {
         </thead>
         <tbody>
           {
-            bookingsState && bookingsState.map(booking => {
+            showBookings && showBookings.map(booking => {
               return (
                 <tr key={booking.id} >
                   <td>
@@ -131,6 +133,7 @@ const BookingsPage = () => {
           }
         </tbody>
       </Table>
+      <Pagination items={bookingsState} itemsPerPage={5} setItems={setShowBookings}/>
     </BookingsContainer>
   )
 }
