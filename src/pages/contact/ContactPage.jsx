@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
 import { useNavigate } from 'react-router-dom'
+import Pagination from '../../components/Pagination'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -47,6 +48,7 @@ const ContactPage = () => {
   const [searchTerm] = useState('')
   const navigate = useNavigate()
   const [reviewsState, setReviewsState] = useState([])
+  const [showReviews, setShowReviews] = useState([])
 
   useEffect(() => {
     dispatch(fetchReviews())
@@ -127,7 +129,7 @@ const ContactPage = () => {
         </thead>
         <tbody>
           {
-            reviewsState && reviewsState.map(review => {
+            showReviews && showReviews.map(review => {
               return (
                 <tr key={review.id}>
                   <td>{review.id}</td>
@@ -148,6 +150,7 @@ const ContactPage = () => {
           }
         </tbody>
       </Table>
+      <Pagination items={reviewsState} itemsPerPage={4} setItems={setShowReviews}/>
     </ReviewsPageContainer>
   )
 }
