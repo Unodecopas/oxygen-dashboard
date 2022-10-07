@@ -103,7 +103,7 @@ const DashboardPage = () => {
               reviews.map((review, i) => {
                 return (
                 <Slide style={{ marginRigth: '1rem' }} index={i} key={review.id} className='slide'>
-                  <div className='notice' onClick={() => navigate(`/reviews/${review.id}`)}>
+                  <div className='notice' onClick={() => navigate(`/contact/${review.id}`)}>
                     <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
                     <p>{review.customer}</p>
                     <p>{review.date}</p>

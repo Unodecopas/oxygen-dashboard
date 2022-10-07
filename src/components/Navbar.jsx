@@ -76,7 +76,9 @@ const Navbar = () => {
   const [user] = useUser()
   return (
     <Nav>
-      <img src={logo} alt="" width={220} height={57}/>
+      <a href="https://unodecopas.github.io/oxygen-hotel-miranda/public/index.html">
+        <img src={logo} alt="" width={220} height={57}/>
+      </a>
       <ul>
         <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
         <li><NavLink to={'/rooms'}>Room</NavLink></li>
