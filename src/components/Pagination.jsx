@@ -52,6 +52,7 @@ const Pagination = ({ itemsPerPage, items, setItems }) => {
   }, [])
   useEffect(() => {
     setItems(arraysSplitted[actualPage])
+    setActualPage(0)
   }, [items])
 
   useEffect(() => {
