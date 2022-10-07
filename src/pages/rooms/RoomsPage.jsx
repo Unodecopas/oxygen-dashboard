@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../../components/Button'
+import Pagination from '../../components/Pagination'
 import Selector from '../../components/Selector'
 import Switch from '../../components/Switch'
 import Switcher from '../../components/Switcher'
@@ -54,6 +55,7 @@ const RoomsPage = () => {
   const [roomsState, setRoomsState] = useState([])
   const [searchTerm] = useState('')
   const [orderBy, setOrderBy] = useState('id')
+  const [showRooms, setShowRooms] = useState([])
 
   useEffect(() => {
     dispatch(fetchRooms())
@@ -105,7 +107,7 @@ const RoomsPage = () => {
         </thead>
         <tbody>
           {
-            roomsState && roomsState.map(room => {
+            showRooms && showRooms.map(room => {
               return (
                 <tr key={room.id} onClick={() => handleRoom(room.id)}>
                   <td>
@@ -134,6 +136,7 @@ const RoomsPage = () => {
           }
         </tbody>
       </Table>
+      <Pagination items={roomsState} itemsPerPage={4} setItems={setShowRooms}/>
     </RoomsContainer>
   )
 }
