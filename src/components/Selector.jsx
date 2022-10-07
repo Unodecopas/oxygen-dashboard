@@ -15,10 +15,10 @@ const Selector = ({ options, onChange }) => {
     <Select name='order' onChange={e => onChange(e.target.value)}>
       { options && options.map((opt, i) => {
         return (
-          <>
-            <option key={opt.value} value={opt.value}>{'⬆  ' + opt.label.toUpperCase()}</option>
-            <option key={opt.value + 'DESC'} value={opt.value + 'DESC'}>{'⬇  ' + opt.label.toUpperCase()}</option>
-          </>
+          <optgroup key={i}>
+            <option value={opt.value}>{'⬆  ' + opt.label.toUpperCase()}</option>
+            <option value={opt.value + 'DESC'}>{'⬇  ' + opt.label.toUpperCase()}</option>
+          </optgroup>
         )
       })}
     </Select>

@@ -23,8 +23,7 @@ const RoomsContainer = styled.div`
     }
   }
   & .amenities {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+    display: flex;
     place-items: center;
     gap: 1rem;
     & span {
@@ -91,8 +90,8 @@ const RoomsPage = () => {
         />
         <Button label={'+ New Room'} onClick={handleButton} primary/>
         <Selector options={[
-          { label: 'Price', value: 'price' },
-          { label: 'id', value: 'id' }
+          { label: 'id', value: 'id' },
+          { label: 'Price', value: 'price' }
         ]} onChange={handleOrder}/>
       </Switcher>
       <Table>
