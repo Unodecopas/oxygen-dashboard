@@ -15,7 +15,7 @@ import RoomDetails from './pages/rooms/RoomDetails'
 import BookingsPage from './pages/bookings/BookingsPage'
 import BookingDetails from './pages/bookings/BookingDetails'
 import NewBookingPage from './pages/bookings/NewBookingPage'
-import ContactPage from './pages/ContactPage'
+import ContactPage from './pages/contact/ContactPage'
 import { useUser } from './context/userContext'
 import ReviewDetails from './pages/contact/ReviewDetails'
 

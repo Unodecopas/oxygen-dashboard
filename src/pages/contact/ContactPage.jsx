@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Switch from '../components/Switch'
-import Switcher from '../components/Switcher'
-import Selector from '../components/Selector'
-import Table from '../components/Table'
+import Switch from '../../components/Switch'
+import Switcher from '../../components/Switcher'
+import Selector from '../../components/Selector'
+import Table from '../../components/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
+import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
 import { useNavigate } from 'react-router-dom'
 
 const ReviewsPageContainer = styled.div`
