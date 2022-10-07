@@ -32,10 +32,9 @@ export const deleteUser = createAsyncThunk(
 )
 export const newUser = createAsyncThunk(
   'users/newUser',
-  async (id) => {
-    const findUser = usersData.find((element) => element.id === Number(id))
-    const user = await delay(findUser)
-    return user
+  async (newuser) => {
+    const delayedUsers = await delay(usersData)
+    return delayedUsers
   }
 )
 export const usersListSlice = createSlice({
