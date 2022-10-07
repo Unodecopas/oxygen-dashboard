@@ -1,16 +1,16 @@
+import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
-import 'pure-react-carousel/dist/react-carousel.es.css'
-import bed from '../assets/bed.svg'
+import KPIs from '../components/KPIs'
 import exit from '../assets/exit.svg'
 import door from '../assets/door.svg'
+import bed from '../assets/bed.svg'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import KPIs from '../components/KPIs'
-import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
-import styled from 'styled-components'
 import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
-import { useNavigate } from 'react-router-dom'
+import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ const DashboardContainer = styled.div`
       width: 100%;
       flex-grow: 1;
       margin-top: 1rem;
-      
     }
     & .notice {
       display: flex;
@@ -47,11 +46,11 @@ const DashboardContainer = styled.div`
         padding: 0.5rem 0.75rem;
         border: none;
         border-radius: 10px;
+
         &:disabled{
         visibility: hidden;
+        }
       }
-      }
-      
     }
   }
 `
@@ -62,15 +61,19 @@ const DashboardPage = () => {
   const rooms = useSelector(selectRoomsList)
   const reviews = useSelector(selectReviewsList)
   const [items, setItems] = useState([])
+
   useEffect(() => {
     dispatch(fetchBookings())
   }, [dispatch, bookings])
+
   useEffect(() => {
     dispatch(fetchRooms())
   }, [dispatch, rooms])
+
   useEffect(() => {
     dispatch(fetchReviews())
   }, [dispatch, reviews])
+
   useEffect(() => {
     const totalbookings = bookings.length
     const bookingsCheckin = bookings.filter(booking => booking.status === 'checkin')
@@ -83,6 +86,7 @@ const DashboardPage = () => {
       { icon: exit, value: bookingsCheckout.length, text: 'Check Out' }
     ])
   }, [bookings, rooms])
+
   return (
     <DashboardContainer>
       <KPIs items={items}/>

@@ -1,11 +1,11 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import searchIcon from '../assets/searchIcon.svg'
+import React from 'react'
 import messageIcon from '../assets/message.svg'
 import logoutIcon from '../assets/logout.svg'
 import bellIcon from '../assets/bell.svg'
-import styled from 'styled-components'
 import { useUser } from '../context/userContext'
+import { useLocation } from 'react-router-dom'
 
 const HeaderContainer = styled.header`
   padding: 1.875rem 0 1.875rem 1.625rem;

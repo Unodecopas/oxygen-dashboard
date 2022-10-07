@@ -71,7 +71,7 @@ export const bookingsListSlice = createSlice({
       })
       .addCase(updateBooking.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        state.bookings = state.booking.filter((booking) => booking.id !== action.payload.id)
+        state.bookings = state.bookings.filter((booking) => booking.id !== action.payload.id)
         state.bookings.push(action.payload)
       })
       .addCase(updateBooking.rejected, (state) => {

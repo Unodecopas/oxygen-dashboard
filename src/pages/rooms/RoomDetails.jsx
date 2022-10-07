@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoom, selectRoom } from '../../slices/roomsListSlice'
 
 const RoomContainer = styled.div`
@@ -65,6 +64,7 @@ const RoomDetails = () => {
   useEffect(() => {
     dispatch(fetchRoom(roomid))
   }, [dispatch, room])
+
   return (
     <RoomContainer>
       <div className='room__info'>

@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import React from 'react'
 import logo from '../assets/logo.png'
 import { useUser } from '../context/userContext'
+import { Link, NavLink } from 'react-router-dom'
 
 const Nav = styled.nav`
   padding: 2rem 4.3125rem 0 1.625rem;
@@ -74,6 +74,7 @@ const Nav = styled.nav`
 `
 const Navbar = () => {
   const [user] = useUser()
+
   return (
     <Nav>
       <a href="https://unodecopas.github.io/oxygen-hotel-miranda/public/index.html" target='blank'>

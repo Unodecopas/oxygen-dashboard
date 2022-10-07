@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchReview, selectReview } from '../../slices/reviewsListSlice'
 
 const ReviewDetails = () => {
@@ -16,11 +15,9 @@ const ReviewDetails = () => {
   return (
     <div>
       {
-      Object.entries(review).map((key, i) => {
-        return (
-          <p key={i}>{key[0]} : {key[1]}</p>
-        )
-      })
+        Object.entries(review).map((key, i) => {
+          return <p key={i}>{key[0]} : {key[1]}</p>
+        })
       }
     </div>
   )

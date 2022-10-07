@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
+import React from 'react'
 
 const TableContainer = styled.table`
   overflow-x: none;
@@ -30,7 +30,6 @@ const TableContainer = styled.table`
       padding: 20px 30px;
       text-align: center;
   }
-
   & td {
     color: #393939;
     font-size: 1rem;

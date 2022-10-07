@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchBooking, selectBooking } from '../../slices/bookingsListSlice'
 
 const BookingDetails = () => {
@@ -16,11 +16,8 @@ const BookingDetails = () => {
     <div>
       {
       Object.entries(booking).map((key, i) => {
-        return (
-          <p key={i}>{key[0]} : {key[1]}</p>
-        )
-      })
-      }
+        return <p key={i}>{key[0]} : {key[1]}</p>
+      })}
     </div>
   )
 }

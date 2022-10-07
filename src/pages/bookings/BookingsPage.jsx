@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import Button from '../../components/Button'
-import Selector from '../../components/Selector'
+import Table from '../../components/Table'
 import Switcher from '../../components/Switcher'
 import Switch from '../../components/Switch'
-import Table from '../../components/Table'
-import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
+import styled from 'styled-components'
+import Selector from '../../components/Selector'
+import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
+import Button from '../../components/Button'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 
 const BookingsContainer = styled.div`
   display: flex;
@@ -31,7 +31,6 @@ const BookingsContainer = styled.div`
     background-color: #a2f3def6;
     padding: 0.5rem;
     border-radius: 12px;
-
   }
   & .checkout {
     padding: 0.5rem;
@@ -110,26 +109,25 @@ const BookingsPage = () => {
         </tr>
         </thead>
         <tbody>
-          {
-            showBookings && showBookings.map(booking => {
-              return (
-                <tr key={booking.id} >
-                  <td>
-                    <div style={{ display: 'flex', placeItems: 'center' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-                        <p>{booking.guestName}</p>
-                      </div>
+          {showBookings && showBookings.map(booking => {
+            return (
+              <tr key={booking.id} >
+                <td>
+                  <div style={{ display: 'flex', placeItems: 'center' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <p>{booking.guestName}</p>
                     </div>
-                  </td>
-                  <td>{booking.orderDate}</td>
-                  <td>{booking.checkin}</td>
-                  <td>{booking.checkout}</td>
-                  <td><Button label={'View Notes'} onClick={() => handleBooking(booking.id)}/></td>
-                  <td>{booking.roomType}</td>
-                  <td><p className={booking.status}>{booking.status.toUpperCase()}</p></td>
-                </tr>
-              )
-            })
+                  </div>
+                </td>
+                <td>{booking.orderDate}</td>
+                <td>{booking.checkin}</td>
+                <td>{booking.checkout}</td>
+                <td><Button label={'View Notes'} onClick={() => handleBooking(booking.id)}/></td>
+                <td>{booking.roomType}</td>
+                <td><p className={booking.status}>{booking.status.toUpperCase()}</p></td>
+              </tr>
+            )
+          })
           }
         </tbody>
       </Table>

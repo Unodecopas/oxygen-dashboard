@@ -1,8 +1,8 @@
+import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
 
-import styled from 'styled-components'
 const PaginationContainer = styled.div`
-margin: 1rem 0;
+  margin: 1rem 0;
   display: flex;
   place-items: center;
   width: 100%;
@@ -17,7 +17,6 @@ margin: 1rem 0;
       background-color: #f8f8f8;
       margin-right: 10px;
     }
-
     &__fixed {
       cursor: pointer;
       border-radius: 12px;
@@ -46,9 +45,11 @@ const Pagination = ({ itemsPerPage, items, setItems }) => {
     const piece = items.slice(i, i + itemsPerPage)
     arraysSplitted.push(piece)
   }
+
   useEffect(() => {
     setItems(arraysSplitted[actualPage])
   }, [])
+
   useEffect(() => {
     setItems(arraysSplitted[actualPage])
     setActualPage(0)
@@ -64,13 +65,13 @@ const Pagination = ({ itemsPerPage, items, setItems }) => {
   const prevPage = () => {
     setActualPage(actualPage - 1)
   }
+
   return (
     <PaginationContainer>
       <div className='pagination__results'>
-        {
-          items.length === 0
-            ? <p>Nothing to show</p>
-            : <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>
+        {items.length === 0
+          ? <p>Nothing to show</p>
+          : <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>
         }
       </div>
       <div className='pagination__buttons'>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import styled from 'styled-components'
+import React, { useState } from 'react'
 
 const SwitchContainer = styled.div`
   & ul {
@@ -31,9 +31,7 @@ const Switch = (props) => {
     <SwitchContainer>
       <ul>
         {props.items.map(item => {
-          return (
-            <li key={item.label} onClick={() => handleClick(item)} className={`${active === item.label && 'active'}`}>{item.label}</li>
-          )
+          return <li key={item.label} onClick={() => handleClick(item)} className={`${active === item.label && 'active'}`}>{item.label}</li>
         })}
       </ul>
     </SwitchContainer>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-import Button from '../../components/Button'
-import Pagination from '../../components/Pagination'
-import Selector from '../../components/Selector'
-import Switch from '../../components/Switch'
-import Switcher from '../../components/Switcher'
 import Table from '../../components/Table'
+import Switcher from '../../components/Switcher'
+import Switch from '../../components/Switch'
+import styled from 'styled-components'
+import Selector from '../../components/Selector'
+import React, { useEffect, useState } from 'react'
+import Pagination from '../../components/Pagination'
+import Button from '../../components/Button'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
 
 const RoomsContainer = styled.div`
@@ -74,6 +74,7 @@ const RoomsPage = () => {
     })
     setRoomsState(orderedFilteredRooms)
   }, [rooms, orderBy, searchTerm, filter])
+
   const handleFilter = (filter) => {
     setFilter(filter)
   }
@@ -86,6 +87,7 @@ const RoomsPage = () => {
   const handleOrder = (value) => {
     setOrderBy(value)
   }
+
   return (
     <RoomsContainer>
       <Switcher>
@@ -119,21 +121,23 @@ const RoomsPage = () => {
                     </div>
                   </td>
                   <td className='amenities'>{room.amenities.map((amenitie, i) => {
-                    return (
-                      <span key={i}>{amenitie}</span>
-                    )
-                  })
-                  }</td>
+                    return <span key={i}>{amenitie}</span>
+                  })}
+                  </td>
                   <td>
                     <p className={room.offer ? 'withOffer' : ''}>{room.price / 100 + '$'}</p>
                   </td>
                   <td>
-                    <p className={room.offer ? 'offer' : ''}>{room.offer ? (room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' : room.price / 100 + '$'}</p>
+                    <p className={room.offer ? 'offer' : ''}>
+                      {room.offer
+                        ? (room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$'
+                        : room.price / 100 + '$'
+                      }
+                    </p>
                   </td>
                 </tr>
               )
-            })
-          }
+            })}
         </tbody>
       </Table>
       <Pagination items={roomsState} itemsPerPage={4} setItems={setShowRooms}/>

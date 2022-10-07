@@ -1,5 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
+import React from 'react'
+
 const KPIsContainer = styled.div`
   display: flex;
   place-items: center;

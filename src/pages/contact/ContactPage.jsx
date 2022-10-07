@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import Switch from '../../components/Switch'
-import Switcher from '../../components/Switcher'
-import Selector from '../../components/Selector'
 import Table from '../../components/Table'
-import { useDispatch, useSelector } from 'react-redux'
+import Switcher from '../../components/Switcher'
+import Switch from '../../components/Switch'
 import styled from 'styled-components'
-import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
-import { useNavigate } from 'react-router-dom'
+import Selector from '../../components/Selector'
+import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -26,7 +26,7 @@ const ReviewsPageContainer = styled.div`
       background-color: #a2f3def6;
       padding: 0.5rem;
       border-radius: 12px;
-      }
+    }
     & .archive {
       padding: 0.5rem;
       border-radius: 12px;
@@ -94,6 +94,7 @@ const ContactPage = () => {
   const handleReview = (reviewid) => {
     navigate(`/contact/${reviewid}`)
   }
+
   return (
     <ReviewsPageContainer>
       <div className='notices'>
@@ -115,7 +116,6 @@ const ContactPage = () => {
         handleSwitcher={handleFilter}
         />
         <Selector options={['date', 'id', 'customer']} onChange={handleOrder}/>
-
       </Switcher>
       <Table>
         <thead>
@@ -137,12 +137,12 @@ const ContactPage = () => {
                   <td>{review.customer}</td>
                   <td className='table__small'>{review.subject}</td>
                   {!filter &&
-                      <td>
-                        <div className='actions'>
-                          <button className='publish'>Publish</button>
-                          <button className='archive'>Archive</button>
-                        </div>
-                      </td>
+                    <td>
+                      <div className='actions'>
+                        <button className='publish'>Publish</button>
+                        <button className='archive'>Archive</button>
+                      </div>
+                    </td>
                   }
                 </tr>
               )
