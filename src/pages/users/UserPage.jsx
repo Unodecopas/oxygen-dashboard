@@ -11,6 +11,7 @@ import Table from '../../components/Table'
 import { fetchUsers, selectUsersList } from '../../slices/usersListSlice'
 import Pagination from '../../components/Pagination'
 import orderState from '../../utils/orderState'
+import { selectSearchTerm } from '../../slices/searchTermSlice'
 
 const UsersContainer = styled.div`
   display:flex;
@@ -46,7 +47,7 @@ const UserPage = () => {
   const users = useSelector(selectUsersList)
   const dispatch = useDispatch()
   const [usersState, setUsersState] = useState([])
-  const [searchTerm] = useState('')
+  const searchTerm = useSelector(selectSearchTerm)
   const [orderBy, setOrderBy] = useState('id')
   const [usersToShow, setUsersToShow] = useState([])
 
@@ -56,7 +57,7 @@ const UserPage = () => {
 
   useEffect(() => {
     const filteredUsers = filter !== '' ? users.filter(user => user.status === filter) : users
-    const searchFilteredUsers = filteredUsers.filter(user => user.username.includes(searchTerm))
+    const searchFilteredUsers = filteredUsers.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()))
     const orderedFilteredUsers = orderState(searchFilteredUsers, orderBy)
     setUsersState(orderedFilteredUsers)
   }, [users, orderBy, searchTerm, filter])

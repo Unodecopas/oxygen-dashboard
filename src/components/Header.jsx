@@ -92,18 +92,23 @@ const Header = () => {
   useEffect(() => {
     dispatcher(changeSearchTerm(debounceTerm))
   }, [dispatcher, debounceTerm])
+  useEffect(() => {
+    setSearchInput('')
+  }, [dispatcher, location])
   return (
     <HeaderContainer>
       <h1>{location}</h1>
-      <div className='search'>
-        <input type="text"
-        className='search__input'
-        value={searchInput}
-        onChange={e => setSearchInput(e.target.value)}
-        placeholder='Search ...' />
-        {searchInput && <button onClick={() => setSearchInput('')}>x</button>}
-        <img src={searchIcon} alt="" />
-      </div>
+      {location !== 'dashboard' &&
+        <div className='search'>
+          <input type="text"
+          className='search__input'
+          value={searchInput}
+          onChange={e => setSearchInput(e.target.value)}
+          placeholder='Search ...' />
+          {searchInput && <button onClick={() => setSearchInput('')}>x</button>}
+          <img src={searchIcon} alt="" />
+        </div>
+      }
       <div className='header__icons'>
         <button>
           <img src={bellIcon} alt="" />

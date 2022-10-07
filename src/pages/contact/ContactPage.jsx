@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
 import orderState from '../../utils/orderState'
+import { selectSearchTerm } from '../../slices/searchTermSlice'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -46,7 +47,7 @@ const ContactPage = () => {
   const dispatch = useDispatch()
   const [firtsReviews, setFirstsReviews] = useState([])
   const [orderBy, setOrderBy] = useState('date')
-  const [searchTerm] = useState('')
+  const searchTerm = useSelector(selectSearchTerm)
   const navigate = useNavigate()
   const [reviewsState, setReviewsState] = useState([])
   const [showReviews, setShowReviews] = useState([])

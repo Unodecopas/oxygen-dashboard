@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
 import orderState from '../../utils/orderState'
+import { selectSearchTerm } from '../../slices/searchTermSlice'
 
 const RoomsContainer = styled.div`
   display:flex;
@@ -53,7 +54,7 @@ const RoomsPage = () => {
   const navigate = useNavigate()
   const rooms = useSelector(selectRoomsList)
   const [roomsState, setRoomsState] = useState([])
-  const [searchTerm] = useState('')
+  const searchTerm = useSelector(selectSearchTerm)
   const [orderBy, setOrderBy] = useState('id')
   const [showRooms, setShowRooms] = useState([])
 
