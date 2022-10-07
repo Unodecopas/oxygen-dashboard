@@ -86,7 +86,7 @@ const RoomDetails = () => {
               </div>
               <div className='price'>
                 <p className='title'>Final Price</p>
-                <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' }</h4>
+                <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' } <span className='night'>/night</span></h4>
               </div>
             </>
           }
@@ -104,7 +104,7 @@ const RoomDetails = () => {
           <h4>Amenties</h4>
           <div className='amenities__items'>
             {
-              room && room.amenities.map((amenitie, i) => {
+              room.amenities && room.amenities.map((amenitie, i) => {
                 return <div key={i} className='amenitie'>{amenitie}</div>
               })
             }
