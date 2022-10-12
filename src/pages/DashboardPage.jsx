@@ -10,12 +10,33 @@ import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
 import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
+import FullCalendar from '@fullcalendar/react' // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import 'pure-react-carousel/dist/react-carousel.es.css'
 
 const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  & .widgets {
+    margin-top: 1rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    & .fc {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      & button {
+        background-color: #135846;
+      }
+      &-today-button{
+        background-color: #135846;
+      }
+      
+    }
+  }
   & .reviews {
     margin-top: 1rem;
     border-radius: 12px;
@@ -90,6 +111,10 @@ const DashboardPage = () => {
   return (
     <DashboardContainer>
       <KPIs items={items}/>
+      <div className='widgets'>
+        <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth"/>
+        <h2>Charts</h2>
+      </div>
       <div className='reviews'>
         <h3>Latests Customer Reviews</h3>
         <CarouselProvider
