@@ -27,7 +27,7 @@ const BarChart = ({ data }) => {
     const gapText = 10
     const width = 600 - margin.left - margin.right
     const height = 500 - margin.top - margin.bottom
-    const maxValue = Math.round(data.sales.reduce((acc, curr) => curr.value > acc ? curr.value : acc, 0) / 1000 + 1) * 1000
+    const maxValue = Math.floor(data.sales.reduce((acc, curr) => curr.value > acc ? curr.value : acc, 0) / 1000 + 1) * 1000
     const svgElement = d3.select(ref.current)
     svgElement.append('svg')
       .attr('width', width)

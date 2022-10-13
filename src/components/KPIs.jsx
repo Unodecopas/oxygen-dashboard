@@ -28,7 +28,12 @@ const KPIsContainer = styled.div`
         color: #787878;
       }
     }
+    &:hover {
+      box-shadow: 0px 16px 30px #00000014;
+      transform: translate(2px, -2px)
+    }
   }
+  
 `
 
 const KPIs = ({ items }) => {
