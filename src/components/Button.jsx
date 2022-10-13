@@ -9,6 +9,10 @@ const Btn = styled.button`
  padding: 0.8125rem 2.1875rem;
  cursor: pointer;
  transition:all 0.3s ease-out;
+ &:hover {
+  background-color: ${props => props.primary ? '#EBF1EF' : '#eeeee'};
+  color: ${props => props.primary ? '#135846' : '#eeeee'};
+ }
 `
 const Button = (props) => {
   return (

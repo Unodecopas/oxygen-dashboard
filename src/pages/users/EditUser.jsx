@@ -45,29 +45,19 @@ const EditUserContainer = styled.div`
 `
 
 const EditUser = () => {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
+  const [user, dispatch] = useUser()
+  const [username, setUsername] = useState(user.username)
+  const [email, setEmail] = useState(user.email)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
-  const [user, dispatch] = useUser()
 
   const handleForm = (e) => {
     e.preventDefault()
     setSuccess('')
-    if (username === user.username) {
-      showMessage('error', 'El username introducido es el mismo que el anterior')
-      return
-    }
-    if (email === user.email) {
-      showMessage('error', 'El email introducido es el mismo que el anterior')
-      return
-    }
     if (username && username !== user.username) dispatch({ type: 'changeUsername', value: username })
     if (email && email !== user.email) dispatch({ type: 'changeEmail', value: email })
-    setEmail('')
-    setError('')
-    setUsername('')
     showMessage('success', 'Datos cambiados con éxito')
+    setError('')
   }
   const clearForm = (e) => {
     e.preventDefault()
@@ -87,9 +77,9 @@ const EditUser = () => {
     <EditUserContainer>
       <h2>Hi! {user.username}</h2>
       <form onSubmit={handleForm} id='edit-user-form'>
-        <label htmlFor="username">New username</label>
+        <label htmlFor="username">Username</label>
         <input type="text" name='username' value={username} onChange={e => setUsername(e.target.value)}/>
-        <label htmlFor="email">New Email</label>
+        <label htmlFor="email">Email</label>
         <input type="email" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
         <div className='form-buttons'>
           <Button label={'Clear'} onClick={clearForm} id='clear-form'/>
