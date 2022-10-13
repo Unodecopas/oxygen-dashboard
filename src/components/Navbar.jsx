@@ -25,7 +25,6 @@ const Nav = styled.nav`
       transition:all 0.3s ease-out;
       &:hover{
         transform: translate(2px, -2px);
-        border-bottom: 1px solid red;
         color: red;
       }
     }
