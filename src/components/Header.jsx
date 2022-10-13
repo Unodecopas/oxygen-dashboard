@@ -57,6 +57,7 @@ const HeaderContainer = styled.header`
       border: 2px solid white;
       background-color:inherit;
       padding: .25rem;
+      transition:all 0.3s ease-out;
       & img {
         display: block;
         margin: auto;

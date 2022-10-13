@@ -21,6 +21,13 @@ const Nav = styled.nav`
     gap:2rem;
     & li {
       margin-left: 1rem;
+      border-bottom: 1px solid transparent;
+      transition:all 0.3s ease-out;
+      &:hover{
+        transform: translate(2px, -2px);
+        border-bottom: 1px solid red;
+        color: red;
+      }
     }
   }
   & .user__info {
@@ -55,6 +62,7 @@ const Nav = styled.nav`
       background-color: #EBF1EF;
       color: #135846;
       margin-bottom: 37px;
+      transition: all 0.3s ease-out;
       &:hover {
         background-color:#135846;
         color: white;

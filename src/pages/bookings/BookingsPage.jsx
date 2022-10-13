@@ -22,8 +22,8 @@ const BookingsContainer = styled.div`
       color: grey;
       border: 1px solid grey;
       &:hover  {
-        color: white;
-        background-color: grey;
+        color: black;
+        background-color: #eeeeee;
         border: 1px solid grey;
       }
     }

@@ -26,6 +26,8 @@ const DashboardContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     & .fc {
+      border: none;
+      border-style: none !important;
       background-color: white;
       padding: 1rem;
       border-radius: 12px;
@@ -35,6 +37,17 @@ const DashboardContainer = styled.div`
       &-today-button{
         background-color: #135846;
       }
+      
+    }
+    .fc-scrollgrid{
+      border: none;
+    }
+    .fc td, .fc th {
+      border-style: none !important;
+    }
+    .fc-day-today{
+      background-color: #135846;
+      color: white;
     }
   }
   & .reviews {
@@ -134,7 +147,7 @@ const DashboardPage = () => {
     <DashboardContainer>
       <KPIs items={items}/>
       <div className='widgets'>
-        <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth"/>
+        <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
         <BarChart data={data}/>
       </div>
       <div className='reviews'>

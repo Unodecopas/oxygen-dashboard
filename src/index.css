@@ -52,6 +52,7 @@ a.active {
   width: 100%;
   background-color: white;
   border: 1px solid #ebebeb;
+  transition: all 0.3s ease-out;
 }
 .notice__subject {
   flex-grow: 1;

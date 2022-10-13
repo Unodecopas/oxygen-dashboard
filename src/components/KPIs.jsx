@@ -30,7 +30,8 @@ const KPIsContainer = styled.div`
     }
     &:hover {
       box-shadow: 0px 16px 30px #00000014;
-      transform: translate(2px, -2px)
+      transform: translate(2px, -2px);
+      transition:all 0.2s ease-out;
     }
   }
   

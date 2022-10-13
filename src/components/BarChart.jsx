@@ -7,10 +7,10 @@ const D3Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 1rem 1rem 0 1rem ;
   place-items: center;
   background-color: white;
   border-radius: 12px;
+  padding: 1rem;
   & svg {
     width: 100%;
     height: 100%;
@@ -18,7 +18,6 @@ const D3Container = styled.div`
 `
 const BarChart = ({ data }) => {
   const ref = useRef()
-
   useEffect(() => {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     const margin = { top: 10, right: 30, bottom: 10, left: 50 }
@@ -27,9 +26,11 @@ const BarChart = ({ data }) => {
     const gapText = 10
     const width = 600 - margin.left - margin.right
     const height = 500 - margin.top - margin.bottom
+    // rounds up to the nearest thousand
     const maxValue = Math.floor(data.sales.reduce((acc, curr) => curr.value > acc ? curr.value : acc, 0) / 1000 + 1) * 1000
     const svgElement = d3.select(ref.current)
     svgElement.append('svg')
+      .attr('class', 'graph')
       .attr('width', width)
       .attr('height', height)
     const xScale = d3.scaleBand()
@@ -117,9 +118,7 @@ const BarChart = ({ data }) => {
         .attr('class', 'val')
         .attr('x', () => {
           const day = new Date(i.day)
-          return xScale(days[
-            day.getDay() - 1 < 0 ? 6 : day.getDay() - 1
-          ]) + barWidth * 2 + gapColumns + gapText
+          return xScale(days[day.getDay() - 1 < 0 ? 6 : day.getDay() - 1]) + barWidth * 2 + gapColumns + gapText
         })
         .attr('y', () => yScaleRight(i.value) + gapText)
         .text(`${i.value}%`)
@@ -132,7 +131,10 @@ const BarChart = ({ data }) => {
         .attr('class', '')
       d3.selectAll('.val').remove()
     }
-  }, [])
+    return () => {
+      ref.current = null
+    }
+  }, [ref, data])
 
   return (
     <D3Container>

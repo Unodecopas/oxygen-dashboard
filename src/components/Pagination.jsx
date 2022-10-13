@@ -39,6 +39,7 @@ const PaginationContainer = styled.div`
       border: 1px solid #135846;
       background-color: #FFFFFF;
       margin-right: 10px;
+      transition:all 0.3s ease-out;
       &:hover {
         background-color: #135846;
         color: white;
