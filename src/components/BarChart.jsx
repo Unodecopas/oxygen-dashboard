@@ -33,16 +33,16 @@ const BarChart = ({ data }) => {
       .attr('class', 'graph')
       .attr('width', width)
       .attr('height', height)
-    const xScale = d3.scaleBand()
+    const daysScale = d3.scaleBand()
       .range([0, width])
       .domain(days)
       .padding(0.4)
 
-    const yScaleLeft = d3.scaleLinear()
+    const valueScale = d3.scaleLinear()
       .range([height, 0])
       .domain([0, maxValue])
 
-    const yScaleRight = d3.scaleLinear()
+    const percentageScale = d3.scaleLinear()
       .range([height, 0])
       .domain([0, 100])
 
@@ -51,12 +51,12 @@ const BarChart = ({ data }) => {
 
     daysAxis.append('g')
       .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(xScale))
+      .call(d3.axisBottom(daysScale))
       .selectAll('.tick')
       .style('stroke-width', 0)
 
     const valueAxis = daysAxis.append('g')
-      .call(d3.axisLeft(yScaleLeft).tickFormat((d) => `${d}€`))
+      .call(d3.axisLeft(valueScale).tickFormat((d) => `${d}€`))
       .selectAll('.domain')
       .style('stroke-width', 0)
 
@@ -65,33 +65,33 @@ const BarChart = ({ data }) => {
 
     daysAxis.append('g')
       .attr('transform', `translate(${width}, 0)`)
-      .call(d3.axisRight(yScaleRight).tickFormat((d) => `${d}%`))
+      .call(d3.axisRight(percentageScale).tickFormat((d) => `${d}%`))
       .selectAll('.domain')
       .style('stroke-width', 0)
 
-    const gSales = svgElement.append('g')
-    gSales.selectAll('rect')
+    const barSales = svgElement.append('g')
+    barSales.selectAll('rect')
       .data(data.sales)
       .enter().append('rect')
       .attr('pointer-events', 'all')
-      .attr('x', (d, i) => xScale(days[i]))
-      .attr('y', (d, i) => yScaleLeft(d.value))
+      .attr('x', (d, i) => daysScale(days[i]))
+      .attr('y', (d, i) => valueScale(d.value))
       .attr('width', barWidth)
-      .attr('height', (d, i) => height - yScaleLeft(d.value))
+      .attr('height', (d, i) => height - valueScale(d.value))
       .attr('fill', '#135846')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
       .on('mouseover', onMouseOverSales)
       .on('mouseout', onMouseOut)
 
-    const gOccupation = svgElement.append('g')
-    gOccupation.selectAll('rect')
+    const barOccupation = svgElement.append('g')
+    barOccupation.selectAll('rect')
       .data(data.occupation)
       .enter().append('rect')
       .attr('pointer-events', 'all')
-      .attr('x', (d, i) => xScale(days[i]))
-      .attr('y', (d, i) => yScaleRight(d.value))
+      .attr('x', (d, i) => daysScale(days[i]))
+      .attr('y', (d, i) => percentageScale(d.value))
       .attr('width', barWidth)
-      .attr('height', (d, i) => height - yScaleRight(d.value))
+      .attr('height', (d, i) => height - percentageScale(d.value))
       .attr('transform', `translate(${margin.left + barWidth + gapColumns}, ${margin.top})`)
       .attr('fill', 'red')
       .on('mouseover', onMouseOverOccupation)
@@ -103,11 +103,11 @@ const BarChart = ({ data }) => {
         .attr('class', 'val')
         .attr('x', () => {
           const day = new Date(i.day)
-          return xScale(days[
+          return daysScale(days[
             day.getDay() - 1 < 0 ? 6 : day.getDay() - 1
           ]) - gapText
         })
-        .attr('y', () => yScaleLeft(i.value) + 10)
+        .attr('y', () => valueScale(i.value) + 10)
         .text(`${i.value}€`)
         .attr('stroke', '#135846')
         .style('writing-mode', 'tb')
@@ -118,9 +118,9 @@ const BarChart = ({ data }) => {
         .attr('class', 'val')
         .attr('x', () => {
           const day = new Date(i.day)
-          return xScale(days[day.getDay() - 1 < 0 ? 6 : day.getDay() - 1]) + barWidth * 2 + gapColumns + gapText
+          return daysScale(days[day.getDay() - 1 < 0 ? 6 : day.getDay() - 1]) + barWidth * 2 + gapColumns + gapText
         })
-        .attr('y', () => yScaleRight(i.value) + gapText)
+        .attr('y', () => percentageScale(i.value) + gapText)
         .text(`${i.value}%`)
         .attr('stroke', 'red')
         .style('writing-mode', 'tb')
