@@ -122,26 +122,15 @@ const DashboardPage = () => {
     ])
   }, [bookings, rooms])
 
-  const data = {
-    sales: [
-      { day: '08/22/2022', value: 2500 },
-      { day: '08/23/2022', value: 3000 },
-      { day: '08/24/2022', value: 1100 },
-      { day: '08/25/2022', value: 800 },
-      { day: '08/26/2022', value: 2850 },
-      { day: '08/27/2022', value: 4673 },
-      { day: '08/28/2022', value: 3857 }
-    ],
-    occupation: [
-      { day: '08/22/2022', value: 20 },
-      { day: '08/23/2022', value: 32 },
-      { day: '08/24/2022', value: 38 },
-      { day: '08/25/2022', value: 30 },
-      { day: '08/26/2022', value: 67 },
-      { day: '08/27/2022', value: 89 },
-      { day: '08/28/2022', value: 70 }
-    ]
-  }
+  const data = [
+    { day: '08/22/2022', sales: 2500, occupation: 20 },
+    { day: '08/23/2022', sales: 3000, occupation: 10 },
+    { day: '08/24/2022', sales: 1100, occupation: 12 },
+    { day: '08/25/2022', sales: 800, occupation: 14 },
+    { day: '08/26/2022', sales: 2850, occupation: 60 },
+    { day: '08/27/2022', sales: 4673, occupation: 15 },
+    { day: '08/28/2022', sales: 3857, occupation: 80 }
+  ]
 
   return (
     <DashboardContainer>
