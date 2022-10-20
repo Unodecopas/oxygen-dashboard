@@ -10,6 +10,10 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^29.2.0",
+    "@types/node": "^18.11.2",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "d3": "^7.6.1",
     "gh-pages": "^4.0.0",
     "pure-react-carousel": "^1.29.0",
@@ -21,6 +25,7 @@
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
+    "typescript": "*",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -31,18 +36,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "cypress:open": " cypress open"
-  },
-  "eslintConfig": {
-    "env": {
-      "cypress/globals": true
-    },
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "plugins": [
-      "cypress"
-    ]
   },
   "browserslist": {
     "production": [
@@ -58,14 +51,9 @@
   },
   "devDependencies": {
     "@fullcalendar/react": "^5.11.2",
-    "cypress": "^10.9.0",
-    "eslint": "^8.24.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^27.0.4",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.31.8"
+    "@types/react-redux": "^7.1.24",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "cypress": "^10.9.0"
   }
 }
