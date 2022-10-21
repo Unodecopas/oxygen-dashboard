@@ -5,7 +5,7 @@ import delay from '../utils/delay'
 
 interface UsersState {
   users: User[],
-  user: User,
+  user: User | null,
   status: 'loading' | 'error' | 'fulfilled'
 }
 export interface User {
@@ -22,25 +22,14 @@ export enum UserStatus {
   active = 'active',
   inactive = 'inactive'
 }
-const initialState: UsersState = {
-  users: [],
-  user: {
-    id:0,
-    username:"",
-    photo:"",
-    email:"",
-    startDate:"",
-    job:"",
-    contact:"",
-    status: UserStatus.active
-  },
-  status: 'loading'
-}
+
+const initialState: UsersState = null
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const delayedUsers = await delay(usersData)
   return delayedUsers as User[]
 })
+
 export const fetchUser = createAsyncThunk(
   'users/fetchUser',
   async (id: number) => {
@@ -49,6 +38,7 @@ export const fetchUser = createAsyncThunk(
     return user as User
   }
 )
+
 export const updateUser = createAsyncThunk(
   'users/updateUser',
   async (updatedUser: number) => {
@@ -56,6 +46,7 @@ export const updateUser = createAsyncThunk(
     return delayedUser as User
   }
 )
+
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
   async (deletedUser: number) => {
@@ -63,6 +54,7 @@ export const deleteUser = createAsyncThunk(
     return delayedUser as User
   }
 )
+
 export const newUser = createAsyncThunk(
   'users/newUser',
   async (newUser: User) => {
@@ -70,6 +62,7 @@ export const newUser = createAsyncThunk(
     return delayedUser as User
   }
 )
+
 export const usersListSlice = createSlice({
   name: 'usersList',
   initialState,

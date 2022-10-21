@@ -19,23 +19,11 @@ export enum BookingStatus {
 }
 interface BookingsState {
   bookings: Booking[],
-  booking: Booking,
+  booking: Booking | null,
   status: 'loading' | 'error' | 'fulfilled'
 }
-const initialState:BookingsState =  {
-  bookings: [],
-  booking: {
-    id: 0,
-    guestName: '',
-    orderDate: '',
-    checkin: '',
-    checkout: '',
-    request: '',
-    roomType: '',
-    status: BookingStatus.checkin
-  },
-  status: 'loading'
-}
+
+const initialState: BookingsState =  null
 
 export const fetchBookings = createAsyncThunk(
   'bookings/fetchBookings',

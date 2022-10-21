@@ -5,7 +5,7 @@ import delay from '../utils/delay'
 
 interface RoomsState {
   rooms: Room[],
-  room: Room,
+  room: Room | null,
   status: 'loading' | 'error' | 'fulfilled'
 }
 
@@ -22,22 +22,7 @@ export interface Room {
   amenities:string[]
 }
 
-const initialState: RoomsState = {
-  rooms: [],
-  room: {  
-    id:0,
-    photos:['',''],
-    roomType:'',
-    roomNumber:'',
-    description:'',
-    offer:true,
-    price:0,
-    discount:0,
-    cancellation:'',
-    amenities:['','']
-  },
-  status: 'loading'
-}
+const initialState: RoomsState = null
 
 export const fetchRooms = createAsyncThunk(
   'rooms/fetchRooms',

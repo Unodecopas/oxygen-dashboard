@@ -5,7 +5,7 @@ import delay from '../utils/delay'
 
 interface ReviewsState {
   reviews: Review[],
-  review: Review,
+  review: Review | null,
   status: 'loading' | 'error' | 'fulfilled'
 }
 export interface Review {
@@ -24,20 +24,9 @@ enum ReviewsStatus {
   archived = 'archived',
   published = 'published'
 }
-const initialState: ReviewsState = {
-  reviews: [],
-  review: {
-    id: 0,
-    date: '',
-    customer: '',
-    email: '',
-    phone: '',
-    comment: '',
-    subject: '',
-    status: ReviewsStatus.unread
-  },
-  status: 'loading'
-}
+
+const initialState: ReviewsState = null
+
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
   const delayedReviews = await delay(reviewsData)
   return delayedReviews as Review[]
