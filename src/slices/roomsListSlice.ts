@@ -9,7 +9,7 @@ interface RoomsState {
   status: 'loading' | 'error' | 'fulfilled'
 }
 
-interface Room {
+export interface Room {
   id:number,
   photos:string[],
   roomType:string,

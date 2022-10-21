@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
+import { Booking, fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
 import { useAppDispatch } from '../../hooks'
@@ -48,16 +48,7 @@ const BookingsContainer = styled.div`
     background-color: #fff3cd;
   }
 `
-interface Booking {
-  id: number;
-  guestName: string;
-  orderDate: string;
-  checkin: string;
-  checkout: string;
-  request: string;
-  roomType: string;
-  status: string;
-}
+
 
 const BookingsPage = () => {
   const [filter, setFilter] = useState('')

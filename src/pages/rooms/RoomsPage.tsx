@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchRooms, selectRoomsList } from '../../slices/roomsListSlice'
+import { fetchRooms, Room, selectRoomsList } from '../../slices/roomsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -48,18 +48,7 @@ const RoomsContainer = styled.div`
     text-decoration: line-through;
   }
 `
-interface Room {
-  id:string,
-  photos:string[],
-  roomType:string,
-  roomNumber:string,
-  description:string,
-  offer:true,
-  price:number,
-  discount:number,
-  cancellation:string,
-  amenities:string[]
-}
+
 
 const RoomsPage = () => {
   const [filter, setFilter] = useState('')
@@ -85,7 +74,7 @@ const RoomsPage = () => {
   const handleFilter = (filter: string) => {
     setFilter(filter)
   }
-  const handleRoom = (roomid: string) => {
+  const handleRoom = (roomid: number) => {
     navigate(`/rooms/${roomid}`)
   }
   const handleButton = () => {

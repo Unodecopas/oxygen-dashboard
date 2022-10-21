@@ -5,10 +5,10 @@ import delay from '../utils/delay'
 
 interface ReviewsState {
   reviews: Review[],
-  review: Review | {},
+  review: Review,
   status: 'loading' | 'error' | 'fulfilled'
 }
-interface Review {
+export interface Review {
   id: number;
   date: string;
   customer: string;
@@ -34,7 +34,7 @@ const initialState: ReviewsState = {
     phone: '',
     comment: '',
     subject: '',
-    status: 'unread'
+    status: ReviewsStatus.unread
   },
   status: 'loading'
 }

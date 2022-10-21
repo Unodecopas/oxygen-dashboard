@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchReviews, selectReviewsList } from '../../slices/reviewsListSlice'
+import { fetchReviews, Review, selectReviewsList } from '../../slices/reviewsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
 import { useAppDispatch } from '../../hooks'
@@ -43,12 +43,7 @@ const ReviewsPageContainer = styled.div`
   }
 `
 
-interface Review {
-  id: number,
-  subject: string,
-  customer: string,
-  date: string
-}
+
 const ContactPage = () => {
   const [filter, setFilter] = useState('')
   const reviews = useSelector(selectReviewsList)

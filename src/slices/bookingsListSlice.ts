@@ -3,7 +3,7 @@ import bookingsData from '../data/bookings.json'
 import { RootState } from '../store/store';
 import delay from '../utils/delay'
 
-interface Booking {
+export interface Booking {
   id: number;
   guestName: string;
   orderDate: string;
@@ -13,13 +13,13 @@ interface Booking {
   roomType: string;
   status: BookingStatus;
 }
-enum BookingStatus {
+export enum BookingStatus {
   checkin = 'checkin',
   checkout = 'checkout'
 }
 interface BookingsState {
   bookings: Booking[],
-  booking: Booking | {},
+  booking: Booking,
   status: 'loading' | 'error' | 'fulfilled'
 }
 const initialState:BookingsState =  {
@@ -32,7 +32,7 @@ const initialState:BookingsState =  {
     checkout: '',
     request: '',
     roomType: '',
-    status: 'checkin'
+    status: BookingStatus.checkin
   },
   status: 'loading'
 }
