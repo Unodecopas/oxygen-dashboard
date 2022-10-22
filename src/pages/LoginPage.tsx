@@ -63,8 +63,8 @@ const Login = styled.div`
 `
 
 const LoginPage = (): JSX.Element => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState(USER.username)
+  const [password, setPassword] = useState(USER.password)
   const [error, setError] = useState('')
   const [, dispatch] = useUser()
   const navigate = useNavigate()
@@ -86,9 +86,9 @@ const LoginPage = (): JSX.Element => {
         <h2>Login</h2>
         {(error !== null) && <p className='login__error'>{error}</p>}
         <label htmlFor='username'>Username</label>
-        <input type='text' name='Username' value={username} placeholder={USER.username} onChange={e => setUsername(e.target.value)} />
+        <input type='text' name='Username' value={USER.username} onChange={e => setUsername(e.target.value)} />
         <label htmlFor='password'>Password</label>
-        <input type='password' name='Password' value={password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
+        <input type='password' name='Password' value={USER.password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
         <button id='form-login-button'>Login</button>
       </form>
     </Login>
