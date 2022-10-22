@@ -38,31 +38,7 @@ a:visited {
 a.active {
   color: red;
 }
-.notices {
-  display: flex;
-  gap: 1rem;
-}
-.notice {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 12px;
-  padding: 20px;
-  width: 100%;
-  background-color: white;
-  border: 1px solid #ebebeb;
-  transition: all 0.3s ease-out;
-}
-.notice__subject {
-  flex-grow: 1;
-  font-size: 12px;
-  font-style: italic;
-}
-.notice:hover {
-  cursor: pointer;
-  box-shadow: 0px 16px 30px #00000014;
-  transform: translateY(-5px);
-}
+
 hr {
   border: 1px solid grey;
   border-radius: 5px;

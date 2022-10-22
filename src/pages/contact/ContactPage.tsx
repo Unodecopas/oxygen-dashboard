@@ -11,6 +11,7 @@ import { fetchReviews, Review, selectReviewsList } from '../../slices/reviewsLis
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
 import { useAppDispatch } from '../../hooks'
+import Notices from '../../components/Notices'
 
 const ReviewsPageContainer = styled.div`
   & .table__small {
@@ -82,19 +83,7 @@ const ContactPage = (): JSX.Element => {
 
   return (
     <ReviewsPageContainer>
-      <div className='notices'>
-        {
-        firtsReviews.map(review => {
-          return (
-            <div key={review.id} className='notice' onClick={() => handleReview(review.id)}>
-              <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
-              <p>{review.customer}</p>
-              <p>{review.date}</p>
-            </div>
-          )
-        })
-      }
-      </div>
+      <Notices items={firtsReviews} handleNotice={handleReview} />
       <Switcher>
         <>
           <Switch
