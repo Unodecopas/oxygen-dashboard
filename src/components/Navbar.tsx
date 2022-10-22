@@ -87,26 +87,26 @@ const Nav = styled.nav`
     }
   }
 `
-const Navbar = () => {
-  const [user] = useUser() as any
+const Navbar = (): JSX.Element => {
+  const [user] = useUser()
 
   return (
     <Nav>
-      <a href="https://unodecopas.github.io/oxygen-hotel-miranda/public/index.html" target='blank'>
-        <img src={logo} alt="" width={220} height={57}/>
+      <a href='https://unodecopas.github.io/oxygen-hotel-miranda/public/index.html' target='blank'>
+        <img src={logo} alt='' width={220} height={57} />
       </a>
       <ul>
-        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
-        <li><NavLink to={'/rooms'}>Room</NavLink></li>
-        <li><NavLink to={'/bookings'}>Bookings</NavLink></li>
-        <li><NavLink to={'/users'}>Users</NavLink></li>
-        <li><NavLink to={'/contact'}>Contact</NavLink></li>
+        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        <li><NavLink to='/rooms'>Room</NavLink></li>
+        <li><NavLink to='/bookings'>Bookings</NavLink></li>
+        <li><NavLink to='/users'>Users</NavLink></li>
+        <li><NavLink to='/contact'>Contact</NavLink></li>
       </ul>
       <div className='user__info'>
-        <div className='user__info__img'></div>
+        <div className='user__info__img' />
         <h3>{user.username}</h3>
         <p>{user.email}</p>
-        <Link to={'users/edit'}>
+        <Link to='users/edit'>
           <button id='btn-edit-profile'>Edit</button>
         </Link>
       </div>

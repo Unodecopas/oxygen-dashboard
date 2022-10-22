@@ -26,10 +26,10 @@ interface Props {
   items: Item[]
   handleSwitcher: (item: string) => void
 }
-const Switch = (props: Props) => {
+const Switch = (props: Props): JSX.Element => {
   const [active, setActive] = useState(props.items[0].label)
 
-  const handleClick = (item: Item) => {
+  const handleClick = (item: Item): void => {
     setActive(item.label)
     props.handleSwitcher(item.value)
   }
@@ -38,7 +38,7 @@ const Switch = (props: Props) => {
     <SwitchContainer>
       <ul>
         {props.items.map(item => {
-          return <li key={item.label} onClick={() => handleClick(item)} className={`${active === item.label && 'active'}`}>{item.label}</li>
+          return <li key={item.label} onClick={() => handleClick(item)} className={active === item.label ? 'active' : ''}>{item.label}</li>
         })}
       </ul>
     </SwitchContainer>

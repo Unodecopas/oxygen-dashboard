@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function useDebounce<Timer> (value: Timer, delay:number) {
+export default function useDebounce<Timer> (value: Timer, delay: number): Timer {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState<Timer>(value)
   useEffect(
@@ -20,4 +20,3 @@ export default function useDebounce<Timer> (value: Timer, delay:number) {
   )
   return debouncedValue
 }
-

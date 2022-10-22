@@ -62,14 +62,14 @@ const Login = styled.div`
   }
 `
 
-const LoginPage = () => {
+const LoginPage = (): JSX.Element => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [, dispatch] = useUser()
   const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault()
     if (username === USER.username && password === USER.password) {
       dispatch({ type: 'login', value: { username, email: 'correo@correo.com', id: 1 } })
@@ -82,13 +82,13 @@ const LoginPage = () => {
   return (
     <Login>
       <form className='login__form' onSubmit={handleSubmit}>
-        <img src={logo} alt="" />
+        <img src={logo} alt='' />
         <h2>Login</h2>
-        {error && <p className='login__error'>{error}</p>}
-        <label htmlFor="username">Username</label>
-        <input type="text" name='Username' value={username} placeholder={USER.username} onChange={e => setUsername(e.target.value)} />
-        <label htmlFor="password">Password</label>
-        <input type="password" name='Password' value={password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
+        {(error !== null) && <p className='login__error'>{error}</p>}
+        <label htmlFor='username'>Username</label>
+        <input type='text' name='Username' value={username} placeholder={USER.username} onChange={e => setUsername(e.target.value)} />
+        <label htmlFor='password'>Password</label>
+        <input type='password' name='Password' value={password} placeholder={USER.password} onChange={e => setPassword(e.target.value)} />
         <button id='form-login-button'>Login</button>
       </form>
     </Login>

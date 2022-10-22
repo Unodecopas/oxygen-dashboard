@@ -82,12 +82,12 @@ const HeaderContainer = styled.header`
   }
 `
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const { pathname } = useLocation()
   const location = pathname.split('/')[1]
   const [, dispatch] = useUser()
   const dispatcher = useDispatch()
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState<string>()
   const debounceTerm = useDebounce(searchInput, 500)
 
   useEffect(() => {
@@ -101,24 +101,25 @@ const Header = () => {
       <h1>{location}</h1>
       {location !== 'dashboard' &&
         <div className='search'>
-          <input type="text"
-          className='search__input'
-          value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
-          placeholder='Search ...' />
-          {searchInput && <button onClick={() => setSearchInput('')}>x</button>}
-          <img src={searchIcon} alt="" />
-        </div>
-      }
+          <input
+            type='text'
+            className='search__input'
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
+            placeholder='Search ...'
+          />
+          {(searchInput?.length !== 0) && <button onClick={() => setSearchInput('')}>x</button>}
+          <img src={searchIcon} alt='' />
+        </div>}
       <div className='header__icons'>
         <button>
-          <img src={bellIcon} alt="" />
+          <img src={bellIcon} alt='' />
         </button>
         <button>
-          <img src={messageIcon} alt="" />
+          <img src={messageIcon} alt='' />
         </button>
         <button onClick={() => dispatch({ type: 'logout' })} id='btn-logout'>
-          <img src={logoutIcon} alt=""/>
+          <img src={logoutIcon} alt='' />
         </button>
       </div>
     </HeaderContainer>

@@ -24,13 +24,13 @@ const Dashboard = styled.div`
   height:100%;
 `
 
-function App () {
+function App (): JSX.Element {
   const [user] = useUser()
   return (
     <Dashboard>
       <Routes>
         <Route path='login' element={<LoginPage />} />
-        <Route element={<ProtectedRoute user={user}/>}>
+        <Route element={<ProtectedRoute user={user} />}>
           <Route path='/*' element={<HomePage />}>
             <Route path='dashboard' element={<DashboardPage />} />
             <Route path='users' element={<UserPage />} />

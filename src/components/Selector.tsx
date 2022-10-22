@@ -16,13 +16,13 @@ interface Option {
 }
 interface Props {
   options: Option[]
-  onChange: (value: string)=> void
+  onChange: (value: string) => void
 }
 
-const Selector = ({ options, onChange }: Props) => {
+const Selector = ({ options, onChange }: Props): JSX.Element => {
   return (
     <Select name='order' onChange={e => onChange(e.target.value)}>
-      { options && options.map((opt, i) => {
+      {options?.map((opt, i) => {
         return (
           <optgroup key={i}>
             <option value={opt.value}>{'⬆  ' + opt.label.toUpperCase()}</option>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewBookingPage = () => {
+const NewBookingPage = (): JSX.Element => {
   return (
     <div>NewBookingPage</div>
   )

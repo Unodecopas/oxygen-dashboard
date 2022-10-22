@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchRoom, selectRoom } from '../../slices/roomsListSlice'
+import { fetchRoom } from '../../slices/roomsListSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 
 const RoomContainer = styled.div`
@@ -57,61 +56,61 @@ const RoomContainer = styled.div`
     width: fit-content;
   }
 `
-const RoomDetails = () => {
+const RoomDetails = (): JSX.Element => {
   const { roomid } = useParams()
-  const room = useAppSelector((state)=> state.roomsList.room)
+  const room = useAppSelector((state) => state.roomsList.room)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchRoom(Number(roomid)))
+    dispatch(fetchRoom(Number(roomid))).catch(Error)
   }, [dispatch, room])
-
   return (
     <RoomContainer>
-      <div className='room__info'>
-        <div className='room__info__text'>
-          <div className=''>
-            <p className='title'>Room Info</p>
-            <h4>{room.roomType + room.roomNumber}</h4>
-          </div>
-          <div className=''>
-            <p className='title'>Price</p>
-            <h4>{room.price / 100 + '$'} <span className='night'>/night</span></h4>
-          </div>
-          {
-            room.offer &&
-            <>
-              <div className='offer'>
-                <p className='title'>Discount</p>
-                <h4 className='discount'>{room.discount + '%'}</h4>
-              </div>
-              <div className='price'>
-                <p className='title'>Final Price</p>
-                <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$' } <span className='night'>/night</span></h4>
-              </div>
-            </>
-          }
-        </div>
-        <hr />
-        <div className=''>
-          <h4>Description</h4>
-          <p className='title'>{room.description}</p>
-        </div>
-        <div className=''>
-          <h4>Cancellation</h4>
-          <p className='title'>{room.cancellation}</p>
-        </div>
-        <div className='amenities'>
-          <h4>Amenties</h4>
-          <div className='amenities__items'>
+      {(room != null) &&
+        <div className='room__info'>
+          <div className='room__info__text'>
+            <div className=''>
+              <p className='title'>Room Info</p>
+              <h4>{room.roomType + room.roomNumber}</h4>
+            </div>
+            <div className=''>
+              <p className='title'>Price</p>
+              <h4>{`${room.price / 100} $`} <span className='night'>/night</span></h4>
+            </div>
             {
-              room.amenities && room.amenities.map((amenitie: string, i: number) => {
+            room.offer &&
+              <>
+                <div className='offer'>
+                  <p className='title'>Discount</p>
+                  <h4 className='discount'>{`${room.discount} %`}</h4>
+                </div>
+                <div className='price'>
+                  <p className='title'>Final Price</p>
+                  <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$'} <span className='night'>/night</span></h4>
+                </div>
+              </>
+          }
+          </div>
+          <hr />
+          <div className=''>
+            <h4>Description</h4>
+            <p className='title'>{room.description}</p>
+          </div>
+          <div className=''>
+            <h4>Cancellation</h4>
+            <p className='title'>{room.cancellation}</p>
+          </div>
+          <div className='amenities'>
+            <h4>Amenties</h4>
+            <div className='amenities__items'>
+              {
+              room.amenities.map((amenitie: string, i: number) => {
                 return <div key={i} className='amenitie'>{amenitie}</div>
               })
             }
+            </div>
           </div>
-        </div>
-      </div>
+        </div>}
     </RoomContainer>
   )
 }

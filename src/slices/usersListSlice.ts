@@ -1,21 +1,21 @@
-import { createAsyncThunk, createSlice, PayloadAction  } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import usersData from '../data/users.json'
 import { RootState } from '../store/store'
 import delay from '../utils/delay'
 
 interface UsersState {
-  users: User[],
-  user: User | null,
+  users: User[]
+  user: User | null
   status: 'loading' | 'error' | 'fulfilled'
 }
 export interface User {
-  id:number,
-  username:string,
-  photo:string,
-  email:string,
-  startDate:string,
-  job:string,
-  contact:string,
+  id: number
+  username: string
+  photo: string
+  email: string
+  startDate: string
+  job: string
+  contact: string
   status: UserStatus
 }
 export enum UserStatus {
@@ -23,7 +23,7 @@ export enum UserStatus {
   inactive = 'inactive'
 }
 
-const initialState: UsersState = null
+const initialState: UsersState = { user: null, users: [], status: 'loading' }
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const delayedUsers = await delay(usersData)
@@ -33,7 +33,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 export const fetchUser = createAsyncThunk(
   'users/fetchUser',
   async (id: number) => {
-    const findUser= usersData.find((element) => element.id === Number(id))
+    const findUser = usersData.find((element) => element.id === Number(id))
     const user = await delay(findUser)
     return user as User
   }
@@ -123,7 +123,7 @@ export const usersListSlice = createSlice({
   }
 })
 
-export const selectUsersList = (state: RootState) => state.usersList.users
-export const selectUser = (state: RootState) => state.usersList.user
+export const selectUsersList = (state: RootState): User[] => state.usersList.users
+export const selectUser = (state: RootState): User | null => state.usersList.user
 
 export default usersListSlice.reducer

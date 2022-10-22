@@ -1,29 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import bookingsData from '../data/bookings.json'
-import { RootState } from '../store/store';
+import { RootState } from '../store/store'
 import delay from '../utils/delay'
 
 export interface Booking {
-  id: number;
-  guestName: string;
-  orderDate: string;
-  checkin: string;
-  checkout: string;
-  request: string;
-  roomType: string;
-  status: BookingStatus;
+  id: number
+  guestName: string
+  orderDate: string
+  checkin: string
+  checkout: string
+  request: string
+  roomType: string
+  status: BookingStatus
 }
 export enum BookingStatus {
   checkin = 'checkin',
   checkout = 'checkout'
 }
 interface BookingsState {
-  bookings: Booking[],
-  booking: Booking | null,
-  status: 'loading' | 'error' | 'fulfilled'
+  bookings: Booking[]
+  booking: Booking | null
+  status: 'loading' | 'error' | 'fulfilled' | null
 }
 
-const initialState: BookingsState =  null
+const initialState: BookingsState = { booking: null, bookings: [], status: null }
 
 export const fetchBookings = createAsyncThunk(
   'bookings/fetchBookings',
@@ -63,7 +63,7 @@ export const newBooking = createAsyncThunk(
 export const bookingsListSlice = createSlice({
   name: 'bookingsList',
   initialState,
-  reducers:{},
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchBookings.pending, (state) => {
@@ -120,7 +120,7 @@ export const bookingsListSlice = createSlice({
   }
 })
 
-export const selectBookingsList = (state: RootState) => state.bookingsList.bookings
-export const selectBooking = (state: RootState) => state.bookingsList.booking
+export const selectBookingsList = (state: RootState): Booking[] => state.bookingsList.bookings
+export const selectBooking = (state: RootState): Booking | null => state.bookingsList.booking
 
 export default bookingsListSlice.reducer

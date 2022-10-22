@@ -18,10 +18,9 @@ const D3Container = styled.div`
 interface Props {
   data: any[]
 }
-const BarChart = ({ data }: Props) => {
+const BarChart = ({ data }: Props): JSX.Element => {
   return (
-    <D3Container>
-    </D3Container>
+    <D3Container />
   )
 }
 

@@ -49,11 +49,12 @@ const PaginationContainer = styled.div`
 `
 interface Props {
   itemsPerPage: number
+  // eslint-disable-next-line no-empty-pattern
   setItems: ([]) => void
-  items : any[]
+  items: any[]
 }
 
-const Pagination = ({ itemsPerPage, items, setItems }: Props) => {
+const Pagination = ({ itemsPerPage, items, setItems }: Props): JSX.Element => {
   const [actualPage, setActualPage] = useState(0)
 
   const arraysSplitted: any = []
@@ -75,10 +76,10 @@ const Pagination = ({ itemsPerPage, items, setItems }: Props) => {
     setItems(arraysSplitted[actualPage])
   }, [actualPage])
 
-  const nextPage = () => {
+  const nextPage = (): void => {
     setActualPage(actualPage + 1)
   }
-  const prevPage = () => {
+  const prevPage = (): void => {
     setActualPage(actualPage - 1)
   }
 
@@ -87,8 +88,7 @@ const Pagination = ({ itemsPerPage, items, setItems }: Props) => {
       <div className='pagination__results'>
         {items.length === 0
           ? <p>Nothing to show</p>
-          : <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>
-        }
+          : <p>Showing {itemsPerPage * (actualPage + 1)} of {items.length} results</p>}
       </div>
       <div className='pagination__buttons'>
         {actualPage > 0 && <button className='pagination__buttons__fixed' onClick={() => setActualPage(0)}>{'<<'}</button>}

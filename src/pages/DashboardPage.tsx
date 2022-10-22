@@ -5,10 +5,10 @@ import exit from '../assets/exit.svg'
 import door from '../assets/door.svg'
 import bed from '../assets/bed.svg'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
-import { fetchBookings, selectBookingsList } from '../slices/bookingsListSlice'
+import { fetchBookings } from '../slices/bookingsListSlice'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
@@ -94,7 +94,7 @@ interface KPI {
   value: number | string
   text: string
 }
-const DashboardPage = () => {
+const DashboardPage = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const bookings = useAppSelector(state => state.bookingsList.bookings)
@@ -103,21 +103,21 @@ const DashboardPage = () => {
   const [items, setItems] = useState<KPI[]>([])
 
   useEffect(() => {
-    dispatch(fetchBookings())
+    dispatch(fetchBookings()).catch(Error)
   }, [dispatch, bookings])
 
   useEffect(() => {
-    dispatch(fetchRooms())
+    dispatch(fetchRooms()).catch(Error)
   }, [dispatch, rooms])
 
   useEffect(() => {
-    dispatch(fetchReviews())
+    dispatch(fetchReviews()).catch(Error)
   }, [dispatch, reviews])
 
   useEffect(() => {
     const totalbookings = bookings.length
     const bookingsCheckin = bookings.filter(booking => booking.status === 'checkin')
-    const percentOccupedRooms = rooms.length * bookingsCheckin.length / 100 + '%'
+    const percentOccupedRooms = `${rooms.length * bookingsCheckin.length / 100} %`
     const bookingsCheckout = bookings.filter(booking => booking.status === 'checkout')
     setItems([
       { icon: bed, value: totalbookings, text: 'New Bookings' },
@@ -139,10 +139,10 @@ const DashboardPage = () => {
 
   return (
     <DashboardContainer>
-      <KPIs items={items}/>
+      <KPIs items={items} />
       <div className='widgets'>
-        <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
-        <BarChart data={data}/>
+        <FullCalendar plugins={[dayGridPlugin]} initialView='dayGridMonth' />
+        <BarChart data={data} />
       </div>
       <div className='reviews'>
         <h3>Latests Customer Reviews</h3>
@@ -160,13 +160,14 @@ const DashboardPage = () => {
             {
               reviews.map((review, i) => {
                 return (
-                <Slide style={{ marginRigth: '1rem' }} index={i} key={review.id} className='slide'>
-                  <div className='notice' onClick={() => navigate(`/contact/${review.id}`)}>
-                    <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
-                    <p>{review.customer}</p>
-                    <p>{review.date}</p>
-                  </div>
-                </Slide>)
+                  <Slide style={{ marginRigth: '1rem' }} index={i} key={review.id} className='slide'>
+                    <div className='notice' onClick={() => navigate(`/contact/${review.id}`)}>
+                      <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
+                      <p>{review.customer}</p>
+                      <p>{review.date}</p>
+                    </div>
+                  </Slide>
+                )
               })
             }
           </Slider>

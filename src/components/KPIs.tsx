@@ -45,14 +45,14 @@ interface Props {
   items: Item[]
 }
 
-const KPIs = ({ items }: Props) => {
+const KPIs = ({ items }: Props): JSX.Element => {
   return (
     <KPIsContainer>
-      {items && items.map((item, i) => {
+      {items?.map((item, i) => {
         return (
           <div className='kpi' key={i}>
             <div className='kpi__icon'>
-              <img src={item.icon} alt="" />
+              <img src={item.icon} alt='' />
             </div>
             <div className='kpi__text'>
               <h3>{item.value}</h3>

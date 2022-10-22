@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewRoomPage = () => {
+const NewRoomPage = (): JSX.Element => {
   return (
     <div>NewRoomPage</div>
   )

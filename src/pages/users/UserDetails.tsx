@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
+/* eslint-disable react/jsx-indent */
+import React, { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { fetchUser, selectUser, User } from '../../slices/usersListSlice'
+import { fetchUser } from '../../slices/usersListSlice'
 import phone from '../../assets/phone.svg'
 import message from '../../assets/chat.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -129,56 +128,55 @@ const UserDetailsContainer = styled.div`
   }
 `
 
-const UserDetails = () => {
+const UserDetails: FC = () => {
   const { userid } = useParams()
   const user = useAppSelector(state => state.usersList.user)
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchUser(Number(userid)))
+    dispatch(fetchUser(Number(userid))).catch(Error)
   }, [dispatch, user])
 
   return (
     <UserDetailsContainer>
-      {user
+      {(user != null)
         ? <>
-            <div className='user__info'>
-              <img src={user.photo} alt="" />
-              <div className='user__info__text'>
-                <h2>{user.username}</h2>
-                <p className='user__id'> <span>ID</span> {user.id}</p>
-                <div className='user__icons'>
-                  <button className='user__icons__phone'>
-                    <a href={`tel:${user.contact}`}>
-                    <img src={phone} alt="" />
+          <div className='user__info'>
+            <img src={user.photo} alt='' />
+            <div className='user__info__text'>
+              <h2>{user.username}</h2>
+              <p className='user__id'> <span>ID</span> {user.id}</p>
+              <div className='user__icons'>
+                <button className='user__icons__phone'>
+                  <a href={`tel:${user.contact}`}>
+                    <img src={phone} alt='' />
                     {user.contact}
-                    </a>
-                  </button>
-                  <button className='user__icons__mail'>
-                    <a href={`mailto:${user.email}`}>
-                    <img src={message} alt="" />
+                  </a>
+                </button>
+                <button className='user__icons__mail'>
+                  <a href={`mailto:${user.email}`}>
+                    <img src={message} alt='' />
                     Send Message
-                    </a>
-                  </button>
-                </div>
+                  </a>
+                </button>
               </div>
             </div>
-            <div className='user__job'>
-              <div className='user__job__status'>
-                <h3>Status</h3>
-                <p className={user.status === 'inactive' ? 'inactive' : 'active'}>{user.status}</p>
-              </div>
-              <div className="user__job__date">
-                <h3>Start Date</h3>
-                <p>{user.startDate}</p>
-              </div>
+          </div>
+          <div className='user__job'>
+            <div className='user__job__status'>
+              <h3>Status</h3>
+              <p className={user.status === 'inactive' ? 'inactive' : 'active'}>{user.status}</p>
             </div>
-            <div className='user__description'>
-                <h3>Description</h3>
-                <p>{user.job}</p>
+            <div className='user__job__date'>
+              <h3>Start Date</h3>
+              <p>{user.startDate}</p>
             </div>
+          </div>
+          <div className='user__description'>
+            <h3>Description</h3>
+            <p>{user.job}</p>
+          </div>
           </>
-        : <p> No se encontró el usuario</p>
-      }
+        : <p> No se encontró el usuario</p>}
     </UserDetailsContainer>
   )
 }

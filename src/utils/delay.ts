@@ -1,4 +1,4 @@
-export default function delay (data: any) {
+export default function delay (data: any): any {
   const time = 200 + Math.round(Math.random() * 400)
   return new Promise((resolve, reject) => {
     setTimeout(() => {

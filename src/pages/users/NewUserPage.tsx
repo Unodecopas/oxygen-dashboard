@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
+import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Button from '../../components/Button'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { newUser, selectUsersList, UserStatus } from '../../slices/usersListSlice'
+import { newUser, UserStatus } from '../../slices/usersListSlice'
 
 const UserContainer = styled.div`
   background-color: white;
@@ -48,7 +46,7 @@ const UserContainer = styled.div`
   }
 `
 
-const NewUserPage = () => {
+const NewUserPage: FC = () => {
   const users = useAppSelector(state => state.usersList.users)
   const dispatch = useAppDispatch()
   const [id, setId] = useState(0)
@@ -65,7 +63,7 @@ const NewUserPage = () => {
     setId(lastUser)
   }, [users])
 
-  const clearForm = (e: React.FormEvent) => {
+  const clearForm = (e: React.FormEvent): void => {
     e.preventDefault()
     setUsername('')
     setEmail('')
@@ -74,9 +72,9 @@ const NewUserPage = () => {
     setContact('')
     setStatus(UserStatus.inactive)
   }
-  const handleForm = (e: React.FormEvent) => {
+  const handleForm = (e: React.FormEvent): void => {
     e.preventDefault()
-    dispatch(newUser({ id, username, email, startDate, job, contact, status, photo }))
+    dispatch(newUser({ id, username, email, startDate, job, contact, status, photo })).catch(Error)
     setUsername('')
     setEmail('')
     setStartDate('')
@@ -88,38 +86,38 @@ const NewUserPage = () => {
     <UserContainer>
       <h2>Register new Employee</h2>
       <form>
-        <label htmlFor="id">
+        <label htmlFor='id'>
           <p>ID:</p>
-          <input type="text" disabled value={id}/>
+          <input type='text' disabled value={id} />
         </label>
-        <label htmlFor="username">Username:
-          <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
+        <label htmlFor='username'>Username:
+          <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
         </label>
-        <label htmlFor="email">
+        <label htmlFor='email'>
           <p>Email:</p>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+          <input type='email' value={email} onChange={e => setEmail(e.target.value)} />
         </label>
-        <label htmlFor="startDate">
+        <label htmlFor='startDate'>
           <p>Start Date:</p>
-          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}/>
+          <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)} />
         </label>
-        <label htmlFor="job">
+        <label htmlFor='job'>
           <p>Job:</p>
-          <input type="text" value={job} onChange={e => setJob(e.target.value)}/>
+          <input type='text' value={job} onChange={e => setJob(e.target.value)} />
         </label>
-        <label htmlFor="contact">
+        <label htmlFor='contact'>
           <p>Phone:</p>
-          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder='111-222-3333' name='contact' value={contact} onChange={e => setContact(e.target.value)}/>
+          <input type='tel' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' placeholder='111-222-3333' name='contact' value={contact} onChange={e => setContact(e.target.value)} />
         </label>
-        <label htmlFor="status">status:
-          <select name='status' defaultValue={status} id="status" onChange={e => setStatus(e.target.value as UserStatus)}>
+        <label htmlFor='status'>status:
+          <select name='status' defaultValue={status} id='status' onChange={e => setStatus(e.target.value as UserStatus)}>
             <option value={UserStatus.active}>Active</option>
             <option value={UserStatus.inactive}>Inactive</option>
           </select>
         </label>
         <div className='buttons'>
-          <Button label='Clear' onClick={clearForm}/>
-          <Button label='Register' primary onClick={handleForm}/>
+          <Button label='Clear' onClick={clearForm} />
+          <Button label='Register' primary onClick={handleForm} />
         </div>
       </form>
     </UserContainer>

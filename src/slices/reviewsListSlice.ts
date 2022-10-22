@@ -1,23 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import reviewsData from '../data/reviews.json'
-import { RootState } from '../store/store';
+import { RootState } from '../store/store'
 import delay from '../utils/delay'
 
 interface ReviewsState {
-  reviews: Review[],
-  review: Review | null,
+  reviews: Review[]
+  review: Review | null
   status: 'loading' | 'error' | 'fulfilled'
 }
 
 export interface Review {
-  id: number;
-  date: string;
-  customer: string;
-  email: string;
-  phone: string;
-  comment: string;
-  subject: string;
-  status: ReviewsStatus;
+  id: number
+  date: string
+  customer: string
+  email: string
+  phone: string
+  comment: string
+  subject: string
+  status: ReviewsStatus
 }
 
 enum ReviewsStatus {
@@ -26,7 +26,7 @@ enum ReviewsStatus {
   published = 'published'
 }
 
-const initialState: ReviewsState = null
+const initialState: ReviewsState = { review: null, reviews: [], status: 'loading' }
 
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
   const delayedReviews = await delay(reviewsData)
@@ -66,7 +66,7 @@ export const newReview = createAsyncThunk(
 export const reviewsListSlice = createSlice({
   name: 'reviewsList',
   initialState,
-  reducers:{},
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -123,7 +123,7 @@ export const reviewsListSlice = createSlice({
   }
 })
 
-export const selectReviewsList = (state: RootState) => state.reviewsList.reviews
-export const selectReview = (state: RootState) => state.reviewsList.review
+export const selectReviewsList = (state: RootState): Review[] => state.reviewsList.reviews
+export const selectReview = (state: RootState): Review | null => state.reviewsList.review
 
 export default reviewsListSlice.reducer

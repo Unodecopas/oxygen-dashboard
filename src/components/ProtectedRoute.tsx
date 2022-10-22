@@ -3,16 +3,16 @@ import { Outlet, useNavigate } from 'react-router-dom'
 
 interface Props {
   user: {
-    logged: boolean,
-    name: string,
-    email: string,
+    logged: boolean
+    name: string
+    email: string
     id: number
   }
 }
-const ProtectedRoute = ({ user }: Props) => {
+const ProtectedRoute = ({ user }: Props): JSX.Element => {
   const navigate = useNavigate()
   useEffect(() => {
-    if (user.logged === false) {
+    if (!user.logged) {
       navigate('/login')
     }
   }, [user])

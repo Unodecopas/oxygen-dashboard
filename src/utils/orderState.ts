@@ -1,4 +1,4 @@
-export default function orderState (array: any[], orderBy: string) {
+export default function orderState (array: any[], orderBy: string): any[] {
   const newArray = [...array]
   newArray.sort((a, b) => {
     let newOrderBy = orderBy

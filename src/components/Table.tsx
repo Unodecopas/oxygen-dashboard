@@ -46,7 +46,7 @@ interface Props {
   children: JSX.Element
 }
 
-const Table = ({ children }: Props) => {
+const Table = ({ children }: Props): JSX.Element => {
   return (
     <TableContainer>
       {children}

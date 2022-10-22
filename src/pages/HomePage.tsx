@@ -16,12 +16,12 @@ const MainContainer = styled.div`
   height: 100%;
   width: 100%;
 `
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
   return (
     <HomePageContainer>
       <Navbar />
       <MainContainer>
-        <Header/>
+        <Header />
         <main>
           <Outlet />
         </main>

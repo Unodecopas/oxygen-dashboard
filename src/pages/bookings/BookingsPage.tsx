@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Booking, fetchBookings, selectBookingsList } from '../../slices/bookingsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
@@ -49,8 +49,7 @@ const BookingsContainer = styled.div`
   }
 `
 
-
-const BookingsPage = () => {
+const BookingsPage = (): JSX.Element => {
   const [filter, setFilter] = useState('')
   const navigate = useNavigate()
   const bookings = useSelector(selectBookingsList)
@@ -61,7 +60,7 @@ const BookingsPage = () => {
   const [showBookings, setShowBookings] = useState<Booking[]>([])
 
   useEffect(() => {
-    dispatch(fetchBookings())
+    dispatch(fetchBookings()).catch(Error)
   }, [dispatch, fetchBookings])
 
   useEffect(() => {
@@ -71,16 +70,16 @@ const BookingsPage = () => {
     setBookingsState(orderedFilteredBookings)
   }, [bookings, orderBy, searchTerm, filter])
 
-  const handleFilter = (filter: string) => {
+  const handleFilter = (filter: string): void => {
     setFilter(filter)
   }
-  const handleBooking = (bookingid: number) => {
+  const handleBooking = (bookingid: number): void => {
     navigate(`/bookings/${bookingid}`)
   }
-  const handleOrder = (value: string) => {
+  const handleOrder = (value: string): void => {
     setOrderBy(value)
   }
-  const handleButton = () => {
+  const handleButton = (): void => {
     navigate('/bookings/newbooking')
   }
   return (
@@ -91,10 +90,11 @@ const BookingsPage = () => {
             items={[{ label: 'All Bookings', value: '' }, { label: 'Checking In', value: 'checkin' }, { label: 'Checking Out', value: 'checkout' }, { label: 'In Progress', value: 'inprogress' }]}
             handleSwitcher={handleFilter}
           />
-          <Button label={'+ New Booking'} onClick={handleButton} primary/>
-          <Selector options={[
-            { label: 'Date', value: 'orderDate' },
-            { label: 'Guest', value: 'guestName' }]} onChange={handleOrder}
+          <Button label='+ New Booking' onClick={handleButton} primary />
+          <Selector
+            options={[
+              { label: 'Date', value: 'orderDate' },
+              { label: 'Guest', value: 'guestName' }]} onChange={handleOrder}
           />
         </>
       </Switcher>
@@ -108,12 +108,12 @@ const BookingsPage = () => {
               <th>Special Request</th>
               <th>Bed Type</th>
               <th>Status</th>
-          </tr>
+            </tr>
           </thead>
           <tbody>
-            {showBookings && showBookings.map(booking => {
+            {showBookings?.map(booking => {
               return (
-                <tr key={booking.id} >
+                <tr key={booking.id}>
                   <td>
                     <div style={{ display: 'flex', placeItems: 'center' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
@@ -124,21 +124,20 @@ const BookingsPage = () => {
                   <td>{booking.orderDate}</td>
                   <td>
                     <div className=''>
-                    <p>{booking.checkin}</p>
-                    {booking.checkout}
+                      <p>{booking.checkin}</p>
+                      {booking.checkout}
                     </div>
                   </td>
-                  <td><Button label={'View Notes'} onClick={() => handleBooking(booking.id)}/></td>
+                  <td><Button label='View Notes' onClick={() => handleBooking(booking.id)} /></td>
                   <td>{booking.roomType}</td>
                   <td><p className={booking.status}>{booking.status.toUpperCase()}</p></td>
                 </tr>
               )
-            })
-            }
+            })}
           </tbody>
         </>
       </Table>
-      <Pagination items={bookingsState} itemsPerPage={5} setItems={setShowBookings}/>
+      <Pagination items={bookingsState} itemsPerPage={5} setItems={setShowBookings} />
     </BookingsContainer>
   )
 }

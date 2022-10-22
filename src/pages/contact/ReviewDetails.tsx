@@ -1,25 +1,20 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchReview, selectReview } from '../../slices/reviewsListSlice'
+import { fetchReview } from '../../slices/reviewsListSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 
-const ReviewDetails = () => {
+const ReviewDetails = (): JSX.Element => {
   const { reviewid } = useParams()
   const review = useAppSelector(state => state.reviewsList.review)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchReview(Number(reviewid)))
+    dispatch(fetchReview(Number(reviewid))).catch(Error)
   }, [dispatch, review])
 
   return (
     <div>
-      {
-        Object.entries(review).map((key, i) => {
-          return <p key={i}>{key[0]} : {key[1]}</p>
-        })
-      }
+      REVIEW DETAILS
     </div>
   )
 }

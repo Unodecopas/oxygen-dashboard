@@ -7,8 +7,8 @@ import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchRooms, Room, selectRoomsList } from '../../slices/roomsListSlice'
+import { useSelector } from 'react-redux'
+import { fetchRooms, Room } from '../../slices/roomsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -49,8 +49,7 @@ const RoomsContainer = styled.div`
   }
 `
 
-
-const RoomsPage = () => {
+const RoomsPage = (): JSX.Element => {
   const [filter, setFilter] = useState('')
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -61,7 +60,7 @@ const RoomsPage = () => {
   const [showRooms, setShowRooms] = useState<Room[]>([])
 
   useEffect(() => {
-    dispatch(fetchRooms())
+    dispatch(fetchRooms()).catch(Error)
   }, [dispatch, rooms])
 
   useEffect(() => {
@@ -71,16 +70,16 @@ const RoomsPage = () => {
     setRoomsState(orderedFilteredRooms as [])
   }, [rooms, orderBy, searchTerm, filter])
 
-  const handleFilter = (filter: string) => {
+  const handleFilter = (filter: string): void => {
     setFilter(filter)
   }
-  const handleRoom = (roomid: number) => {
+  const handleRoom = (roomid: number): void => {
     navigate(`/rooms/${roomid}`)
   }
-  const handleButton = () => {
+  const handleButton = (): void => {
     navigate('/rooms/newroom')
   }
-  const handleOrder = (value: string) => {
+  const handleOrder = (value: string): void => {
     setOrderBy(value)
   }
 
@@ -89,34 +88,36 @@ const RoomsPage = () => {
       <Switcher>
         <>
           <Switch
-          items={[{ label: 'All Rooms', value: '' }, { label: 'Avalaible Rooms', value: 'avalaible' }, { label: 'Booked Rooms', value: 'booked' }]}
-          handleSwitcher={handleFilter}
+            items={[{ label: 'All Rooms', value: '' }, { label: 'Avalaible Rooms', value: 'avalaible' }, { label: 'Booked Rooms', value: 'booked' }]}
+            handleSwitcher={handleFilter}
           />
-          <Button label={'+ New Room'} onClick={handleButton} primary/>
-          <Selector options={[
-            { label: 'id', value: 'id' },
-            { label: 'Price', value: 'price' }
-          ]} onChange={handleOrder}/>
+          <Button label='+ New Room' onClick={handleButton} primary />
+          <Selector
+            options={[
+              { label: 'id', value: 'id' },
+              { label: 'Price', value: 'price' }
+            ]} onChange={handleOrder}
+          />
         </>
       </Switcher>
       <Table>
         <>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amenities</th>
-            <th>Price</th>
-            <th>Offer</th>
-        </tr>
-        </thead>
-        <tbody>
-          {
-            showRooms && showRooms.map(room => {
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amenities</th>
+              <th>Price</th>
+              <th>Offer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+            showRooms?.map(room => {
               return (
                 <tr key={room.id} onClick={() => handleRoom(room.id)}>
                   <td>
                     <div style={{ display: 'flex', placeItems: 'center' }}>
-                      <img src={room.photos[0]} alt="" />
+                      <img src={room.photos[0]} alt='' />
                       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
                         <p>{room.roomType + room.roomNumber}</p>
                       </div>
@@ -127,23 +128,23 @@ const RoomsPage = () => {
                   })}
                   </td>
                   <td>
-                    <p className={room.offer ? 'withOffer' : ''}>{room.price / 100 + '$'}</p>
+                    <p className={room.offer ? 'withOffer' : ''}>{`${room.price / 100} $`}</p>
                   </td>
                   <td>
                     <p className={room.offer ? 'offer' : ''}>
                       {room.offer
                         ? (room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$'
-                        : room.price / 100 + '$'
-                      }
+                        : `${room.price / 100} $`}
                     </p>
                   </td>
                 </tr>
               )
-            })}
-        </tbody>
+            })
+}
+          </tbody>
         </>
       </Table>
-      <Pagination items={roomsState} itemsPerPage={4} setItems={setShowRooms}/>
+      <Pagination items={roomsState} itemsPerPage={4} setItems={setShowRooms} />
     </RoomsContainer>
   )
 }

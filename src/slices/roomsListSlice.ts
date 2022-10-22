@@ -4,25 +4,25 @@ import { RootState } from '../store/store'
 import delay from '../utils/delay'
 
 interface RoomsState {
-  rooms: Room[],
-  room: Room | null,
+  rooms: Room[]
+  room: Room | null
   status: 'loading' | 'error' | 'fulfilled'
 }
 
 export interface Room {
-  id:number,
-  photos:string[],
-  roomType:string,
-  roomNumber:string,
-  description:string,
-  offer:true,
-  price:number,
-  discount:number,
-  cancellation:string,
-  amenities:string[]
+  id: number
+  photos: string[]
+  roomType: string
+  roomNumber: string
+  description: string
+  offer: true
+  price: number
+  discount: number
+  cancellation: string
+  amenities: string[]
 }
 
-const initialState: RoomsState = null
+const initialState: RoomsState = { room: null, rooms: [], status: 'loading' }
 
 export const fetchRooms = createAsyncThunk(
   'rooms/fetchRooms',
@@ -67,7 +67,7 @@ export const newRoom = createAsyncThunk(
 export const roomsListSlice = createSlice({
   name: 'roomsList',
   initialState,
-  reducers:{},
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchRooms.pending, (state) => {
@@ -124,7 +124,7 @@ export const roomsListSlice = createSlice({
   }
 })
 
-export const selectRoomsList = (state: RootState) => state.roomsList.rooms
-export const selectRoom = (state: RootState) => state.roomsList.room
+export const selectRoomsList = (state: RootState): Room[] => state.roomsList.rooms
+export const selectRoom = (state: RootState): Room | null => state.roomsList.room
 
 export default roomsListSlice.reducer

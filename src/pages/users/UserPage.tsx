@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect, FC } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../../components/Button'
@@ -42,7 +41,7 @@ const UsersContainer = styled.div`
   
 `
 
-const UserPage = () => {
+const UserPage: FC = () => {
   const [filter, setFilter] = useState('')
   const navigate = useNavigate()
   const users = useSelector(selectUsersList)
@@ -53,7 +52,7 @@ const UserPage = () => {
   const [usersToShow, setUsersToShow] = useState<User[]>([])
 
   useEffect(() => {
-    dispatch(fetchUsers())
+    dispatch(fetchUsers()).catch(Error)
   }, [dispatch, fetchUsers])
 
   useEffect(() => {
@@ -63,17 +62,17 @@ const UserPage = () => {
     setUsersState(orderedFilteredUsers)
   }, [users, orderBy, searchTerm, filter])
 
-  const handleFilter = (filter: string) => {
+  const handleFilter = (filter: string): void => {
     setFilter(filter)
   }
 
-  const handleButton = () => {
+  const handleButton = (): void => {
     navigate('/users/newuser')
   }
-  const handleUser = (userid: number) => {
+  const handleUser = (userid: number): void => {
     navigate(`/users/${userid}`)
   }
-  const handleOrder = (value: string) => {
+  const handleOrder = (value: string): void => {
     setOrderBy(value)
   }
   return (
@@ -81,11 +80,12 @@ const UserPage = () => {
       <Switcher>
         <>
           <Switch
-          items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'active' }, { label: 'Inactive Employee', value: 'inactive' }]}
-          handleSwitcher={handleFilter}
+            items={[{ label: 'All Employee', value: '' }, { label: 'Active Employee', value: 'active' }, { label: 'Inactive Employee', value: 'inactive' }]}
+            handleSwitcher={handleFilter}
           />
-          <Button label={'+ New Employee'} onClick={handleButton} primary/>
-          <Selector options={[
+          <Button label='+ New Employee' onClick={handleButton} primary />
+          <Selector
+            options={[
               { label: 'ID', value: 'id' },
               { label: 'User', value: 'username' }
             ]} onChange={handleOrder}
@@ -100,16 +100,16 @@ const UserPage = () => {
               <th>Job Description</th>
               <th>Contact</th>
               <th>Status</th>
-          </tr>
+            </tr>
           </thead>
           <tbody>
             {
-              usersToShow && usersToShow.map(user => {
+              usersToShow?.map(user => {
                 return (
                   <tr key={user.id} onClick={() => handleUser(user.id)}>
                     <td>
                       <div style={{ display: 'flex', placeItems: 'center' }}>
-                        <img src={user.photo} alt="" />
+                        <img src={user.photo} alt='' />
                         <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
                           <p>{user.username}</p>
                           <p>{`#${user.id}`}</p>
@@ -127,7 +127,7 @@ const UserPage = () => {
           </tbody>
         </>
       </Table>
-      <Pagination items={usersState} itemsPerPage={4} setItems={setUsersToShow}/>
+      <Pagination items={usersState} itemsPerPage={4} setItems={setUsersToShow} />
     </UsersContainer>
   )
 }

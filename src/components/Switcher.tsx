@@ -17,7 +17,7 @@ interface Props {
   children: JSX.Element
 }
 
-const Switcher = ({ children }: Props) => {
+const Switcher = ({ children }: Props): JSX.Element => {
   return (
     <SwitcherContainer>{children}</SwitcherContainer>
   )

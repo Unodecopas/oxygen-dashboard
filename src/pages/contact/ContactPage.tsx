@@ -6,7 +6,7 @@ import Selector from '../../components/Selector'
 import React, { useEffect, useState } from 'react'
 import Pagination from '../../components/Pagination'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { fetchReviews, Review, selectReviewsList } from '../../slices/reviewsListSlice'
 import orderState from '../../utils/orderState'
 import { selectSearchTerm } from '../../slices/searchTermSlice'
@@ -43,8 +43,7 @@ const ReviewsPageContainer = styled.div`
   }
 `
 
-
-const ContactPage = () => {
+const ContactPage = (): JSX.Element => {
   const [filter, setFilter] = useState('')
   const reviews = useSelector(selectReviewsList)
   const dispatch = useAppDispatch()
@@ -56,7 +55,7 @@ const ContactPage = () => {
   const [showReviews, setShowReviews] = useState<Review[]>([])
 
   useEffect(() => {
-    dispatch(fetchReviews())
+    dispatch(fetchReviews()).catch(Error)
   }, [dispatch, fetchReviews])
 
   useEffect(() => {
@@ -71,20 +70,20 @@ const ContactPage = () => {
     setReviewsState(orderedFilteredReviews as any)
   }, [reviews, orderBy, searchTerm, filter])
 
-  const handleFilter = (filter: string) => {
+  const handleFilter = (filter: string): void => {
     setFilter(filter)
   }
-  const handleOrder = (value: string) => {
+  const handleOrder = (value: string): void => {
     setOrderBy(value)
   }
-  const handleReview = (reviewid: number) => {
+  const handleReview = (reviewid: number): void => {
     navigate(`/contact/${reviewid}`)
   }
 
   return (
     <ReviewsPageContainer>
       <div className='notices'>
-      {
+        {
         firtsReviews.map(review => {
           return (
             <div key={review.id} className='notice' onClick={() => handleReview(review.id)}>
@@ -99,13 +98,15 @@ const ContactPage = () => {
       <Switcher>
         <>
           <Switch
-          items={[{ label: 'All Reviews', value: '' }, { label: 'Published Reviews', value: 'published' }, { label: 'Archived Reviews', value: 'archived' }]}
-          handleSwitcher={handleFilter}
+            items={[{ label: 'All Reviews', value: '' }, { label: 'Published Reviews', value: 'published' }, { label: 'Archived Reviews', value: 'archived' }]}
+            handleSwitcher={handleFilter}
           />
-          <Selector options={[
-            { label: 'DATE', value: 'date' },
-            { label: 'id', value: 'id' },
-            { label: 'Customer', value: 'customer' }]} onChange={handleOrder}/>
+          <Selector
+            options={[
+              { label: 'DATE', value: 'date' },
+              { label: 'id', value: 'id' },
+              { label: 'Customer', value: 'customer' }]} onChange={handleOrder}
+          />
         </>
       </Switcher>
       <Table>
@@ -116,26 +117,25 @@ const ContactPage = () => {
               <th>Date</th>
               <th>Customer</th>
               <th>Comment</th>
-              {!filter && <th>Actions</th>}
-          </tr>
+              {(filter.length === 0) && <th>Actions</th>}
+            </tr>
           </thead>
           <tbody>
             {
-              showReviews && showReviews.map(review => {
+              showReviews?.map(review => {
                 return (
                   <tr key={review.id}>
                     <td>{review.id}</td>
                     <td className='date'>{review.date}</td>
                     <td>{review.customer}</td>
                     <td className='table__small'>{review.subject}</td>
-                    {!filter &&
+                    {(filter.length === 0) &&
                       <td>
                         <div className='actions'>
                           <button className='publish'>Publish</button>
                           <button className='archive'>Archive</button>
                         </div>
-                      </td>
-                    }
+                      </td>}
                   </tr>
                 )
               })
@@ -143,7 +143,7 @@ const ContactPage = () => {
           </tbody>
         </>
       </Table>
-      <Pagination items={reviewsState} itemsPerPage={4} setItems={setShowReviews}/>
+      <Pagination items={reviewsState} itemsPerPage={4} setItems={setShowReviews} />
     </ReviewsPageContainer>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 
 import styled from 'styled-components'
 import Button from '../../components/Button'
@@ -44,28 +44,28 @@ const EditUserContainer = styled.div`
   }
 `
 
-const EditUser = () => {
+const EditUser: FC = () => {
   const [user, dispatch] = useUser()
   const [username, setUsername] = useState(user.username)
   const [email, setEmail] = useState(user.email)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
-  const handleForm = (e: React.FormEvent) => {
+  const handleForm = (e: React.FormEvent): void => {
     e.preventDefault()
     setSuccess('')
-    if (username && username !== user.username) dispatch({ type: 'changeUsername', value: username })
-    if (email && email !== user.email) dispatch({ type: 'changeEmail', value: email })
+    if (username !== user.username) dispatch({ type: 'changeUsername', value: username })
+    if (email !== user.email) dispatch({ type: 'changeEmail', value: email })
     showMessage('success', 'Datos cambiados con éxito')
     setError('')
   }
-  const clearForm = (e: React.FormEvent) => {
+  const clearForm = (e: React.FormEvent): void => {
     e.preventDefault()
     setEmail('')
     setError('')
     setUsername('')
   }
-  const showMessage = (type: string, message: string) => {
+  const showMessage = (type: string, message: string): void => {
     type === 'error' && setError(message)
     type === 'success' && setSuccess(message)
     setTimeout(() => {
@@ -77,17 +77,17 @@ const EditUser = () => {
     <EditUserContainer>
       <h2>Hi! {user.username}</h2>
       <form onSubmit={handleForm} id='edit-user-form'>
-        <label htmlFor="username">Username</label>
-        <input type="text" name='username' value={username} onChange={e => setUsername(e.target.value)}/>
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
+        <label htmlFor='username'>Username</label>
+        <input type='text' name='username' value={username} onChange={e => setUsername(e.target.value)} />
+        <label htmlFor='email'>Email</label>
+        <input type='email' name='email' id='email' value={email} onChange={e => setEmail(e.target.value)} />
         <div className='form-buttons'>
-          <Button label={'Clear'} onClick={clearForm} id='clear-form'/>
-          <Button label={'Save'} id='submit-form' primary/>
+          <Button label='Clear' onClick={clearForm} id='clear-form' />
+          <Button label='Save' id='submit-form' primary />
         </div>
       </form>
-      {error && <p className='login-error' onClick={() => setError('')}>{error}</p>}
-      {success && <p className='login-success' onClick={() => setSuccess('')}>{success}</p>}
+      {(error.length !== 0) && <p className='login-error' onClick={() => setError('')}>{error}</p>}
+      {(success.length !== 0) && <p className='login-success' onClick={() => setSuccess('')}>{success}</p>}
     </EditUserContainer>
   )
 }
