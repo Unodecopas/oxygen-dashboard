@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
@@ -18,6 +18,7 @@ import NewBookingPage from './pages/bookings/NewBookingPage'
 import ContactPage from './pages/contact/ContactPage'
 import { useUser } from './context/userContext'
 import ReviewDetails from './pages/contact/ReviewDetails'
+import { darkTheme, lightTheme } from './themes'
 
 const Dashboard = styled.div`
   width:100%;
@@ -26,29 +27,36 @@ const Dashboard = styled.div`
 
 function App (): JSX.Element {
   const [user] = useUser()
+  const [theme, setTheme] = useState(true)
+
+  const changeTheme = (): void => {
+    setTheme(!theme)
+  }
   return (
-    <Dashboard>
-      <Routes>
-        <Route path='login' element={<LoginPage />} />
-        <Route element={<ProtectedRoute user={user} />}>
-          <Route path='/*' element={<HomePage />}>
-            <Route path='dashboard' element={<DashboardPage />} />
-            <Route path='users' element={<UserPage />} />
-            <Route path='users/newuser' element={<NewUserPage />} />
-            <Route path='users/:userid' element={<UserDetails />} />
-            <Route path='users/edit' element={<EditUser />} />
-            <Route path='rooms' element={<RoomsPage />} />
-            <Route path='rooms/newroom' element={<NewRoomPage />} />
-            <Route path='rooms/:roomid' element={<RoomDetails />} />
-            <Route path='bookings' element={<BookingsPage />} />
-            <Route path='bookings/newbooking' element={<NewBookingPage />} />
-            <Route path='bookings/:bookingid' element={<BookingDetails />} />
-            <Route path='contact' element={<ContactPage />} />
-            <Route path='contact/:reviewid' element={<ReviewDetails />} />
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+      <Dashboard>
+        <Routes>
+          <Route path='login' element={<LoginPage />} />
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path='/*' element={<HomePage changeTheme={changeTheme} />}>
+              <Route path='dashboard' element={<DashboardPage />} />
+              <Route path='users' element={<UserPage />} />
+              <Route path='users/newuser' element={<NewUserPage />} />
+              <Route path='users/:userid' element={<UserDetails />} />
+              <Route path='users/edit' element={<EditUser />} />
+              <Route path='rooms' element={<RoomsPage />} />
+              <Route path='rooms/newroom' element={<NewRoomPage />} />
+              <Route path='rooms/:roomid' element={<RoomDetails />} />
+              <Route path='bookings' element={<BookingsPage />} />
+              <Route path='bookings/newbooking' element={<NewBookingPage />} />
+              <Route path='bookings/:bookingid' element={<BookingDetails />} />
+              <Route path='contact' element={<ContactPage />} />
+              <Route path='contact/:reviewid' element={<ReviewDetails />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </Dashboard>
+        </Routes>
+      </Dashboard>
+    </ThemeProvider>
   )
 }
 

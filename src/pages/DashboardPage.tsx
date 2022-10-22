@@ -29,14 +29,15 @@ const DashboardContainer = styled.div`
     & .fc {
       border: none;
       border-style: none !important;
-      background-color: white;
+      background-color: ${props => props.theme.colors.bgPrimary};
+      color: ${props => props.theme.colors.primary};
       padding: 1rem;
       border-radius: 12px;
       & button {
-        background-color: #135846;
+        background-color: ${props => props.theme.button.bgPrimary};
       }
       &-today-button{
-        background-color: #135846;
+        background-color: ${props => props.theme.button.bgPrimary};
       }
       
     }
@@ -47,15 +48,16 @@ const DashboardContainer = styled.div`
       border-style: none !important;
     }
     .fc-day-today{
-      background-color: #135846;
-      color: white;
+      background-color: ${props => props.theme.button.bgPrimary};
+      color: ${props => props.theme.button.primary};
     }
   }
   & .reviews {
     margin-top: 1rem;
     border-radius: 12px;
-    background-color: white;
+    background-color: ${props => props.theme.colors.bgPrimary};
     padding: 1rem;
+    color: ${props => props.theme.colors.primary};
   }
   & .carousel {
     margin-top: 1rem;
@@ -76,7 +78,7 @@ const DashboardContainer = styled.div`
       display: flex;
       place-items: center;
       & button {
-        background-color:#135846 ;
+        background-color:${props => props.theme.button.bgPrimary};
         color: white;
         padding: 0.5rem 0.75rem;
         border: none;

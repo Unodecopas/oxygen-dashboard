@@ -8,23 +8,25 @@ const PaginationContainer = styled.div`
   width: 100%;
   & .pagination__results{
     flex-grow: 1;
+    color: ${props => props.theme.colors.primary};
   }
   & .pagination__buttons {
+    color: ${props => props.theme.colors.primary};
     &__page {
-      cursor: pointer;
       padding: 8px 16px;
       border-radius: 12px;
       border: none;
-      background-color: #f8f8f8;
       margin-right: 10px;
+      color: ${props => props.theme.colors.primary};
+      background-color: ${props => props.theme.colors.secondary};
       &__active {
-        cursor: pointer;
         padding: 8px 16px;
         border-radius: 12px;
         border: none;
-        background-color: #f8f8f8;
+        color: ${props => props.theme.button.primary};
+        background-color: ${props => props.theme.button.bgPrimary};
         margin-right: 10px;
-        border-bottom: 1px solid #135846;
+        border-bottom: 1px solid ${props => props.theme.button.bgPrimary};
       }
       &:hover {
         background-color: #135846;
@@ -32,16 +34,15 @@ const PaginationContainer = styled.div`
       }
     }
     &__fixed {
-      cursor: pointer;
       border-radius: 12px;
       padding: 8px 16px;
-      color: #135846;
+      color: ${props => props.theme.colors.primary};
       border: 1px solid #135846;
-      background-color: #FFFFFF;
+      background-color: ${props => props.theme.colors.bgPrimary};
       margin-right: 10px;
       transition:all 0.3s ease-out;
       &:hover {
-        background-color: #135846;
+        background-color: ${props => props.theme.button.bgPrimary};
         color: white;
       }
     }

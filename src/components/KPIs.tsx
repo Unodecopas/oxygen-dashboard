@@ -8,8 +8,8 @@ const KPIsContainer = styled.div`
   & .kpi {
     padding: 1rem;
     width: 100%;
-    border-radius: 12px;
-    background-color: white;
+    border-radius: ${props => props.theme.borderRadius};
+    background-color: ${props => props.theme.colors.bgPrimary};
     display: flex;
     place-items: center;
     gap: 1rem;
@@ -18,23 +18,25 @@ const KPIsContainer = styled.div`
       background-color: #f8d7da;
       padding: 0.5rem;
       display: flex;
-      border-radius: 10px;
+      border-radius: ${props => props.theme.borderRadiusSmall};
     }
     &__text{
       display: flex;
       flex-direction: column;
+      & h3 {
+        color: ${props => props.theme.colors.primary};
+      }
       & p {
         font-size: 14px;
         color: #787878;
       }
     }
     &:hover {
-      box-shadow: 0px 16px 30px #00000014;
+      box-shadow: ${props => props.theme.boxShadow};
       transform: translate(2px, -2px);
       transition:all 0.5s ease-out;
     }
   }
-  
 `
 interface Item {
   icon: string

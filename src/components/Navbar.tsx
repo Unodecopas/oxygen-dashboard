@@ -7,7 +7,8 @@ import { Link, NavLink } from 'react-router-dom'
 const Nav = styled.nav`
   padding: 2rem 2rem 0 1.625rem;
   box-shadow: 13px 3px 40px #00000005;
-  background-color: white;
+  background-color: ${props => props.theme.colors.bgPrimary};
+  color: ${props => props.theme.colors.primary};
   height:100%;
   display: flex;
   flex-direction: column;
@@ -36,6 +37,7 @@ const Nav = styled.nav`
     place-items:center;
     box-shadow: 0px 20px 30px #00000014;
     border-radius: 18px;
+    background-color: ${props => props.theme.colors.bgSpecial};
     gap: 15px;
     &__img {
       background-color: #c5c5c5;
@@ -47,19 +49,19 @@ const Nav = styled.nav`
       text-align: center;
       font-size: 1rem;
       letter-spacing: 0px;
-      color: #393939;
+      color: ${props => props.theme.colors.primary};
     }
     & p {
       font-size: 0.75rem;
-      color: #B2B2B2;
+      color: ${props => props.theme.colors.secondary};
     }
     & button {
       cursor: pointer;
       border-radius: 8px;
       border: none;
       padding: 14px 38px;
-      background-color: #EBF1EF;
-      color: #135846;
+      background-color: ${props => props.theme.button.bgPrimary};
+      color: ${props => props.theme.button.primary};
       margin-bottom: 37px;
       transition: all 0.3s ease-out;
       &:hover {
@@ -78,7 +80,7 @@ const Nav = styled.nav`
     justify-content: end;
     text-align: center;
     & h3 {
-      color: #212121;
+      color: ${props => props.theme.colors.primary};
       font-size: 1rem;
     }
     & p {

@@ -4,7 +4,7 @@ import React from 'react'
 const TableContainer = styled.table`
   overflow-x: none;
   border-collapse: collapse;
-  background-color: white;
+  background-color: ${props => props.theme.colors.bgPrimary};
   border-radius: 20px;
   width: 100%;
   max-width: 100%;
@@ -12,7 +12,7 @@ const TableContainer = styled.table`
   & thead{
     padding-top: 20px;
     & th {
-      color: #393939;
+      color: ${props => props.theme.colors.primary};
       font-size: 1.125rem;
       overflow: hidden;
       white-space: nowrap;
@@ -24,14 +24,14 @@ const TableContainer = styled.table`
     }
   }
   & tr {
-    border-bottom: 1px solid #f7f7f7;
+    color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid ${props => props.theme.colors.secondary};
   }
   & th, td {
       padding: 20px 30px;
       text-align: center;
   }
   & td {
-    color: #393939;
     font-size: 1rem;
     & img {
       width: 88px;

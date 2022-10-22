@@ -15,13 +15,19 @@ const MainContainer = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
+  & main {
+    background-color: ${props => props.theme.colors.bgSecondary};
+  }
 `
-const HomePage = (): JSX.Element => {
+interface Props {
+  changeTheme: () => void
+}
+const HomePage = ({ changeTheme }: Props): JSX.Element => {
   return (
     <HomePageContainer>
       <Navbar />
       <MainContainer>
-        <Header />
+        <Header changeTheme={changeTheme} />
         <main>
           <Outlet />
         </main>
