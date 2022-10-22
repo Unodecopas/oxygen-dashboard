@@ -8,6 +8,7 @@ interface ReviewsState {
   review: Review | null,
   status: 'loading' | 'error' | 'fulfilled'
 }
+
 export interface Review {
   id: number;
   date: string;
