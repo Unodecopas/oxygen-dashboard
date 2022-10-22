@@ -18,8 +18,8 @@ const BookingsContainer = styled.div`
   width: 100%;
   & table {
     & button {
-      background-color: white;
-      color: grey;
+      background-color: grey;
+      color: white;
       border: 1px solid grey;
       &:hover  {
         color: black;

@@ -9,18 +9,19 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import useDebounce from '../utils/useDebounce'
 import { changeSearchTerm } from '../slices/searchTermSlice'
+import Toogle from './Toogle'
 
 const HeaderContainer = styled.header`
   padding: 1.875rem 0 1rem 1.625rem;
   display:flex;
-  background-color: white;
+  background-color: ${props => props.theme.colors.bgPrimary};
   justify-content:space-around;
   place-items:center;
+  color: ${props => props.theme.colors.primary};
   & h1 {
     text-align: left;
     font-size: 28px;
     letter-spacing: 0px;
-    color: #262626;
     opacity: 1;
     text-transform: capitalize;
   }
@@ -28,7 +29,7 @@ const HeaderContainer = styled.header`
     width: 20.0625rem;
     display: flex;
     place-items:center;
-    background-color: #FCFCFC;
+    background-color: ${props => props.theme.colors.bgSecondary};
     border-radius: 12px;
     padding: 1rem 1.8125rem;
     &__input {
@@ -36,9 +37,9 @@ const HeaderContainer = styled.header`
       background-color: inherit;
       flex-grow:1;
       outline:none;
+      color: ${props => props.theme.colors.primary};
     }
     & button {
-      cursor: pointer;
       border-radius: 100%;
       border: none;
       padding: 0 5px;
@@ -53,11 +54,9 @@ const HeaderContainer = styled.header`
     place-items:center;
     gap:2.375rem;
     & button {
-      cursor: pointer;
-      border: 2px solid white;
+      border: 2px solid transparent;
       background-color:inherit;
       padding: .25rem;
-      transition:all 0.3s ease-out;
       & img {
         display: block;
         margin: auto;
@@ -82,7 +81,7 @@ const HeaderContainer = styled.header`
   }
 `
 
-const Header = () => {
+const Header = ({changeTheme}, props) => {
   const { pathname } = useLocation()
   const location = pathname.split('/')[1]
   const [, dispatch] = useUser()
@@ -120,6 +119,7 @@ const Header = () => {
         <button onClick={() => dispatch({ type: 'logout' })} id='btn-logout'>
           <img src={logoutIcon} alt=""/>
         </button>
+        <Toogle changeTheme={changeTheme}/>
       </div>
     </HeaderContainer>
   )

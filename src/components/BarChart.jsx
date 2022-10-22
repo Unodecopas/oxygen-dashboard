@@ -7,7 +7,8 @@ const D3Container = styled.div`
   width: 100%;
   height: 100%;
   place-items: center;
-  background-color: white;
+  background-color: ${props => props.theme.colors.bgPrimary};
+  color: ${props => props.theme.colors.primary};
   border-radius: 12px;
   padding: 1rem;
   & svg {

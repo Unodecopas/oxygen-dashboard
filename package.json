@@ -32,18 +32,6 @@
     "deploy": "gh-pages -d build",
     "cypress:open": " cypress open"
   },
-  "eslintConfig": {
-    "env": {
-      "cypress/globals": true
-    },
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "plugins": [
-      "cypress"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -59,13 +47,13 @@
   "devDependencies": {
     "@fullcalendar/react": "^5.11.2",
     "cypress": "^10.9.0",
-    "eslint": "^8.24.0",
+    "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.31.8"
+    "eslint-plugin-react": "^7.31.10"
   }
 }

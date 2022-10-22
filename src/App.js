@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import DashboardPage from './pages/DashboardPage'
@@ -18,6 +18,7 @@ import NewBookingPage from './pages/bookings/NewBookingPage'
 import ContactPage from './pages/contact/ContactPage'
 import { useUser } from './context/userContext'
 import ReviewDetails from './pages/contact/ReviewDetails'
+import { lightTheme, darkTheme } from './themes/theme'
 
 const Dashboard = styled.div`
   width:100%;
@@ -26,12 +27,18 @@ const Dashboard = styled.div`
 
 function App () {
   const [user] = useUser()
+  const [theme, setTheme] = useState(true)
+
+  const changeTheme = () => {
+    setTheme(!theme)
+  }
   return (
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
     <Dashboard>
       <Routes>
         <Route path='login' element={<LoginPage />} />
         <Route element={<ProtectedRoute user={user}/>}>
-          <Route path='/*' element={<HomePage />}>
+          <Route path='/*' element={<HomePage changeTheme={changeTheme}/>}>
             <Route path='dashboard' element={<DashboardPage />} />
             <Route path='users' element={<UserPage />} />
             <Route path='users/newuser' element={<NewUserPage />} />
@@ -49,6 +56,7 @@ function App () {
         </Route>
       </Routes>
     </Dashboard>
+    </ThemeProvider>
   )
 }
 
