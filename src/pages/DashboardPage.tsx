@@ -4,16 +4,17 @@ import KPIs from '../components/KPIs'
 import exit from '../assets/exit.svg'
 import door from '../assets/door.svg'
 import bed from '../assets/bed.svg'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
-import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
+import { fetchReviews, Review, selectReviewsList } from '../slices/reviewsListSlice'
 import { fetchBookings } from '../slices/bookingsListSlice'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import BarChart from '../components/BarChart'
 import { useAppDispatch, useAppSelector } from '../hooks'
+import Notices from '../components/Notices'
+import { useNavigate } from 'react-router-dom'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -57,6 +58,12 @@ const DashboardContainer = styled.div`
     background-color: ${props => props.theme.colors.bgPrimary};
     padding: 1rem;
     color: ${props => props.theme.colors.primary};
+    & h3 {
+      margin-bottom: 1rem;
+    }
+    & .notice {
+      border: 1px solid ${props => props.theme.colors.secondary};
+    }
   }
   
 `
@@ -71,6 +78,8 @@ const DashboardPage = (): JSX.Element => {
   const bookings = useAppSelector(state => state.bookingsList.bookings)
   const rooms = useSelector(selectRoomsList)
   const reviews = useSelector(selectReviewsList)
+  const [firtsReviews, setFirstsReviews] = useState<Review[]>([])
+
   const [items, setItems] = useState<KPI[]>([])
 
   useEffect(() => {
@@ -86,6 +95,11 @@ const DashboardPage = (): JSX.Element => {
   }, [dispatch, reviews])
 
   useEffect(() => {
+    const firsts = reviews.slice(0, 5)
+    setFirstsReviews(firsts)
+  }, [reviews])
+
+  useEffect(() => {
     const totalbookings = bookings.length
     const bookingsCheckin = bookings.filter(booking => booking.status === 'checkin')
     const percentOccupedRooms = `${rooms.length * bookingsCheckin.length / 100} %`
@@ -97,6 +111,10 @@ const DashboardPage = (): JSX.Element => {
       { icon: exit, value: bookingsCheckout.length, text: 'Check Out' }
     ])
   }, [bookings, rooms])
+
+  const handleReview = (reviewid: number): void => {
+    navigate(`/contact/${reviewid}`)
+  }
 
   const data = [
     { day: '08/22/2022', sales: 2500, occupation: 20 },
@@ -117,7 +135,9 @@ const DashboardPage = (): JSX.Element => {
       </div>
       <div className='reviews'>
         <h3>Latests Customer Reviews</h3>
+        <Notices items={firtsReviews} handleNotice={handleReview} />
       </div>
+
     </DashboardContainer>
   )
 }
