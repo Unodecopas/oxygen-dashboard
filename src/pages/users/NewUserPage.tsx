@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks'
 import { newUser, UserStatus } from '../../slices/usersListSlice'
 
 const UserContainer = styled.div`
-  background-color: white;
+  background-color: ${props => props.theme.colors.bgPrimary};
+  color: ${props => props.theme.colors.primary};
   border-radius: 12px;
   padding: 1rem;
   width: 100%;
@@ -27,6 +28,8 @@ const UserContainer = styled.div`
       grid-template-columns: repeat(2,1fr);
     }
     & input {
+      background-color: ${props => props.theme.colors.bgSecondary};
+      color: ${props => props.theme.colors.primary};
       margin-bottom: 1rem;
       border: none;
       border-bottom: 1px solid grey;

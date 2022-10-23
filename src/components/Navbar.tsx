@@ -56,17 +56,17 @@ const Nav = styled.nav`
       color: ${props => props.theme.colors.secondary};
     }
     & button {
-      cursor: pointer;
+      border: 1px solid ${props => props.theme.colors.bgSpecial};
       border-radius: 8px;
-      border: none;
       padding: 14px 38px;
       background-color: ${props => props.theme.button.bgPrimary};
       color: ${props => props.theme.button.primary};
       margin-bottom: 37px;
       transition: all 0.3s ease-out;
       &:hover {
-        background-color:#135846;
-        color: white;
+        border: 1px solid ${props => props.theme.button.bgPrimary};
+        background-color: ${props => props.theme.colors.bgSpecial};
+        color: ${props => props.theme.button.bgPrimary};
       }
     }
   }

@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux'
 import { fetchRooms, selectRoomsList } from '../slices/roomsListSlice'
 import { fetchReviews, selectReviewsList } from '../slices/reviewsListSlice'
 import { fetchBookings } from '../slices/bookingsListSlice'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import 'pure-react-carousel/dist/react-carousel.es.css'
@@ -59,37 +58,7 @@ const DashboardContainer = styled.div`
     padding: 1rem;
     color: ${props => props.theme.colors.primary};
   }
-  & .carousel {
-    margin-top: 1rem;
-    display: flex;
-    margin-bottom: 1rem;
-    &__slider{
-      width: 100%;
-      flex-grow: 1;
-      margin-top: 1rem;
-    }
-    & .notice {
-      display: flex;
-      padding: 1rem;
-      margin-right: 1rem;
-      height: 100%;
-    }
-    &__buttons {
-      display: flex;
-      place-items: center;
-      & button {
-        background-color:${props => props.theme.button.bgPrimary};
-        color: white;
-        padding: 0.5rem 0.75rem;
-        border: none;
-        border-radius: 10px;
-
-        &:disabled{
-        visibility: hidden;
-        }
-      }
-    }
-  }
+  
 `
 interface KPI {
   icon: string
@@ -148,35 +117,6 @@ const DashboardPage = (): JSX.Element => {
       </div>
       <div className='reviews'>
         <h3>Latests Customer Reviews</h3>
-        <CarouselProvider
-          naturalSlideWidth={100}
-          naturalSlideHeight={80}
-          totalSlides={reviews.length}
-          visibleSlides={4}
-          step={4}
-        >
-          <div className='carousel__buttons'>
-            <ButtonBack>{'<'}</ButtonBack>
-          </div>
-          <Slider style={{ gap: '1rem' }}>
-            {
-              reviews.map((review, i) => {
-                return (
-                  <Slide style={{ marginRigth: '1rem' }} index={i} key={review.id} className='slide'>
-                    <div className='notice' onClick={() => navigate(`/contact/${review.id}`)}>
-                      <p className='notice__subject'>{'" ' + review.subject + ' "'}</p>
-                      <p>{review.customer}</p>
-                      <p>{review.date}</p>
-                    </div>
-                  </Slide>
-                )
-              })
-            }
-          </Slider>
-          <div className='carousel__buttons'>
-            <ButtonNext>{'>'}</ButtonNext>
-          </div>
-        </CarouselProvider>
       </div>
     </DashboardContainer>
   )
