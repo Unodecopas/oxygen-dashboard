@@ -9,7 +9,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks'
 
 const UserDetailsContainer = styled.div`
   width: 100%;
-  background-color: #ffff;
+  background-color: ${props => props.theme.colors.bgPrimary};
+  color: ${props => props.theme.colors.primary};
   height: 100%;
   padding: 40px;
   border-radius: 12px;
@@ -17,7 +18,7 @@ const UserDetailsContainer = styled.div`
   flex-direction: column;
   & .user__info {
     display: flex;
-    color: #212121;
+    color: ${props => props.theme.colors.primary};
     font-size: 20px;
     gap: 2rem;
     & img {
@@ -48,6 +49,7 @@ const UserDetailsContainer = styled.div`
         &__phone {
           border: 1px solid #E8F2EF;
           background-color: transparent;
+          color: ${props => props.theme.colors.primary};
           & a{
             text-decoration: none;
             display: flex;
