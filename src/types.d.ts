@@ -30,3 +30,9 @@ interface Colors {
   bgSecondary: string
   bgSpecial: string
 }
+
+export interface KPI {
+  icon: string
+  value: number | string
+  text: string
+}

@@ -10,11 +10,12 @@ import { fetchReviews, Review, selectReviewsList } from '../slices/reviewsListSl
 import { fetchBookings } from '../slices/bookingsListSlice'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import 'pure-react-carousel/dist/react-carousel.es.css'
 import BarChart from '../components/BarChart'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import Notices from '../components/Notices'
 import { useNavigate } from 'react-router-dom'
+import { KPI } from '../types'
+import { statistics } from '../data/statistics'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -67,11 +68,7 @@ const DashboardContainer = styled.div`
   }
   
 `
-interface KPI {
-  icon: string
-  value: number | string
-  text: string
-}
+
 const DashboardPage = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -116,22 +113,12 @@ const DashboardPage = (): JSX.Element => {
     navigate(`/contact/${reviewid}`)
   }
 
-  const data = [
-    { day: '08/22/2022', sales: 2500, occupation: 20 },
-    { day: '08/23/2022', sales: 3000, occupation: 10 },
-    { day: '08/24/2022', sales: 1100, occupation: 12 },
-    { day: '08/25/2022', sales: 800, occupation: 14 },
-    { day: '08/26/2022', sales: 2850, occupation: 60 },
-    { day: '08/27/2022', sales: 4673, occupation: 15 },
-    { day: '08/28/2022', sales: 3857, occupation: 80 }
-  ]
-
   return (
     <DashboardContainer>
       <KPIs items={items} />
       <div className='widgets'>
         <FullCalendar plugins={[dayGridPlugin]} initialView='dayGridMonth' />
-        <BarChart data={data} />
+        <BarChart data={statistics} />
       </div>
       <div className='reviews'>
         <h3>Latests Customer Reviews</h3>

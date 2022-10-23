@@ -32,7 +32,7 @@ const NoticesContainer = styled.div`
   }
   .notice:hover {
     cursor: pointer;
-    box-shadow: 0px 16px 30px #00000014;
+    box-shadow: ${props => props.theme.boxShadow};
     transform: translateY(-5px);
   }
 `

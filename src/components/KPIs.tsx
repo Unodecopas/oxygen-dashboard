@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
+import { KPI } from '../types'
 
 const KPIsContainer = styled.div`
   display: flex;
@@ -38,13 +39,9 @@ const KPIsContainer = styled.div`
     }
   }
 `
-interface Item {
-  icon: string
-  value: string | number
-  text: string
-}
+
 interface Props {
-  items: Item[]
+  items: KPI[]
 }
 
 const KPIs = ({ items }: Props): JSX.Element => {

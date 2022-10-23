@@ -5,10 +5,28 @@ import { fetchRoom } from '../../slices/roomsListSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 
 const RoomContainer = styled.div`
-  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: ${props => props.theme.colors.bgPrimary};
+  color: ${props => props.theme.colors.primary};
   height: 100%;
   width: 100%;
   border-radius: 12px;
+  & .room__photo {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    & img {
+      border-radius: 12px;
+      height: 100%;
+      width: 100%;
+      max-height: 100%;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
   & .room__info {
     display: flex;
     flex-direction: column;
@@ -17,12 +35,13 @@ const RoomContainer = styled.div`
     padding: 1rem;
     &__text {
       display: flex;
+      flex-direction: column;
       gap: 2rem;
       flex-grow: 1;
     }
     & h4 {
       font-size: 24px;
-      color: #212121;
+      color: ${props => props.theme.colors.primary};
       &.discount {
         color: #b84853;
       }
@@ -67,50 +86,56 @@ const RoomDetails = (): JSX.Element => {
   return (
     <RoomContainer>
       {(room != null) &&
-        <div className='room__info'>
-          <div className='room__info__text'>
-            <div className=''>
-              <p className='title'>Room Info</p>
-              <h4>{room.roomType + room.roomNumber}</h4>
-            </div>
-            <div className=''>
-              <p className='title'>Price</p>
-              <h4>{`${room.price / 100} $`} <span className='night'>/night</span></h4>
-            </div>
-            {
-            room.offer &&
-              <>
-                <div className='offer'>
-                  <p className='title'>Discount</p>
-                  <h4 className='discount'>{`${room.discount} %`}</h4>
-                </div>
-                <div className='price'>
-                  <p className='title'>Final Price</p>
-                  <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$'} <span className='night'>/night</span></h4>
-                </div>
-              </>
-          }
-          </div>
-          <hr />
-          <div className=''>
-            <h4>Description</h4>
-            <p className='title'>{room.description}</p>
-          </div>
-          <div className=''>
-            <h4>Cancellation</h4>
-            <p className='title'>{room.cancellation}</p>
-          </div>
-          <div className='amenities'>
-            <h4>Amenties</h4>
-            <div className='amenities__items'>
+        <>
+          <div className='room__info'>
+            <div className='room__info__text'>
+              <div className=''>
+                <p className='title'>Room Info</p>
+                <h4>{room.roomType + room.roomNumber}</h4>
+              </div>
+              <div className=''>
+                <p className='title'>Price</p>
+                <h4>{`${room.price / 100} $`} <span className='night'>/night</span></h4>
+              </div>
               {
+              room.offer &&
+                <>
+                  <div className='offer'>
+                    <p className='title'>Discount</p>
+                    <h4 className='discount'>{`${room.discount} %`}</h4>
+                  </div>
+                  <div className='price'>
+                    <p className='title'>Final Price</p>
+                    <h4 className='finalPrice'>{(room.price / 100 * (1 - room.discount / 100)).toFixed(2) + '$'} <span className='night'>/night</span></h4>
+                  </div>
+                </>
+              }
+            </div>
+            <hr />
+            <div className=''>
+              <h4>Description</h4>
+              <p className='title'>{room.description}</p>
+            </div>
+            <div className=''>
+              <h4>Cancellation</h4>
+              <p className='title'>{room.cancellation}</p>
+            </div>
+            <div className='amenities'>
+              <h4>Amenties</h4>
+              <div className='amenities__items'>
+                {
               room.amenities.map((amenitie: string, i: number) => {
                 return <div key={i} className='amenitie'>{amenitie}</div>
               })
             }
+              </div>
             </div>
           </div>
-        </div>}
+          <div className='room__photo'>
+            <img src={room?.photos[0]} alt='' />
+          </div>
+        </>}
+
     </RoomContainer>
   )
 }

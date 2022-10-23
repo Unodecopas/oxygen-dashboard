@@ -24,7 +24,7 @@ export const darkTheme: Theme = {
   padding: '1rem',
   marginTop: '1rem',
   marginBottom: '1rem',
-  boxShadow: '0px 10px 10px #fdfdfd42'
+  boxShadow: '0px 10px 10px #1358463d'
 }
 export const lightTheme: Theme = {
   colors: {
