@@ -1,20 +1,38 @@
 import styled from 'styled-components'
 import React from 'react'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-sm.png'
 import { useUser } from '../context/userContext'
 import { Link, NavLink } from 'react-router-dom'
 
 const Nav = styled.nav`
-  padding: 2rem 2rem 0 1.625rem;
+  padding: 2rem 1rem 0 1.625rem;
   box-shadow: 13px 3px 40px #00000005;
   background-color: ${props => props.theme.colors.bgPrimary};
   color: ${props => props.theme.colors.primary};
   height:100%;
   display: flex;
   flex-direction: column;
-  & img {
-    margin-left:1rem;
+  & .logo {
+    padding: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+    & img {
+      width: auto;
+    }
+    &__text {
+      width: 100%;
+      & h2 {
+        font-weight: bold;
+      }
+      & p {
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+    }
   }
+  
   & ul {
     margin-top: 4rem;
     display:flex;
@@ -95,7 +113,13 @@ const Navbar = (): JSX.Element => {
   return (
     <Nav>
       <a href='https://unodecopas.github.io/oxygen-hotel-miranda/public/index.html' target='blank'>
-        <img src={logo} alt='' width={220} height={57} />
+        <div className='logo'>
+          <img src={logo} alt='' width={220} height={57} />
+          <div className='logo__text'>
+            <h2>travl</h2>
+            <p>Hotel Admin Dashboard</p>
+          </div>
+        </div>
       </a>
       <ul>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
