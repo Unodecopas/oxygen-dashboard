@@ -28,6 +28,8 @@ const DashboardContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     & .fc {
+      width: 100%;
+      height: 100%;
       border: none;
       border-style: none !important;
       background-color: ${props => props.theme.colors.bgPrimary};
