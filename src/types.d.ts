@@ -21,6 +21,7 @@ interface Button {
   bgSecondary: string
   padding: string
   borderRadius: string
+  bgSpecial: string
 }
 
 interface Colors {

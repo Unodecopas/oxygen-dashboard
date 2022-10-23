@@ -12,12 +12,13 @@ const Btn = styled.button<Props>`
  border-radius: 12px;
  background-color: ${props => (props.primary === true) ? props.theme.button.bgPrimary : props.theme.button.bgSecondary};
  color: ${props => props.theme.button.primary};
- border: 1px solid transparent;
+ border: 1px solid ${props => (props.primary === true) ? props.theme.button.bgPrimary : props.theme.colors.bgPrimary};
  padding: ${props => props.theme.button.padding};
  transition:all 0.3s ease-out;
  &:hover {
-  background-color: ${props => (props.primary === true) ? '#EBF1EF' : '#eeeee'};
-  color: ${props => (props.primary === true) ? props.theme.button.primary : props.theme.button.secondary};
+  border: 1px solid ${props => props.theme.button.bgPrimary};
+  background-color: ${props => props.theme.colors.bgSpecial};
+  color: ${props => props.theme.button.secondary};
  }
 `
 

@@ -66,7 +66,7 @@ const Nav = styled.nav`
       &:hover {
         border: 1px solid ${props => props.theme.button.bgPrimary};
         background-color: ${props => props.theme.colors.bgSpecial};
-        color: ${props => props.theme.button.bgPrimary};
+        color: ${props => props.theme.button.secondary};
       }
     }
   }

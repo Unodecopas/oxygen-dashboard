@@ -13,6 +13,7 @@ export const darkTheme: Theme = {
     secondary: '#eee',
     bgPrimary: '#135846',
     bgSecondary: '#3d3d3d',
+    bgSpecial: '#799283',
     padding: '0.8125rem 2.1875rem',
     borderRadius: '8px'
   },
@@ -36,11 +37,13 @@ export const lightTheme: Theme = {
   },
   button: {
     primary: '#fff',
-    secondary: '#eee',
+    secondary: '#000',
     bgPrimary: '#135846',
     bgSecondary: '#3d3d3d',
     padding: '0.8125rem 2.1875rem',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    bgSpecial: '#799283'
+
   },
   font: {
     fontColor: '#fff'
