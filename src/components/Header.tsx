@@ -121,8 +121,8 @@ const Header = ({ changeTheme }: Props): JSX.Element => {
         <button onClick={() => dispatch({ type: 'logout' })} id='btn-logout'>
           <img src={logoutIcon} alt='' />
         </button>
+        <ToggleTheme changeTheme={changeTheme} />
       </div>
-      <ToggleTheme changeTheme={changeTheme} />
     </HeaderContainer>
   )
 }
