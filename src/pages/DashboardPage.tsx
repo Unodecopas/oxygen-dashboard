@@ -57,6 +57,9 @@ const DashboardContainer = styled.div`
     }
     .fc-view-harness, .fc-view-harness-active{
       overflow: hidden;
+    }
+    .fc .fc-scrollgrid-section-sticky > *{
+      background: none
     }  
   }
   & .reviews {
@@ -123,11 +126,7 @@ const DashboardPage = (): JSX.Element => {
     <DashboardContainer>
       <KPIs items={items} />
       <div className='widgets'>
-        <FullCalendar
-          plugins={[dayGridPlugin]}
-          initialView='dayGridMonth'
-          height='auto'
-        />
+        <FullCalendar plugins={[dayGridPlugin]} initialView='dayGridMonth' height='auto' />
         <BarChart data={statistics} />
       </div>
       <div className='reviews'>
