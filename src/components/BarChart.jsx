@@ -8,16 +8,17 @@ const D3Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  place-items: center;
   background-color: ${props => props.theme.colors.bgPrimary};
   color: ${props => props.theme.colors.primary};
   border-radius: 12px;
   padding: 1rem;
-  & svg { 
-    width: 100%;
-    height: 100%;
+  & div {
+    flex-grow: 1;
+    & .svg-content-responsinve{
+      width: 100%;
+      height: 100%;
+    }
   }
- 
 `
 // interface Props {
 //   data: any[]
@@ -26,13 +27,13 @@ const BarChart = ({ data }) => {
   const svgRef = useRef()
   useEffect(() => {
     const container = d3.select(svgRef.current)
-    const width = 500
-    const height = 300
+    const width = 600
+    const height = 500
     const margin = {
       top: 30,
-      right: 20,
+      right: 30,
       bottom: 30,
-      left: 50
+      left: 30
     }
     const barPadding = 0.2
     const axisTicks = {
@@ -42,8 +43,12 @@ const BarChart = ({ data }) => {
     }
     const svg = container
       .append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMinYMin meet')
+    // class to make it responsive
+      .classed('svg-content-responsive', true)
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`)
     const xScale0 = d3.scaleBand().range([0, width - margin.left - margin.right]).padding(barPadding)
@@ -99,13 +104,13 @@ const BarChart = ({ data }) => {
       .call(yAxis1)
     return () => {
       // clear all previous content on refresh
-      const everything = svg.selectAll('*')
+      const everything = container.selectAll('*')
       everything.remove()
     }
-  }, [data, svgRef])
+  }, [])
   return (
     <D3Container>
-      <svg ref={svgRef} />
+      <div ref={svgRef} />
     </D3Container>
   )
 }
