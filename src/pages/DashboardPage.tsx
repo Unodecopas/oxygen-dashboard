@@ -31,6 +31,7 @@ const DashboardContainer = styled.div`
       width: 100%;
       height: 100%;
       border: none;
+      overflow: hidden;
       border-style: none !important;
       background-color: ${props => props.theme.colors.bgPrimary};
       color: ${props => props.theme.colors.primary};
@@ -54,6 +55,9 @@ const DashboardContainer = styled.div`
       background-color: ${props => props.theme.button.bgPrimary};
       color: ${props => props.theme.button.primary};
     }
+    .fc-view-harness, .fc-view-harness-active{
+      overflow: hidden;
+    }  
   }
   & .reviews {
     margin-top: 1rem;
@@ -119,7 +123,11 @@ const DashboardPage = (): JSX.Element => {
     <DashboardContainer>
       <KPIs items={items} />
       <div className='widgets'>
-        <FullCalendar plugins={[dayGridPlugin]} initialView='dayGridMonth' />
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView='dayGridMonth'
+          height='auto'
+        />
         <BarChart data={statistics} />
       </div>
       <div className='reviews'>
