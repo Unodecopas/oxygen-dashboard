@@ -70,6 +70,8 @@ const BarChart = ({ data }) => {
       .data(d => [d])
       .enter()
       .append('rect')
+      .on('mouseover', onMouseOver)
+      .on('mouseout', onMouseOut)
       .attr('class', 'bar totalIncome')
       .style('fill', '#135846')
       .attr('x', d => xScale1('totalIncome'))
@@ -82,7 +84,7 @@ const BarChart = ({ data }) => {
       .enter()
       .append('rect')
       .attr('class', 'bar occupancyPercentage')
-      .style('fill', 'red')
+      .style('fill', '#e74e5b')
       .attr('x', d => xScale1('occupancyPercentage'))
       .attr('y', d => yScale(d.occupancyPercentage))
       .attr('width', xScale1.bandwidth())
@@ -100,6 +102,29 @@ const BarChart = ({ data }) => {
       .attr('transform', `translate(${width - margin.left - margin.right}, 0)`)
       .attr('class', 'y axis')
       .call(yAxis1)
+
+    function onMouseOver (d, i) {
+      d3.select(this).attr('class', 'bar-hovered')
+      svg.append('text')
+        .attr('class', 'val')
+        .attr('x', () => xScale0(i.model_name))
+        .attr('y', () => yScale(i.totalIncome) + 20)
+        .style('fill', 'white')
+        .text(`${i.totalIncome}%`)
+      svg.append('text')
+        .attr('class', 'val')
+        .attr('x', () => xScale0(i.model_name) + 30)
+        .attr('y', () => yScale(i.occupancyPercentage) + 20)
+        .style('fill', 'white')
+        .text(`${i.occupancyPercentage}%`)
+    }
+
+    function onMouseOut (d, i) {
+      d3.select(this)
+        .attr('class', '')
+
+      d3.selectAll('.val').remove()
+    }
     return () => {
       // clear all previous content on refresh
       const everything = container.selectAll('*')
