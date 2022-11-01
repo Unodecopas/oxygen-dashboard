@@ -43,8 +43,9 @@ const BarChart = ({ data }) => {
       .append('svg')
       .attr('width', '100%')
       .attr('height', '100%')
+
       .attr('viewBox', `0 0 ${width} ${height}`)
-      .attr('preserveAspectRatio', 'xMinYMin meet')
+      .attr('preserveAspectRatio', 'xMidYMid meet')
     // class to make it responsive
       .classed('svg-content-responsive', true)
       .append('g')
